@@ -1,8 +1,11 @@
+import { Button } from "@/components/ui/button";
+import "./globals.css";
+import { BadgePlus } from "lucide-react";
+
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen p-6">
-      <h1 className="text-4xl font-bold">Fulcrum Dashboard</h1>
-      <p className="mt-2 text-gray-600">Warehouse & Inventory Management</p>
-    </main>
+    <div className="h-screen flex items-center justify-center">
+      <Button variant="destructive" size="lg"><BadgePlus /> Click me2</Button>
+    </div>
   );
 }

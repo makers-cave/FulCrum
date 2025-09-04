@@ -164,7 +164,10 @@ This guide helps you set up a **React + Node.js + PostgreSQL fullstack** develop
     ```
 
 ---
-
+## Notes
+- Configire VSCode for tailswind to avoid Unknown at rule @custom-variant css(unknownAtRules) error (https://github.com/tailwindlabs/tailwindcss-intellisense?tab=readme-ov-file#recommended-vs-code-settings) 
+- Add tailswind vscode extension
+- Import global.css in the page.tsx
 ## Additional Resources
 
 - [GitHub CLI](https://cli.github.com/)
@@ -172,5 +175,6 @@ This guide helps you set up a **React + Node.js + PostgreSQL fullstack** develop
 - [nvm-windows](https://github.com/coreybutler/nvm-windows)
 - [PostgreSQL Documentation](https://www.postgresql.org/docs/)
 - [pgAdmin (PostgreSQL GUI)](https://www.pgadmin.org/)
-
+- [shadCN (Component Library)](https://ui.shadcn.com/)
+- [Lucide icons](https://lucide.dev/)
 ---
