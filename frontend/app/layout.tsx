@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/components/sidebar";
+import Sidebar from "@/components/appSidebar";
 import { Main } from "next/document";
 import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/providers/themeprovider";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,11 +33,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange={false}>
-          <Sidebar />
-          <main className="w-full">
-            <Navbar />
-            <div className="px-4"> {children}</div>
-          </main>
+          <SidebarProvider>
+            <Sidebar />
+            <main className="w-full">
+              <Navbar />
+              <div className="px-4"> {children}</div>
+            </main>
+          </SidebarProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -1,0 +1,16 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Triangle (the pivot base) -->
+  <polygon points="60,90 40,120 80,120" fill="#2563eb"/>
+  
+  <!-- Balance bar -->
+  <rect x="30" y="70" width="60" height="8" rx="2" fill="#1e3a8a"/>
+  
+  <!-- Left box -->
+  <rect x="20" y="55" width="20" height="20" rx="2" fill="#facc15"/>
+  
+  <!-- Right box -->
+  <rect x="80" y="55" width="20" height="20" rx="2" fill="#f87171"/>
+  
+  <!-- Central pivot circle -->
+  <circle cx="60" cy="74" r="6" fill="white" stroke="#1e3a8a" stroke-width="3"/>
+</svg>

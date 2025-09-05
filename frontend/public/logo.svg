@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="256"
+   height="256"
+   viewBox="0 0 256 256"
+   fill="none"
+   role="img"
+   aria-labelledby="title desc"
+   version="1.1"
+   id="svg196"
+   sodipodi:docname="logo2.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs200" />
+  <sodipodi:namedview
+     id="namedview198"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="4.5546875"
+     inkscape:cx="127.89022"
+     inkscape:cy="128"
+     inkscape:window-width="2560"
+     inkscape:window-height="1369"
+     inkscape:window-x="1592"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg196" />
+  <title
+     id="title182">Fulcrum</title>
+  <desc
+     id="desc184">Elegant pivot dot with orbiting arc representing a central fulcrum and balanced motion.</desc>
+  <!-- Styles (optional): change overall color via the SVG 'color' property -->
+  <style
+     id="style186">
+    .stroke { stroke: currentColor; }
+    .fill   { fill: currentColor; }
+  </style>
+  <!-- Orbiting primary arc (partial circumference with a graceful gap) -->
+  <!-- Tip: tweak dasharray/dashoffset for arc length/position -->
+  <circle
+     cx="128"
+     cy="128"
+     r="88"
+     class="stroke"
+     stroke-width="12"
+     stroke-linecap="round"
+     stroke-dasharray="420 180"
+     stroke-dashoffset="24"
+     fill="none"
+     opacity="0.95"
+     id="circle188"
+     style="stroke:#facc15;stroke-opacity:1" />
+  <!-- Subtle inner arc for depth (lighter, shorter) -->
+  <circle
+     cx="128"
+     cy="128"
+     r="72"
+     class="stroke"
+     stroke-width="8"
+     stroke-linecap="round"
+     stroke-dasharray="220 360"
+     stroke-dashoffset="140"
+     fill="none"
+     opacity="0.4"
+     id="circle190"
+     style="fill:none;fill-opacity:1;stroke:#f87171;stroke-opacity:1" />
+  <!-- Central pivot dot -->
+  <circle
+     cx="128"
+     cy="128"
+     r="10"
+     class="fill"
+     id="circle192"
+     style="fill:#2563eb;fill-opacity:1" />
+  <!-- Orbit marker (suggests motion along the arc) -->
+  <circle
+     cx="216"
+     cy="128"
+     r="6"
+     class="fill"
+     opacity="0.9"
+     id="circle194"
+     style="fill:#1e3a8a;fill-opacity:1" />
+</svg>
