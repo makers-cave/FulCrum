@@ -7,7 +7,8 @@ import {
   Calendar,
   ChevronDown,
   User2,
-  ChevronUp
+  ChevronUp,
+  User2Icon
 } from "lucide-react"
 import {
   Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent,
@@ -77,9 +78,18 @@ const sideBarData = {
         { "_id": "consumption", "title": "Consumption", "href": "/workflow/consumption", "icon": MinusSquare },
         { "_id": "production", "title": "Production", "href": "/workflow/production", "icon": PlusSquare, badgeData: 5 }
       ]
-    }
+    },
+    { "_id": "partners", "title": "Partners", "href": "/admin/partners", "icon": User2Icon,
+      "items": [{ "_id": "tanents", "title": "Tanents", "href": "/admin/partners", "icon": User2Icon, badgeData: 12 },
+      { "_id": "customers", "title": "Customers", "href": "/admin/partners/customers", "icon": User, badgeData: 8 },
+      { "_id": "suppliers", "title": "Suppliers", "href": "/admin/partners/suppliers", "icon": User, badgeData: 4 },
+      { "_id": "manufacturers", "title": "Manufacturers", "href": "/admin/partners/manufacturers", "icon": User, badgeData: 2 },
+      { "_id": "carriers", "title": "Carriers", "href": "/admin/partners/carriers", "icon": User, badgeData: 2 }
+    ]
+     }
   ],
   adminMenu: [
+    
     { "_id": "users", "title": "Users & Roles", "href": "/admin/users", "icon": User },
     { "_id": "audit", "title": "Audit Logs", "href": "/admin/audit", "icon": History },
     { "_id": "api", "title": "API & Webhooks", "href": "/admin/api", "icon": Code }
