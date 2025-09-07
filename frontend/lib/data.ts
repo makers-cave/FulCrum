@@ -79,3 +79,57 @@ export const sideBarData = {
     { "_id": "api", "title": "API & Webhooks", "href": "/admin/api", "icon": Code }
   ]
 }
+
+export const partnerDashboardData = {
+    kpis: [{ title: "Tenants", value: 12, delta: 2, icon: require("lucide-react").Home },
+        { title: "Customers", value: 240, delta: -3, icon: require("lucide-react").Users },
+        { title: "Suppliers", value: 56, delta: 5, icon: require("lucide-react").Truck },
+        { title: "Manufacturers", value: 12, delta: 0, icon: require("lucide-react").Factory },
+        { title: "Carriers", value: 18, delta: 1, icon: require("lucide-react").Truck }],
+    topCustomers: [
+      { name: "Acme Retail", orders: 312 },
+      { name: "GreenGrocers", orders: 208 },
+      { name: "Shopwise", orders: 150 },
+      { name: "UrbanGoods", orders: 98 },
+    ],
+    carriersPerformance: [
+      { name: "FastLine", onTimePct: 98 },
+      { name: "TransCo", onTimePct: 93 },
+      { name: "ShipFast", onTimePct: 88 },
+    ],
+    recentActivity: [
+      { when: "2h ago", who: "Acme Retail", type: "Order placed", summary: "SO-1024 (12 items)" },
+      { when: "6h ago", who: "Alpha Supply", type: "Shipment received", summary: "ASN-556" },
+      { when: "1d ago", who: "Beta Manufacturing", type: "Work order started", summary: "WO-210" },
+    ],
+    expiringContracts: [
+      { name: "Alpha Supply", type: "Supplier", expires: "2025-09-25", status: "Action required" },
+      { name: "FleetX", type: "Carrier", expires: "2025-10-12", status: "Renewal due" },
+    ],
+    directory: [
+      { name: "Acme Retail", type: "Customer", status: "Active", lastActivity: "2025-09-05" },
+      { name: "Alpha Supply", type: "Supplier", status: "Active", lastActivity: "2025-09-04" },
+      { name: "Beta Manufacturing", type: "Manufacturer", status: "On hold", lastActivity: "2025-08-20" },
+      { name: "FleetX", type: "Carrier", status: "Active", lastActivity: "2025-08-30" },
+    ],
+  };
+
+  // 🔹 Sample tanent data
+export const sampleTenant = [
+    { id: "1", name: "Tenant Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
+    { id: "2", name: "Tenant Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
+    { id: "3", name: "Tenant Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
+  ];
+  
+  export const sampleTenantOrders = {
+    1: [
+      { id: "ORD-101", item: "Widget A", qty: 120, status: "Shipped" },
+      { id: "ORD-102", item: "Widget B", qty: 50, status: "Pending" },
+    ],
+    2: [
+      { id: "ORD-201", item: "Gadget X", qty: 200, status: "Delivered" },
+    ],
+    3: [
+      { id: "ORD-301", item: "Part Z", qty: 75, status: "Shipped" },
+    ],
+  };
