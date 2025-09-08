@@ -8,7 +8,9 @@ import {
   User2,
   ChevronUp,
   User2Icon,
-  Tent
+  Tent,
+  Layers,
+  Cog
 } from "lucide-react"
 
 export const sideBarData = {
@@ -31,6 +33,8 @@ export const sideBarData = {
       "href": "/inventory",
       "icon": Boxes,
       "items": [
+        { "_id": "parts", "title": "Parts", "href": "/inventory/parts", "icon": Cog },
+        { "_id": "products", "title": "Products", "href": "/inventory/products", "icon": Layers, badgeData: 100 },
         { "_id": "stock", "title": "Stock Levels", "href": "/inventory/stock", "icon": BarChart3, badgeData: 25 },
         { "_id": "lots", "title": "Lots & Serials", "href": "/inventory/lots", "icon": Hash },
         { "_id": "adjustments", "title": "Adjustments", "href": "/inventory/adjustments", "icon": Edit3 },
@@ -64,7 +68,7 @@ export const sideBarData = {
     {
       "_id": "partners", "title": "Partners", "href": "/partners", "icon": User2Icon,
       "items": [
-        { "_id": "tanents", "title": "Tanents", "href": "/partners/tanents", "icon": Tent, badgeData: 12 },
+        { "_id": "tenants", "title": "Tenants", "href": "/partners/tenants", "icon": Tent, badgeData: 12 },
         { "_id": "customers", "title": "Customers", "href": "/partners/customers", "icon": User, badgeData: 8 },
         { "_id": "suppliers", "title": "Suppliers", "href": "/partners/suppliers", "icon": User, badgeData: 4 },
         { "_id": "manufacturers", "title": "Manufacturers", "href": "/partners/manufacturers", "icon": User, badgeData: 2 },
@@ -115,21 +119,40 @@ export const partnerDashboardData = {
   };
 
   // 🔹 Sample tanent data
-export const sampleTenant = [
+export const tenantData = [
     { id: "1", name: "Tenant Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
     { id: "2", name: "Tenant Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
     { id: "3", name: "Tenant Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
   ];
-  
+  export const customersData = [
+    { id: "1", name: "Tenant Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
+    { id: "2", name: "Tenant Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
+    { id: "3", name: "Tenant Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
+  ];
+  export const suppliersData = [
+    { id: "1", name: "Tenant Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
+    { id: "2", name: "Tenant Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
+    { id: "3", name: "Tenant Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
+  ];
+  export const manufacturersData = [
+    { id: "1", name: "Tenant Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
+    { id: "2", name: "Tenant Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
+    { id: "3", name: "Tenant Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
+  ];
+  export const carriersData = [
+    { id: "1", name: "Tenant Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
+    { id: "2", name: "Tenant Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
+    { id: "3", name: "Tenant Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
+  ];
   export const sampleTenantOrders = {
-    1: [
+    "1": [
       { id: "ORD-101", item: "Widget A", qty: 120, status: "Shipped" },
       { id: "ORD-102", item: "Widget B", qty: 50, status: "Pending" },
     ],
-    2: [
+    "2": [
       { id: "ORD-201", item: "Gadget X", qty: 200, status: "Delivered" },
     ],
-    3: [
+    "3": [
       { id: "ORD-301", item: "Part Z", qty: 75, status: "Shipped" },
     ],
   };

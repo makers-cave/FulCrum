@@ -11,3 +11,17 @@ export type Tenant = {
     currency: string;
     avatar?: string;
   };
+
+  interface CustomerPageProps {
+    params: { tenantId: string }
+  }
+export type Customer = {
+    _id: string;
+    name: string;
+    description?: string;
+    isAlsoManufacturer: boolean;
+    isAlsoSupplier: boolean;
+    isAlsoCustomer: boolean;
+    currency: string;
+    avatar?: string;
+  };

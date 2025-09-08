@@ -3,7 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { sampleTenant } from '@/lib/data'
+import { tenantData } from '@/lib/data'
 import { Tenant, TenantPageProps } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import { Building2, DollarSign, Factory, ImageIcon, Info, User } from 'lucide-react';
