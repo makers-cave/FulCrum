@@ -10,7 +10,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const CustomersPage = () => {
-  const [selectedEntity, setSelectedEntity] = useState<string | null>(1);
+  const [selectedEntity, setSelectedEntity] = useState<string | null>("1");
   const [editingEntity, setEditingEntity] = useState<any | null>(null);
 
   const data = customersData;

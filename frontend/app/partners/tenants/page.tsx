@@ -49,9 +49,9 @@ const TanentsPage = () => {
               <TableBody>
                 {tenants.map((t) => (
                   <TableRow
-                    key={t.id}
-                    className={`cursor-pointer ${selectedTenant === t.id ? "bg-muted" : ""}`}
-                    onClick={() => setSelectedTenant(t.id)}
+                    key={t._id}
+                    className={`cursor-pointer ${selectedTenant === t._id ? "bg-muted" : ""}`}
+                    onClick={() => setSelectedTenant(t._id)}
                   >
                     <TableCell className="flex items-center gap-2">
                       <Avatar>
@@ -64,7 +64,7 @@ const TanentsPage = () => {
                     <TableCell>{t.phone}</TableCell>
                     <TableCell>
                       <Button asChild variant="outline" size="sm">
-                        <Link href={`/partners/tenants/${t.id}`}>
+                        <Link href={`/partners/tenants/${t._id}`}>
                           Edit
                         </Link>
                       </Button>
@@ -81,7 +81,7 @@ const TanentsPage = () => {
           <CardHeader>
             <CardTitle>
               {selectedTenant
-                ? `Orders for ${tenants.find((t) => t.id === selectedTenant)?.name}`
+                ? `Orders for ${tenants.find((t) => t._id === selectedTenant)?.name}`
                 : "Select a tenant to view orders"}
             </CardTitle>
           </CardHeader>
@@ -98,8 +98,8 @@ const TanentsPage = () => {
                 </TableHeader>
                 <TableBody>
                   {orders.map((o) => (
-                    <TableRow key={o.id}>
-                      <TableCell>{o.id}</TableCell>
+                    <TableRow key={o._id}>
+                      <TableCell>{o._id}</TableCell>
                       <TableCell>{o.item}</TableCell>
                       <TableCell>{o.qty}</TableCell>
                       <TableCell>{o.status}</TableCell>

@@ -1,31 +1,47 @@
 "use client";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Customer, TenantPageProps } from "@/lib/types";
+import { customersData } from "@/lib/data";
+import { Customer, CustomerPageProps, TenantPageProps } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import { Badge, Building2, DollarSign, Factory, ImageIcon, Info, User } from "lucide-react";
-import { useState } from "react";
-
-export default function CustomerPage({ params }: TenantPageProps) {
-  // const tenant = await getTenant(params.tenantId);
+import { Building2, DollarSign, Factory, ImageIcon, Info, User } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation"
+export default function CustomerPage({ params }: CustomerPageProps) {
+  const selectedCustId = params.custid;
   const [editingField, setEditingField] = useState<string | null>(null);
-  const [tenant, setTenant] = useState<Customer>({
-    _id: "1",
-    name: "DelightLoop INC",
+  const defaultCustomer: Customer = {
+    _id: "99",
+    name: "Customer Alpha",
     description: "This is description",
     isAlsoManufacturer: false,
     isAlsoSupplier: true,
     isAlsoCustomer: true,
     currency: "USD",
     avatar: "",
-  })
+  }
+  const [customer, setCustomer] = useState<Customer>(defaultCustomer);
+  useEffect(() => {
+    async function loadCustomer() {
+      const c = await getCustomer(selectedCustId);
+      if (c) {
+        setCustomer(c)
+      } else {
+        setCustomer(defaultCustomer)
+      }
+    }
+    if (selectedCustId) {
+      loadCustomer()
+    }
+  }, [selectedCustId]);
   const toggleField = (field: keyof Customer) => {
-    setTenant((prev) => ({ ...prev, [field]: !prev[field] }));
+    setCustomer((prev) => ({ ...prev, [field]: !prev[field] }));
   };
 
   const handleSave = (field: keyof Customer, value: string) => {
-    setTenant((prev) => ({ ...prev, [field]: value }));
+    setCustomer((prev) => ({ ...prev, [field]: value }));
     setEditingField(null);
   };
   return (
@@ -33,7 +49,7 @@ export default function CustomerPage({ params }: TenantPageProps) {
       {/* Header */}
       {editingField === "name" ? (
         <Input className='text-2xl font-bold'
-          defaultValue={tenant?.name}
+          defaultValue={customer?.name}
           onBlur={(e) => handleSave("name", e.target.value)}
           autoFocus
         />
@@ -42,15 +58,15 @@ export default function CustomerPage({ params }: TenantPageProps) {
           className="cursor-pointer text-2xl font-bold"
           onClick={() => setEditingField("name")}
         >
-          <h1>{tenant?.name}</h1>
+          <h1>{customer?.name}</h1>
         </div>
       )}
       <div className="grid grid-cols-3 gap-4">
         {/* Left: Avatar */}
         <Card className="col-span-1 flex items-center justify-center h-48">
-          {tenant?.avatar ? (
+          {customer?.avatar ? (
             <img
-              src={tenant.avatar}
+              src={customer.avatar}
               alt="avatar"
               className="h-full w-full object-cover rounded-md"
             />
@@ -73,7 +89,7 @@ export default function CustomerPage({ params }: TenantPageProps) {
               </div>
               {editingField === "description" ? (
                 <Input
-                  defaultValue={tenant?.description}
+                  defaultValue={customer?.description}
                   onBlur={(e) => handleSave("description", e.target.value)}
                   autoFocus
                 />
@@ -82,7 +98,7 @@ export default function CustomerPage({ params }: TenantPageProps) {
                   className="cursor-pointer text-sm"
                   onClick={() => setEditingField("description")}
                 >
-                  {tenant?.description}
+                  {customer?.description}
                 </div>
               )}
             </div>
@@ -96,11 +112,11 @@ export default function CustomerPage({ params }: TenantPageProps) {
               <Badge
                 className={cn(
                   "cursor-pointer",
-                  tenant.isAlsoManufacturer ? "bg-green-600" : "bg-red-600"
+                  customer.isAlsoManufacturer ? "bg-green-600" : "bg-red-600"
                 )}
                 onClick={() => toggleField("isAlsoManufacturer")}
               >
-                {tenant.isAlsoManufacturer ? "Yes" : "No"}
+                {customer.isAlsoManufacturer ? "Yes" : "No"}
               </Badge>
             </div>
 
@@ -113,11 +129,11 @@ export default function CustomerPage({ params }: TenantPageProps) {
               <Badge
                 className={cn(
                   "cursor-pointer",
-                  tenant.isAlsoSupplier ? "bg-green-600" : "bg-red-600"
+                  customer.isAlsoSupplier ? "bg-green-600" : "bg-red-600"
                 )}
                 onClick={() => toggleField("isAlsoSupplier")}
               >
-                {tenant.isAlsoSupplier ? "Yes" : "No"}
+                {customer.isAlsoSupplier ? "Yes" : "No"}
               </Badge>
             </div>
 
@@ -130,11 +146,11 @@ export default function CustomerPage({ params }: TenantPageProps) {
               <Badge
                 className={cn(
                   "cursor-pointer",
-                  tenant.isAlsoCustomer ? "bg-green-600" : "bg-red-600"
+                  customer.isAlsoCustomer ? "bg-green-600" : "bg-red-600"
                 )}
                 onClick={() => toggleField("isAlsoCustomer")}
               >
-                {tenant.isAlsoCustomer ? "Yes" : "No"}
+                {customer.isAlsoCustomer ? "Yes" : "No"}
               </Badge>
             </div>
           </CardContent>
@@ -153,7 +169,7 @@ export default function CustomerPage({ params }: TenantPageProps) {
               </div>
               {editingField === "currency" ? (
                 <Input
-                  defaultValue={tenant.currency}
+                  defaultValue={customer.currency}
                   // onBlur={(e) => handleSave("currency", e.target.value)}
                   autoFocus
                 />
@@ -162,7 +178,7 @@ export default function CustomerPage({ params }: TenantPageProps) {
                   className="cursor-pointer text-sm"
                   onClick={() => setEditingField("currency")}
                 >
-                  {tenant.currency}
+                  {customer.currency}
                 </div>
               )}
             </div>
@@ -194,4 +210,9 @@ export default function CustomerPage({ params }: TenantPageProps) {
     </div>
 
   );
+  async function getCustomer(custId: string): Promise<Customer | null> {
+    // replace with real fetch
+    return customersData.find((c) => c.id === custId) ?? null
+  }
+
 }
