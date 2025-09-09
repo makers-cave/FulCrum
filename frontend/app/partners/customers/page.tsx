@@ -11,8 +11,7 @@ import { useState } from "react";
 
 const CustomersPage = () => {
   const [selectedEntity, setSelectedEntity] = useState<string | null>("1");
-  const [editingEntity, setEditingEntity] = useState<any | null>(null);
-
+  
   const data = customersData;
   const orders = selectedEntity ? sampleTenantOrders[selectedEntity as keyof typeof sampleTenantOrders] ?? [] : [];
   return (
@@ -21,11 +20,11 @@ const CustomersPage = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-semibold">Customers</h1>
-          <p className="text-sm text-muted-foreground">View, Add New, Edit or Delete Tenants.</p>
+          <p className="text-sm text-muted-foreground">View, Add New, Edit or Delete Suppliers.</p>
         </div>
 
         <div className="flex items-center gap-3">
-          <Input placeholder="Search tentants..." className="max-w-sm" />
+          <Input placeholder="Search Customers..." className="max-w-sm" />
           <Badge>Add New</Badge>
         </div>
       </div>
@@ -33,7 +32,7 @@ const CustomersPage = () => {
       {/* Top section: Tenant list */}
       <Card>
         <CardHeader>
-          <CardTitle>Tenants</CardTitle>
+          <CardTitle>Customers List</CardTitle>
         </CardHeader>
         <CardContent>
           <Table>
@@ -48,9 +47,9 @@ const CustomersPage = () => {
             <TableBody>
               {data.map((t) => (
                 <TableRow
-                  key={t.id}
-                  className={`cursor-pointer ${selectedEntity === t.id ? "bg-muted" : ""}`}
-                  onClick={() => setSelectedEntity(t.id)}
+                  key={t._id}
+                  className={`cursor-pointer ${selectedEntity === t._id ? "bg-muted" : ""}`}
+                  onClick={() => setSelectedEntity(t._id)}
                 >
                   <TableCell className="flex items-center gap-2">
                     <Avatar>
@@ -63,7 +62,7 @@ const CustomersPage = () => {
                   <TableCell>{t.phone}</TableCell>
                   <TableCell>
                     <Button asChild variant="outline" size="sm">
-                        <Link href={`/partners/customers/${t.id}`}>
+                        <Link href={`/partners/customers/${t._id}`}>
                           Edit
                         </Link>
                       </Button>
@@ -80,7 +79,7 @@ const CustomersPage = () => {
         <CardHeader>
           <CardTitle>
             {selectedEntity
-              ? `Orders for ${data.find((t) => t.id === selectedEntity)?.name}`
+              ? `Orders for ${data.find((t) => t._id === selectedEntity)?.name}`
               : "Select a tenant to view orders"}
           </CardTitle>
         </CardHeader>
@@ -97,8 +96,8 @@ const CustomersPage = () => {
               </TableHeader>
               <TableBody>
                 {orders.map((o) => (
-                  <TableRow key={o.id}>
-                    <TableCell>{o.id}</TableCell>
+                  <TableRow key={o._id}>
+                    <TableCell>{o._id}</TableCell>
                     <TableCell>{o.item}</TableCell>
                     <TableCell>{o.qty}</TableCell>
                     <TableCell>{o.status}</TableCell>

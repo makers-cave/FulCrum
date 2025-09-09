@@ -64,7 +64,7 @@ const AppSidebar = () => {
                   {/* Left section: Icon + Label */}
                   <div className="flex items-center gap-2 flex-1">
                     {/* Group Icon */}
-                    <menuitem.icon className="h-5 w-5 text-gray-600" />
+                    <menuitem.icon className="h-5 w-5 text-600" />
 
                     {/* Label → navigates to overview page */}
                     <Link
@@ -89,7 +89,7 @@ const AppSidebar = () => {
                 {/* Submenu */}
                 <CollapsibleContent>
                   <SidebarGroupContent>
-                    <SidebarMenu className="ml-6"> {/* indent submenu */}
+                    <SidebarMenu> {/* indent submenu */}
                       {menuitem.items &&
                         menuitem.items.map((item) => (
                           <SidebarMenuItem key={item._id}>

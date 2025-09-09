@@ -3,38 +3,38 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { customersData } from "@/lib/data";
-import { Customer } from "@/lib/types";
+import { carriersData } from "@/lib/data";
+import { Carrier } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { Building2, DollarSign, Factory, ImageIcon, Info, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation"
-import { getCustomer, getDefaultCustomer } from "@/lib/services/customerService";
-export default function CustomerPage() {
+import { getCarrier, getDefaultCarrier } from "@/lib/services/carrierService";
+export default function CarrierPage() {
   const params = useParams();
-  const selectedCustId = params.custid as string;
+  const selectedCustId = params.carrierid as string;
   const [editingField, setEditingField] = useState<string | null>(null);
   
-  const [customer, setCustomer] = useState<Customer>(getDefaultCustomer());
+  const [carrier, setCarrier] = useState<Carrier>(getDefaultCarrier());
   useEffect(() => {
-    async function loadCustomer() {
-      const c = await getCustomer(selectedCustId);
+    async function loadCarrier() {
+      const c = await getCarrier(selectedCustId);
       if (c) {
-        setCustomer(c)
+        setCarrier(c)
       } else {
-        setCustomer(getDefaultCustomer())
+        setCarrier(getDefaultCarrier())
       }
     }
     if (selectedCustId) {
-      loadCustomer()
+      loadCarrier()
     }
   }, [selectedCustId]);
-  const toggleField = (field: keyof Customer) => {
-    setCustomer((prev) => ({ ...prev, [field]: !prev[field] }));
+  const toggleField = (field: keyof Carrier) => {
+    setCarrier((prev) => ({ ...prev, [field]: !prev[field] }));
   };
 
-  const handleSave = (field: keyof Customer, value: string) => {
-    setCustomer((prev) => ({ ...prev, [field]: value }));
+  const handleSave = (field: keyof Carrier, value: string) => {
+    setCarrier((prev) => ({ ...prev, [field]: value }));
     setEditingField(null);
   };
   return (
@@ -42,7 +42,7 @@ export default function CustomerPage() {
       {/* Header */}
       {editingField === "name" ? (
         <Input className='text-2xl font-bold'
-          defaultValue={customer?.name}
+          defaultValue={carrier?.name}
           onBlur={(e) => handleSave("name", e.target.value)}
           autoFocus
         />
@@ -51,15 +51,15 @@ export default function CustomerPage() {
           className="cursor-pointer text-2xl font-bold"
           onClick={() => setEditingField("name")}
         >
-          <h1>{customer?.name}</h1>
+          <h1>{carrier?.name}</h1>
         </div>
       )}
       <div className="grid grid-cols-3 gap-4">
         {/* Left: Avatar */}
         <Card className="col-span-1 flex items-center justify-center h-48">
-          {customer?.avatar ? (
+          {carrier?.avatar ? (
             <img
-              src={customer.avatar}
+              src={carrier.avatar}
               alt="avatar"
               className="h-full w-full object-cover rounded-md"
             />
@@ -82,7 +82,7 @@ export default function CustomerPage() {
               </div>
               {editingField === "description" ? (
                 <Input
-                  defaultValue={customer?.description}
+                  defaultValue={carrier?.description}
                   onBlur={(e) => handleSave("description", e.target.value)}
                   autoFocus
                 />
@@ -91,7 +91,7 @@ export default function CustomerPage() {
                   className="cursor-pointer text-sm"
                   onClick={() => setEditingField("description")}
                 >
-                  {customer?.description}
+                  {carrier?.description}
                 </div>
               )}
             </div>
@@ -105,11 +105,11 @@ export default function CustomerPage() {
               <Badge
                 className={cn(
                   "cursor-pointer",
-                  customer.isAlsoManufacturer ? "bg-green-600" : "bg-red-600"
+                  carrier.isAlsoManufacturer ? "bg-green-600" : "bg-red-600"
                 )}
                 onClick={() => toggleField("isAlsoManufacturer")}
               >
-                {customer.isAlsoManufacturer ? "Yes" : "No"}
+                {carrier.isAlsoManufacturer ? "Yes" : "No"}
               </Badge>
             </div>
 
@@ -122,28 +122,28 @@ export default function CustomerPage() {
               <Badge
                 className={cn(
                   "cursor-pointer",
-                  customer.isAlsoSupplier ? "bg-green-600" : "bg-red-600"
+                  carrier.isAlsoSupplier ? "bg-green-600" : "bg-red-600"
                 )}
                 onClick={() => toggleField("isAlsoSupplier")}
               >
-                {customer.isAlsoSupplier ? "Yes" : "No"}
+                {carrier.isAlsoSupplier ? "Yes" : "No"}
               </Badge>
             </div>
 
-            {/* Customer */}
+            {/* Carrier */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-sm font-medium">
                 <User className="h-4 w-4" />
-                Customer
+                Carrier
               </div>
               <Badge
                 className={cn(
                   "cursor-pointer",
-                  customer.isAlsoCustomer ? "bg-green-600" : "bg-red-600"
+                  carrier.isAlsoCustomer ? "bg-green-600" : "bg-red-600"
                 )}
                 onClick={() => toggleField("isAlsoCustomer")}
               >
-                {customer.isAlsoCustomer ? "Yes" : "No"}
+                {carrier.isAlsoCustomer ? "Yes" : "No"}
               </Badge>
             </div>
           </CardContent>
@@ -162,7 +162,7 @@ export default function CustomerPage() {
               </div>
               {editingField === "currency" ? (
                 <Input
-                  defaultValue={customer.currency}
+                  defaultValue={carrier.currency}
                   // onBlur={(e) => handleSave("currency", e.target.value)}
                   autoFocus
                 />
@@ -171,7 +171,7 @@ export default function CustomerPage() {
                   className="cursor-pointer text-sm"
                   onClick={() => setEditingField("currency")}
                 >
-                  {customer.currency}
+                  {carrier.currency}
                 </div>
               )}
             </div>

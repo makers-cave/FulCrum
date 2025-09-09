@@ -4,24 +4,33 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { tenantData } from '@/lib/data'
+import { getDefaultTenant, getTenant } from '@/lib/services/tenantService';
 import { Tenant, TenantPageProps } from '@/lib/types';
 import { cn } from '@/lib/utils';
+import { get } from 'http';
 import { Building2, DollarSign, Factory, ImageIcon, Info, User } from 'lucide-react';
-import { useState } from 'react';
+import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-export default function TenantPage({ params }: TenantPageProps) {
-  // const tenant = await getTenant(params.tenantId);
+export default function TenantPage() {
+  const params = useParams();
+  const selectedTenantID = params.tenantid as string;
   const [editingField, setEditingField] = useState<string | null>(null);
-  const [tenant, setTenant] = useState<Tenant>({
-    _id: "1",
-    name: "DelightLoop INC",
-    description: "This is description",
-    isAlsoManufacturer: false,
-    isAlsoSupplier: true,
-    isAlsoCustomer: true,
-    currency: "USD",
-    avatar: "",
-  })
+  const [tenant, setTenant] = useState<Tenant>(getDefaultTenant());
+  useEffect(() => {
+    async function loadCustomer() {
+      const t = await getTenant(selectedTenantID);
+      if (t) {
+        setTenant(t)
+      } else {
+        setTenant(getDefaultTenant())
+      }
+    }
+    if (selectedTenantID) {
+      loadCustomer()
+    }
+  }, [selectedTenantID]);
+
   const toggleField = (field: keyof Tenant) => {
     setTenant((prev) => ({ ...prev, [field]: !prev[field] }));
   };

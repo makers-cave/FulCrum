@@ -1,0 +1,23 @@
+import { useId } from "react"
+import { suppliersData } from "../data"
+import { Supplier } from "../types"
+
+
+function getDefaultSupplier(): Supplier {
+  return {
+      _id: useId(),
+      name: "New Supplier",
+      description: "This is description",
+      isAlsoManufacturer: false,
+      isAlsoSupplier: true,
+      isAlsoCustomer: true,
+      currency: "USD",
+      avatar: "",
+    }
+}
+async function getSupplier(supplierId: string): Promise<Supplier | null> {
+  // replace with real fetch
+  return suppliersData.find((c) => c._id === supplierId) ?? null
+}
+
+export { getSupplier, getDefaultSupplier }
