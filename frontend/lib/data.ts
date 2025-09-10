@@ -10,78 +10,81 @@ import {
   User2Icon,
   Tent,
   Layers,
-  Cog
+  Cog,
+  MapPinHouse
 } from "lucide-react";
-import { Customer, Part, Tenant } from "./types";
+import { Customer, Part, PartLocation, Tenant } from "./types";
+import { tree } from "next/dist/build/templates/app-page";
 
 export const sideBarData = {
   menu: [
     {
-      "_id": "warehouse",
-      "title": "Warehouse",
-      "href": "/warehouse",
+      _id: "warehouse",
+      title: "Warehouse",
+      href: "/warehouse",
       "icon": Warehouse,
       "items": [
-        { "_id": "asn", "title": "ASNs", "href": "/warehouse/asn", "icon": Package },
-        { "_id": "receiving", "title": "Receiving", "href": "/warehouse/receiving", "icon": ScanBarcode, badgeData: 3 },
-        { "_id": "putaway", "title": "Putaway", "href": "/warehouse/putaway", "icon": MoveDown, badgeData: 1 },
-        { "_id": "picking", "title": "Picking", "href": "/warehouse/picking", "icon": ClipboardList, badgeData: 1 }
+        { _id: "locations", title: "Locations", href: "/warehouse/locations", icon: MapPinHouse },
+        { _id: "asn", title: "ASNs", href: "/warehouse/asn", "icon": Package },
+        { _id: "receiving", title: "Receiving", href: "/warehouse/receiving", "icon": ScanBarcode, badgeData: 3 },
+        { _id: "putaway", title: "Putaway", href: "/warehouse/putaway", "icon": MoveDown, badgeData: 1 },
+        { _id: "picking", title: "Picking", href: "/warehouse/picking", "icon": ClipboardList, badgeData: 1 }
       ]
     },
     {
-      "_id": "inventory",
-      "title": "Inventory",
-      "href": "/inventory",
+      _id: "inventory",
+      title: "Inventory",
+      href: "/inventory",
       "icon": Boxes,
       "items": [
-        { "_id": "parts", "title": "Parts", "href": "/inventory/parts", "icon": Cog },
-        { "_id": "products", "title": "Products", "href": "/inventory/products", "icon": Layers, badgeData: 100 },
-        { "_id": "stock", "title": "Stock Levels", "href": "/inventory/stocks", "icon": BarChart3, badgeData: 25 },
-        { "_id": "lots", "title": "Lots & Serials", "href": "/inventory/lots", "icon": Hash },
-        { "_id": "adjustments", "title": "Adjustments", "href": "/inventory/adjustments", "icon": Edit3 },
-        { "_id": "cycle", "title": "Cycle Counts", "href": "/inventory/counts", "icon": RefreshCw }
+        { _id: "parts", title: "Parts", href: "/inventory/parts", "icon": Cog },
+        { _id: "products", title: "Products", href: "/inventory/products", "icon": Layers, badgeData: 100 },
+        { _id: "stock", title: "Stock Levels", href: "/inventory/stocks", "icon": BarChart3, badgeData: 25 },
+        { _id: "lots", title: "Lots & Serials", href: "/inventory/lots", "icon": Hash },
+        { _id: "adjustments", title: "Adjustments", href: "/inventory/adjustments", "icon": Edit3 },
+        { _id: "cycle", title: "Cycle Counts", href: "/inventory/counts", "icon": RefreshCw }
       ]
     },
     {
-      "_id": "fulfillment",
-      "title": "Fulfillment",
-      "href": "/fulfillment",
+      _id: "fulfillment",
+      title: "Fulfillment",
+      href: "/fulfillment",
       "icon": Truck,
       "items": [
-        { "_id": "orders", "title": "Orders", "href": "/fulfillment/orders", "icon": ShoppingCart },
-        { "_id": "allocation", "title": "Allocation", "href": "/fulfillment/allocation", "icon": SplitSquareHorizontal },
-        { "_id": "packing", "title": "Packing", "href": "/fulfillment/packing", "icon": Package },
-        { "_id": "shipping", "title": "Shipping", "href": "/fulfillment/shipping", "icon": Send }
+        { _id: "orders", title: "Orders", href: "/fulfillment/orders", "icon": ShoppingCart },
+        { _id: "allocation", title: "Allocation", href: "/fulfillment/allocation", "icon": SplitSquareHorizontal },
+        { _id: "packing", title: "Packing", href: "/fulfillment/packing", "icon": Package },
+        { _id: "shipping", title: "Shipping", href: "/fulfillment/shipping", "icon": Send }
       ]
     },
     {
-      "_id": "workflow",
-      "title": "Build Workflow",
-      "href": "/workflow",
+      _id: "workflow",
+      title: "Build Workflow",
+      href: "/workflow",
       "icon": Workflow,
       "items": [
-        { "_id": "bom", "title": "BOMs", "href": "/workflow/boms", "icon": ListTree },
-        { "_id": "workorders", "title": "Work Orders", "href": "/workflow/workorders", "icon": ClipboardCheck, badgeData: 10 },
-        { "_id": "consumption", "title": "Consumption", "href": "/workflow/consumption", "icon": MinusSquare },
-        { "_id": "production", "title": "Production", "href": "/workflow/production", "icon": PlusSquare, badgeData: 5 }
+        { _id: "bom", title: "BOMs", href: "/workflow/boms", "icon": ListTree },
+        { _id: "workorders", title: "Work Orders", href: "/workflow/workorders", "icon": ClipboardCheck, badgeData: 10 },
+        { _id: "consumption", title: "Consumption", href: "/workflow/consumption", "icon": MinusSquare },
+        { _id: "production", title: "Production", href: "/workflow/production", "icon": PlusSquare, badgeData: 5 }
       ]
     },
     {
-      "_id": "partners", "title": "Partners", "href": "/partners", "icon": User2Icon,
+      _id: "partners", title: "Partners", href: "/partners", "icon": User2Icon,
       "items": [
-        { "_id": "tenants", "title": "Tenants", "href": "/partners/tenants", "icon": Tent, badgeData: 12 },
-        { "_id": "customers", "title": "Customers", "href": "/partners/customers", "icon": User, badgeData: 8 },
-        { "_id": "suppliers", "title": "Suppliers", "href": "/partners/suppliers", "icon": User, badgeData: 4 },
-        { "_id": "manufacturers", "title": "Manufacturers", "href": "/partners/manufacturers", "icon": User, badgeData: 2 },
-        { "_id": "carriers", "title": "Carriers", "href": "/partners/carriers", "icon": User, badgeData: 2 }
+        { _id: "tenants", title: "Tenants", href: "/partners/tenants", "icon": Tent, badgeData: 12 },
+        { _id: "customers", title: "Customers", href: "/partners/customers", "icon": User, badgeData: 8 },
+        { _id: "suppliers", title: "Suppliers", href: "/partners/suppliers", "icon": User, badgeData: 4 },
+        { _id: "manufacturers", title: "Manufacturers", href: "/partners/manufacturers", "icon": User, badgeData: 2 },
+        { _id: "carriers", title: "Carriers", href: "/partners/carriers", "icon": User, badgeData: 2 }
       ]
     }
   ],
   adminMenu: [
 
-    { "_id": "users", "title": "Users & Roles", "href": "/admin/users", "icon": User },
-    { "_id": "audit", "title": "Audit Logs", "href": "/admin/audit", "icon": History },
-    { "_id": "api", "title": "API & Webhooks", "href": "/admin/api", "icon": Code }
+    { _id: "users", title: "Users & Roles", href: "/admin/users", "icon": User },
+    { _id: "audit", title: "Audit Logs", href: "/admin/audit", "icon": History },
+    { _id: "api", title: "API & Webhooks", href: "/admin/api", "icon": Code }
   ]
 }
 
@@ -215,33 +218,76 @@ export const inventoryDashboardData = {
 
 export const sampleParts: Part[] = [
   {
-    id: "1",
+    _id: "1",
     name: "Stepper Motor NEMA 17",
+    description: "High-torque stepper motor suitable for 3D printers and CNC machines.",
     category: "Motors",
     sku: "MTR-001",
     stock: 120,
     price: "$14.99",
     image: "/motor.jpg",
     status: "In Stock",
+    isAssemblable: true,
+    isSellable: false,
+    isPurchasable: true,
+    owner: "Delightloop Inc.",
+    defaultLocation: "US-HTX-Ergode",
+    respnsibleUser: "Mario"
   },
   {
-    id: "2",
+    _id: "2",
     name: "Arduino Uno R3",
+    description: "Popular microcontroller board based on the ATmega328P.",
     category: "Microcontrollers",
     sku: "MCU-002",
     stock: 15,
     price: "$22.50",
     image: "/arduino.jpg",
     status: "Low Stock",
+    isAssemblable: true,
+    isSellable: true,
+    isPurchasable: true,
+    owner: "SliceWorx LLC",
+    defaultLocation: "US-HTX-Reserve",
+    respnsibleUser: "Emily"
   },
   {
-    id: "3",
+    _id: "3",
     name: "L298N Motor Driver",
+    description: "Dual H-Bridge motor driver module for controlling DC motors and stepper motors.",
     category: "Electronics",
     sku: "DRV-003",
     stock: 0,
     price: "$9.90",
     image: "/driver.jpg",
     status: "Out of Stock",
+    isAssemblable: false,
+    isSellable: false,
+    isPurchasable: true,
+    owner: "Countless Dimensions",
+    defaultLocation: "US-HTX-Solon",
+    respnsibleUser: "John Kramer"
   },
+]
+export const partsLocation:PartLocation[] = [
+  {
+    _id: "abce", 
+    name: "US-HTX-Ergode", 
+    quantity: 120,
+    reserved: 5,
+    subLocations: [
+      { _id: "abce1", name: "Aisle 1, Shelf B", quantity: 50, reserved: 5 },
+      { _id: "abce2", name: "Aisle 3, Shelf A", quantity: 30 },
+      { _id: "abce3", name: "Aisle 5, Shelf C", quantity: 40 },
+    ]
+  },
+  { _id: "abcf", 
+    name: "US-HTX-Reserve", 
+    quantity: 20,
+    reserved: 2,
+    subLocations: [ 
+      { _id: "abcf1", name: "Backroom Shelf 1", quantity: 15 },
+      { _id: "abcf3", name: "Backroom Shelf 2", quantity: 5, reserved:2 },
+    ] 
+  }
 ]
