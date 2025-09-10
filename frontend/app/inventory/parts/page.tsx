@@ -297,14 +297,14 @@ export default function PartsPage() {
             </div>
           </div>
 
-          <div className="flex justify-between items-center border rounded-md p-3 col-span-2">
+          <div className="flex justify-between items-center border rounded-md p-3 md:col-span-[1fr,2fr,2fr]">
             <div className="flex items-center gap-2">
               <Grid className="h-4 w-4" />
               <span className="font-medium">Available Stock</span>
               <span className="text-2xl font-bold">140</span>
             </div>
           </div>
-          <div className="flex justify-between items-center border rounded-md p-3 col-span-2">
+          <div className="flex justify-between items-center border rounded-md p-3 md:col-span-[1fr,2fr,2fr]">
             <table className="w-full">
               <thead>
                 <tr className="text-left text-sm text-muted-foreground">
