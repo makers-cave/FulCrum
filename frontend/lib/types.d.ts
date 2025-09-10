@@ -62,3 +62,13 @@ export type Manufacturer = {
     email?: string;
     phone?: string; 
   };
+  export type Part = {
+  id: string
+  name: string
+  category: string
+  sku: string
+  stock: number
+  price: string
+  image: string
+  status: "In Stock" | "Low Stock" | "Out of Stock"
+}

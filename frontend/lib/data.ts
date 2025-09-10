@@ -12,7 +12,7 @@ import {
   Layers,
   Cog
 } from "lucide-react";
-import { Customer, Tenant } from "./types";
+import { Customer, Part, Tenant } from "./types";
 
 export const sideBarData = {
   menu: [
@@ -36,7 +36,7 @@ export const sideBarData = {
       "items": [
         { "_id": "parts", "title": "Parts", "href": "/inventory/parts", "icon": Cog },
         { "_id": "products", "title": "Products", "href": "/inventory/products", "icon": Layers, badgeData: 100 },
-        { "_id": "stock", "title": "Stock Levels", "href": "/inventory/stock", "icon": BarChart3, badgeData: 25 },
+        { "_id": "stock", "title": "Stock Levels", "href": "/inventory/stocks", "icon": BarChart3, badgeData: 25 },
         { "_id": "lots", "title": "Lots & Serials", "href": "/inventory/lots", "icon": Hash },
         { "_id": "adjustments", "title": "Adjustments", "href": "/inventory/adjustments", "icon": Edit3 },
         { "_id": "cycle", "title": "Cycle Counts", "href": "/inventory/counts", "icon": RefreshCw }
@@ -86,74 +86,162 @@ export const sideBarData = {
 }
 
 export const partnerDashboardData = {
-    kpis: [{ title: "Tenants", value: 12, delta: 2, icon: require("lucide-react").Home },
-        { title: "Customers", value: 240, delta: -3, icon: require("lucide-react").Users },
-        { title: "Suppliers", value: 56, delta: 5, icon: require("lucide-react").Truck },
-        { title: "Manufacturers", value: 12, delta: 0, icon: require("lucide-react").Factory },
-        { title: "Carriers", value: 18, delta: 1, icon: require("lucide-react").Truck }],
-    topCustomers: [
-      { name: "Acme Retail", orders: 312 },
-      { name: "GreenGrocers", orders: 208 },
-      { name: "Shopwise", orders: 150 },
-      { name: "UrbanGoods", orders: 98 },
-    ],
-    carriersPerformance: [
-      { name: "FastLine", onTimePct: 98 },
-      { name: "TransCo", onTimePct: 93 },
-      { name: "ShipFast", onTimePct: 88 },
-    ],
-    recentActivity: [
-      { when: "2h ago", who: "Acme Retail", type: "Order placed", summary: "SO-1024 (12 items)" },
-      { when: "6h ago", who: "Alpha Supply", type: "Shipment received", summary: "ASN-556" },
-      { when: "1d ago", who: "Beta Manufacturing", type: "Work order started", summary: "WO-210" },
-    ],
-    expiringContracts: [
-      { name: "Alpha Supply", type: "Supplier", expires: "2025-09-25", status: "Action required" },
-      { name: "FleetX", type: "Carrier", expires: "2025-10-12", status: "Renewal due" },
-    ],
-    directory: [
-      { name: "Acme Retail", type: "Customer", status: "Active", lastActivity: "2025-09-05" },
-      { name: "Alpha Supply", type: "Supplier", status: "Active", lastActivity: "2025-09-04" },
-      { name: "Beta Manufacturing", type: "Manufacturer", status: "On hold", lastActivity: "2025-08-20" },
-      { name: "FleetX", type: "Carrier", status: "Active", lastActivity: "2025-08-30" },
-    ],
-  };
+  kpis: [{ title: "Tenants", value: 12, delta: 2, icon: require("lucide-react").Home },
+  { title: "Customers", value: 240, delta: -3, icon: require("lucide-react").Users },
+  { title: "Suppliers", value: 56, delta: 5, icon: require("lucide-react").Truck },
+  { title: "Manufacturers", value: 12, delta: 0, icon: require("lucide-react").Factory },
+  { title: "Carriers", value: 18, delta: 1, icon: require("lucide-react").Truck }],
+  topCustomers: [
+    { name: "Acme Retail", orders: 312 },
+    { name: "GreenGrocers", orders: 208 },
+    { name: "Shopwise", orders: 150 },
+    { name: "UrbanGoods", orders: 98 },
+  ],
+  carriersPerformance: [
+    { name: "FastLine", onTimePct: 98 },
+    { name: "TransCo", onTimePct: 93 },
+    { name: "ShipFast", onTimePct: 88 },
+  ],
+  recentActivity: [
+    { when: "2h ago", who: "Acme Retail", type: "Order placed", summary: "SO-1024 (12 items)" },
+    { when: "6h ago", who: "Alpha Supply", type: "Shipment received", summary: "ASN-556" },
+    { when: "1d ago", who: "Beta Manufacturing", type: "Work order started", summary: "WO-210" },
+  ],
+  expiringContracts: [
+    { name: "Alpha Supply", type: "Supplier", expires: "2025-09-25", status: "Action required" },
+    { name: "FleetX", type: "Carrier", expires: "2025-10-12", status: "Renewal due" },
+  ],
+  directory: [
+    { name: "Acme Retail", type: "Customer", status: "Active", lastActivity: "2025-09-05" },
+    { name: "Alpha Supply", type: "Supplier", status: "Active", lastActivity: "2025-09-04" },
+    { name: "Beta Manufacturing", type: "Manufacturer", status: "On hold", lastActivity: "2025-08-20" },
+    { name: "FleetX", type: "Carrier", status: "Active", lastActivity: "2025-08-30" },
+  ],
+};
 
-  // 🔹 Sample tanent data
-export const tenantData:Tenant[] = [
-    { _id: "1", name: "Tenant Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
-    { _id: "2", name: "Tenant Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
-    { _id: "3", name: "Tenant Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
-  ];
-  export const customersData:Customer[] = [
-    { _id: "1", name: "Customer Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
-    { _id: "2", name: "Customer Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
-    { _id: "3", name: "Customer Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
-  ];
-  export const suppliersData = [
-    { _id: "1", name: "Supplier Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
-    { _id: "2", name: "Supplier Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
-    { _id: "3", name: "Supplier Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
-  ];
-  export const manufacturersData = [
-    { _id: "1", name: "Manufacturer Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
-    { _id: "2", name: "Manufacturer Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
-    { _id: "3", name: "Manufacturer Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
-  ];
-  export const carriersData = [
-    { _id: "1", name: "Carrier Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
-    { _id: "2", name: "Carrier Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
-    { _id: "3", name: "Carrier Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
-  ];
-  export const sampleTenantOrders = {
-    "1": [
-      { _id: "ORD-101", item: "W_idget A", qty: 120, status: "Shipped" },
-      { _id: "ORD-102", item: "W_idget B", qty: 50, status: "Pending" },
-    ],
-    "2": [
-      { _id: "ORD-201", item: "Gadget X", qty: 200, status: "Delivered" },
-    ],
-    "3": [
-      { _id: "ORD-301", item: "Part Z", qty: 75, status: "Shipped" },
-    ],
-  };
+// 🔹 Sample tanent data
+export const tenantData: Tenant[] = [
+  { _id: "1", name: "Tenant Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
+  { _id: "2", name: "Tenant Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
+  { _id: "3", name: "Tenant Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
+];
+export const customersData: Customer[] = [
+  { _id: "1", name: "Customer Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
+  { _id: "2", name: "Customer Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
+  { _id: "3", name: "Customer Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
+];
+export const suppliersData = [
+  { _id: "1", name: "Supplier Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
+  { _id: "2", name: "Supplier Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
+  { _id: "3", name: "Supplier Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
+];
+export const manufacturersData = [
+  { _id: "1", name: "Manufacturer Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
+  { _id: "2", name: "Manufacturer Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
+  { _id: "3", name: "Manufacturer Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
+];
+export const carriersData = [
+  { _id: "1", name: "Carrier Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
+  { _id: "2", name: "Carrier Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
+  { _id: "3", name: "Carrier Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
+];
+export const sampleTenantOrders = {
+  "1": [
+    { _id: "ORD-101", item: "W_idget A", qty: 120, status: "Shipped" },
+    { _id: "ORD-102", item: "W_idget B", qty: 50, status: "Pending" },
+  ],
+  "2": [
+    { _id: "ORD-201", item: "Gadget X", qty: 200, status: "Delivered" },
+  ],
+  "3": [
+    { _id: "ORD-301", item: "Part Z", qty: 75, status: "Shipped" },
+  ],
+};
+
+export const inventoryDashboardData = {
+  summaryStats: [
+    { title: "Total Products", value: 4892, change: "+4.5%" },
+    { title: "Available Stock", value: 2137, change: "-2.4%" },
+    { title: "Low Stock", value: 1952, change: "+1.5%" },
+    { title: "Out of Stock", value: 803, change: "-1.9%" },
+  ],
+  profitData: [
+    { name: "Women’s Clothing", value: 400000, color: "#c8f230" },
+    { name: "Accessories", value: 250000, color: "#a3e635" },
+    { name: "Men’s Clothing", value: 200000, color: "#22c55e" },
+    { name: "Footwear", value: 100000, color: "#10b981" },
+    { name: "Children’s Clothing", value: 50000, color: "#0d9488" },
+  ],
+  orderSummary: [
+    { name: "Sun", profit: 400 },
+    { name: "Mon", profit: 700 },
+    { name: "Tue", profit: 1100 },
+    { name: "Wed", profit: 1300 },
+    { name: "Thu", profit: 1674 },
+    { name: "Fri", profit: 1200 },
+    { name: "Sat", profit: 500 },
+  ],
+  stockLevels: [
+    { product: "Silk Blend Summer Dress", current: 75, total: 110 },
+    { product: "High-Waist Denim Jeans", current: 50, total: 80 },
+    { product: "Women’s Wool Cardigan", current: 40, total: 80 },
+    { product: "Kids’ Graphic Sweatshirt", current: 60, total: 100 },
+  ],
+  restocks: [
+    { product: "Waterproof Ankle Boots", qty: 50, date: "Apr 25, 2029" },
+    { product: "Vegan Leather Tote Bag", qty: 40, date: "Apr 30, 2029" },
+    { product: "Men’s Running Sneakers", qty: 30, date: "May 5, 2029" },
+    { product: "Luxury Watch Collection", qty: 20, date: "May 10, 2029" },
+    { product: "Men’s Leather Wallet", qty: 60, date: "May 15, 2029" },
+  ],
+  activities: [
+    {
+      user: "Mario",
+      action: "processed a return for a T-Shirt",
+      time: "3:45 PM",
+    },
+    {
+      user: "Emily",
+      action: "updated High-Waist Denim Jeans quantity",
+      time: "2:30 PM",
+    },
+    {
+      user: "John Kramer",
+      action: "added Men’s Summer Jacket to inventory",
+      time: "2:00 PM",
+    },
+  ]
+}
+
+export const sampleParts: Part[] = [
+  {
+    id: "1",
+    name: "Stepper Motor NEMA 17",
+    category: "Motors",
+    sku: "MTR-001",
+    stock: 120,
+    price: "$14.99",
+    image: "/motor.jpg",
+    status: "In Stock",
+  },
+  {
+    id: "2",
+    name: "Arduino Uno R3",
+    category: "Microcontrollers",
+    sku: "MCU-002",
+    stock: 15,
+    price: "$22.50",
+    image: "/arduino.jpg",
+    status: "Low Stock",
+  },
+  {
+    id: "3",
+    name: "L298N Motor Driver",
+    category: "Electronics",
+    sku: "DRV-003",
+    stock: 0,
+    price: "$9.90",
+    image: "/driver.jpg",
+    status: "Out of Stock",
+  },
+]
