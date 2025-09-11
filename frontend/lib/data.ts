@@ -13,7 +13,7 @@ import {
   Cog,
   MapPinHouse
 } from "lucide-react";
-import { Customer, Part, PartLocation, Tenant } from "./types";
+import { Customer, Part, PartLocation, Product, Tenant } from "./types";
 import { tree } from "next/dist/build/templates/app-page";
 
 export const sideBarData = {
@@ -291,3 +291,47 @@ export const partsLocation:PartLocation[] = [
     ] 
   }
 ]
+
+export const productsData: Product[] = [
+  {
+    id: "p1",
+    name: "ESP32 IoT Starter Kit",
+    sku: "PROD-ESP32KIT",
+    status: "Published",
+    price: 79.99,
+    currency: "USD",
+    image: "/assets/esp32-kit.png",
+    category: "Kits",
+    availableQty: 48,
+    reservedQty: 6,
+    leadTimeDays: 7,
+    weightKg: 0.45,
+    dimensions: "22x16x6 cm",
+    description: "Starter kit with ESP32, sensors, cables and example projects.",
+    linkedParts: [
+      { id: "part-esp32", partName: "ESP32-WROOM Module", partSku: "MTR-ESP32", qtyPerProduct: 1 },
+      { id: "part-usb", partName: "USB Cable", partSku: "CAB-USB-A-B", qtyPerProduct: 1 },
+      { id: "part-sensor", partName: "DHT22 Sensor", partSku: "SNS-DHT22", qtyPerProduct: 1 },
+    ],
+  },
+  {
+    id: "p2",
+    name: "Robotics Kit - Beginner",
+    sku: "PROD-ROBO-BEG",
+    status: "Draft",
+    price: 149.0,
+    currency: "USD",
+    image: "/assets/robotics-kit.png",
+    category: "Kits",
+    availableQty: 12,
+    reservedQty: 2,
+    leadTimeDays: 14,
+    weightKg: 1.8,
+    dimensions: "40x30x10 cm",
+    description: "Entry-level robotics kit with motors, wheels and controller.",
+    linkedParts: [
+      { id: "part-motor", partName: "Stepper Motor NEMA 17", partSku: "MTR-001", qtyPerProduct: 2 },
+      { id: "part-driver", partName: "Motor Driver L298N", partSku: "DRV-003", qtyPerProduct: 1 },
+    ],
+  },
+];

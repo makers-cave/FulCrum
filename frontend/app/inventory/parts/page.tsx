@@ -55,7 +55,7 @@ export default function PartsPage() {
   return (
     <div className="p-6 space-y-6">
       {/* Search + Filter + Add */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 justify-end">
         <Input
           placeholder="Search parts..."
           value={search}

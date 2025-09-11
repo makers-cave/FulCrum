@@ -86,3 +86,27 @@ export type PartLocation = {
   reserved?: number
   subLocations?: PartLocation[]
 }
+type PartLink = {
+  id: string;
+  partName: string;
+  partSku: string;
+  qtyPerProduct: number;
+};
+
+type Product = {
+  id: string;
+  name: string;
+  sku: string;
+  status: "Published" | "Draft" | "Discontinued";
+  price: number;
+  currency: string;
+  image: string; // path such as /assets/...
+  category: string;
+  availableQty: number;
+  reservedQty: number;
+  leadTimeDays?: number;
+  weightKg?: number;
+  dimensions?: string;
+  description?: string;
+  linkedParts?: PartLink[];
+};
