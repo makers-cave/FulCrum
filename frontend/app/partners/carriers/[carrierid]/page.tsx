@@ -10,11 +10,17 @@ import { Building2, DollarSign, Factory, ImageIcon, Info, User } from "lucide-re
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation"
 import { getCarrier, getDefaultCarrier } from "@/lib/services/carrierService";
+import { usePageHeader } from "@/contexts/PageHeaderContext";
 export default function CarrierPage() {
+  const { setHeader } = usePageHeader()
+
+  useEffect(() => {
+    setHeader("Edit Carrier", "Edit the Selected carrier.")
+  }, [setHeader])
   const params = useParams();
   const selectedCustId = params.carrierid as string;
   const [editingField, setEditingField] = useState<string | null>(null);
-  
+
   const [carrier, setCarrier] = useState<Carrier>(getDefaultCarrier());
   useEffect(() => {
     async function loadCarrier() {

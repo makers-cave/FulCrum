@@ -10,11 +10,17 @@ import { Building2, DollarSign, Factory, ImageIcon, Info, User } from "lucide-re
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation"
 import { getCustomer, getDefaultCustomer } from "@/lib/services/customerService";
+import { usePageHeader } from "@/contexts/PageHeaderContext";
 export default function CustomerPage() {
+  const { setHeader } = usePageHeader()
+
+  useEffect(() => {
+    setHeader("Edit Customer", "Edit the Selected Customer.")
+  }, [setHeader])
   const params = useParams();
   const selectedCustId = params.custid as string;
   const [editingField, setEditingField] = useState<string | null>(null);
-  
+
   const [customer, setCustomer] = useState<Customer>(getDefaultCustomer());
   useEffect(() => {
     async function loadCustomer() {

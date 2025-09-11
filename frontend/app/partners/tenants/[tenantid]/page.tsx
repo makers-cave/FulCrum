@@ -3,9 +3,10 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import { usePageHeader } from '@/contexts/PageHeaderContext';
 import { tenantData } from '@/lib/data'
 import { getDefaultTenant, getTenant } from '@/lib/services/tenantService';
-import { Tenant, TenantPageProps } from '@/lib/types';
+import { Tenant } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import { get } from 'http';
 import { Building2, DollarSign, Factory, ImageIcon, Info, User } from 'lucide-react';
@@ -13,6 +14,11 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function TenantPage() {
+  const { setHeader } = usePageHeader()
+
+  useEffect(() => {
+    setHeader("Edit Tenant", "Edit the Selected Tenant.")
+  }, [setHeader])
   const params = useParams();
   const selectedTenantID = params.tenantid as string;
   const [editingField, setEditingField] = useState<string | null>(null);

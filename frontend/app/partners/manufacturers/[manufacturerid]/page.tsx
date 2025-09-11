@@ -10,7 +10,13 @@ import { Building2, DollarSign, Factory, ImageIcon, Info, User } from "lucide-re
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation"
 import { getManufacturer, getDefaultManufacturer } from "@/lib/services/manufacturerService";
+import { usePageHeader } from "@/contexts/PageHeaderContext";
 export default function ManufacturerPage() {
+    const { setHeader } = usePageHeader()
+  
+    useEffect(() => {
+      setHeader("Edit Manufacturer", "Edit the Selected Manufacturer.")
+    }, [setHeader])
   const params = useParams();
   const selectedCustId = params.manufacturerid as string;
   const [editingField, setEditingField] = useState<string | null>(null);

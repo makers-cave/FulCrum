@@ -16,7 +16,7 @@ import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { EllipsedText } from "@/components/EllipsedText"; // if you created it earlier
-import { Package, DollarSign, Box, List, PlusCircle, Filter, PencilRuler, Trash2, Info, CalendarPlus, Grid } from "lucide-react";
+import { Package, DollarSign, Box, List, PlusCircle, Filter, PencilRuler, Trash2, Info, CalendarPlus, Grid, Edit } from "lucide-react";
 import { Product } from "@/lib/types";
 import { productsData } from "@/lib/data";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -26,12 +26,12 @@ import { usePageHeader } from "@/contexts/PageHeaderContext";
 
 
 export default function ProductsPage() {
-    const { setHeader } = usePageHeader()
+  const { setHeader } = usePageHeader()
 
   useEffect(() => {
     setHeader("Products", "View your sellable items")
   }, [setHeader])
-  
+
   const [products] = useState<Product[]>(productsData);
   const [query, setQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<string>("All");
@@ -104,7 +104,7 @@ export default function ProductsPage() {
         </Dialog>
 
         <Button variant="default" className="flex items-center gap-2">
-          <PlusCircle className="h-4 w-4" /> Add Product
+          <PlusCircle className="h-4 w-4" /> Add
         </Button>
       </div>
       {/* Products Table */}
@@ -126,6 +126,7 @@ export default function ProductsPage() {
                 <TableHead>Available</TableHead>
                 <TableHead>Price</TableHead>
                 <TableHead>Status</TableHead>
+
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -143,7 +144,7 @@ export default function ProductsPage() {
                   <TableCell className="font-medium">
                     <div className="flex flex-col">
                       <span>{p.name}</span>
-                      <span className="text-xs text-muted-foreground">{p.description?.slice(0, 70)}</span>
+                      {/* <span className="text-xs text-muted-foreground">{p.description?.slice(0, 40)}</span> */}
                     </div>
                   </TableCell>
                   <TableCell>{p.sku}</TableCell>
@@ -254,13 +255,6 @@ export default function ProductsPage() {
             </div>
           </div>
           <div className="flex justify-between items-center border rounded-md p-3 md:col-span-[1fr,2fr,2fr]">
-            <div className="flex items-center gap-2">
-              <Grid className="h-4 w-4" />
-              <span className="font-medium">Available Stock</span>
-              <span className="text-2xl font-bold">140</span>
-            </div>
-          </div>
-          <div className="flex justify-between items-center border rounded-md p-3 md:col-span-[1fr,2fr,2fr]">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -283,7 +277,7 @@ export default function ProductsPage() {
                     <TableCell>{part.qtyPerProduct}</TableCell>
                     <TableCell>{part.stock}</TableCell>
                     <TableCell>
-                      <Badge className={part.linkType == "Content" || part.linkType == "Assembly" ? "bg-green-200" : part.linkType == "Packaging"? "bg-amber-200": "bg-gray-200"}>{part.linkType}</Badge>
+                      <Badge className={part.linkType == "Content" || part.linkType == "Assembly" ? "bg-green-200" : part.linkType == "Packaging" ? "bg-amber-200" : "bg-gray-200"}>{part.linkType}</Badge>
                     </TableCell>
 
                   </TableRow>

@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Edit, Trash2, Package, Filter, ReceiptText, User, MapPin, DollarSign, Calendar, Grid, Info, ShoppingCart, ChevronDown, ChevronRight, Loader2, Factory, PlusCircle } from "lucide-react"
 import {
   Table,
@@ -33,9 +33,15 @@ import { Separator } from "@/components/ui/separator"
 import { EllipsedBadge } from "@/components/ellipsedBadge"
 import { EllipsedText } from "@/components/EllipsedText"
 import { SafeImage } from "@/components/SafeImage"
+import { usePageHeader } from "@/contexts/PageHeaderContext"
 
 // ---------------- Page ----------------
 export default function PartsPage() {
+    const { setHeader } = usePageHeader()
+  
+    useEffect(() => {
+      setHeader("Parts",  "Manage and track your parts")
+    }, [setHeader])
   const [parts, setParts] = useState<Part[]>(sampleParts)
   const [search, setSearch] = useState("")
   const [filterCategory, setFilterCategory] = useState<string>("All")
@@ -124,7 +130,7 @@ export default function PartsPage() {
           </DialogContent>
         </Dialog>
 
-        <Button><PlusCircle className="h-4 w-4" />Add Part</Button>
+        <Button><PlusCircle className="h-4 w-4" />Add</Button>
       </div>
       {/* Parts table */}
       <Card>

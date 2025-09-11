@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
   LayoutDashboard,
   Store,
@@ -47,15 +47,21 @@ import {
   Cell,
 } from "recharts"
 import { inventoryDashboardData as data } from "@/lib/data"
+import { usePageHeader } from "@/contexts/PageHeaderContext"
 // -------------------- Page --------------------
 export default function DashboardPage() {
+  const { setHeader } = usePageHeader()
+
+  useEffect(() => {
+    setHeader("Inventory Dashboard", "All Parts and Products at a glance")
+  }, [setHeader])
   return (
     <div className="flex min-h-screen">
       {/* Main */}
       <main className="flex-1 p-6 space-y-6">
         {/* Top bar */}
-        <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold">Dashboard</h1>
+        <div className="flex items-center justify-end">
+
           <div className="flex items-center space-x-4">
             <div className="relative">
               <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-400" />
@@ -238,9 +244,8 @@ function TrafficItem({
     <div className="flex items-center justify-between text-sm">
       <span>{label}</span>
       <span
-        className={`font-medium ${
-          trend === "up" ? "text-green-600" : "text-red-600"
-        }`}
+        className={`font-medium ${trend === "up" ? "text-green-600" : "text-red-600"
+          }`}
       >
         {value}%
       </span>

@@ -9,7 +9,13 @@ import { Building2, DollarSign, Factory, ImageIcon, Info, User } from "lucide-re
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation"
 import { getSupplier, getDefaultSupplier } from "@/lib/services/supplierService";
+import { usePageHeader } from "@/contexts/PageHeaderContext";
 export default function SupplierPage() {
+    const { setHeader } = usePageHeader()
+  
+    useEffect(() => {
+      setHeader("Edit Supplier", "Edit the Selected Supplier.")
+    }, [setHeader])
   const params = useParams();
   const selectedCustId = params.supplierid as string;
   const [editingField, setEditingField] = useState<string | null>(null);
