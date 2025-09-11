@@ -89,8 +89,11 @@ export type PartLocation = {
 type PartLink = {
   id: string;
   partName: string;
+  image?: string;
   partSku: string;
   qtyPerProduct: number;
+  linkType?: "Content" | "Assembly" | "Packaging" | "Shipping";
+  stock?: number;
 };
 
 type Product = {
@@ -109,4 +112,5 @@ type Product = {
   dimensions?: string;
   description?: string;
   linkedParts?: PartLink[];
+  bathchPerWeek?: number;
 };

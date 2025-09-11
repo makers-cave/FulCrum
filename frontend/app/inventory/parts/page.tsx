@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { useState } from "react"
-import { Edit, Trash2, Package, Filter, ReceiptText, User, MapPin, DollarSign, Calendar, Grid, Info, ShoppingCart, ChevronDown, ChevronRight, Loader2, Factory } from "lucide-react"
+import { Edit, Trash2, Package, Filter, ReceiptText, User, MapPin, DollarSign, Calendar, Grid, Info, ShoppingCart, ChevronDown, ChevronRight, Loader2, Factory, PlusCircle } from "lucide-react"
 import {
   Table,
   TableBody,
@@ -32,6 +32,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/r
 import { Separator } from "@/components/ui/separator"
 import { EllipsedBadge } from "@/components/ellipsedBadge"
 import { EllipsedText } from "@/components/EllipsedText"
+import { SafeImage } from "@/components/SafeImage"
 
 // ---------------- Page ----------------
 export default function PartsPage() {
@@ -123,7 +124,7 @@ export default function PartsPage() {
           </DialogContent>
         </Dialog>
 
-        <Button>Add Part</Button>
+        <Button><PlusCircle className="h-4 w-4" />Add Part</Button>
       </div>
       {/* Parts table */}
       <Card>
@@ -217,8 +218,8 @@ export default function PartsPage() {
           <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_2fr] gap-4 w-full">
             {/* Section 1 - Image */}
             <div className="flex items-center justify-center border rounded-md bg-muted p-2  h-48 ">
-              <Image
-                src={selectedPart ? selectedPart.image : "/placeholder.jpg"}
+              <SafeImage
+                src={selectedPart?.image}
                 alt="Part"
                 width={120}
                 height={120}
@@ -228,13 +229,6 @@ export default function PartsPage() {
 
             {/* Section 2 */}
             <div className="border rounded-md divide-y h-full">
-              <div className="flex justify-between items-center p-2 text-sm">
-                <div className="flex items-center gap-2">
-                  <Info className="h-4 w-4" />
-                  <span>Description</span>
-                </div>
-                <EllipsedText maxWidth="max-w-[180px]" text={selectedPart?.description || "-" } />
-              </div>
               <div className="flex justify-between items-center p-2 text-sm">
                 <div className="flex items-center gap-2">
                   <DollarSign className="h-4 w-4" />
@@ -257,6 +251,13 @@ export default function PartsPage() {
                   <span>Purchasable</span>
                 </div>
                 <Badge variant="outline">{selectedPart?.isPurchasable ? "Yes" : "No"}</Badge>
+              </div>
+              <div className="flex justify-between items-center p-2 text-sm">
+                <div className="flex items-center gap-2">
+                  <Info className="h-4 w-4" />
+                  <span>Description</span>
+                </div>
+                <span className="wrap-break-word pl-2">{selectedPart?.description || "-"}</span>
               </div>
             </div>
 
