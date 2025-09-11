@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/providers/themeprovider";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { cookies } from "next/headers";
+import { PageHeaderProvider } from "@/contexts/PageHeaderContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-    const cookieStore = await cookies()
+  const cookieStore = await cookies()
   const defaultOpen = cookieStore.get("sidebar_state")?.value === "true"
   return (
     <html lang="en" suppressHydrationWarning={true}>
@@ -37,10 +38,12 @@ export default async function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange={false}>
           <SidebarProvider defaultOpen={defaultOpen}>
             <Sidebar />
-            <main className="w-full">
-              <Navbar />
-              <div className="px-4"> {children}</div>
-            </main>
+            <PageHeaderProvider>
+              <main className="w-full">
+                <Navbar />
+                <div className="px-4"> {children}</div>
+              </main>
+            </PageHeaderProvider>
           </SidebarProvider>
         </ThemeProvider>
       </body>

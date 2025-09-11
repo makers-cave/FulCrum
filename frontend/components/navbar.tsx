@@ -5,12 +5,20 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { Button } from "./ui/button"
 import { useTheme } from "next-themes"
 import { SidebarTrigger } from "./ui/sidebar"
+import { usePageHeader } from "@/contexts/PageHeaderContext"
 
 const Navbar = () => {
-    const {theme, setTheme} = useTheme();
+    const { theme, setTheme } = useTheme();
+      const { title, subtitle } = usePageHeader()
     return (
         <nav className="p-4 flex justify-between items-center">
-            <SidebarTrigger/>
+            <div className="flex items-center gap-4">
+                <SidebarTrigger />
+                <div>
+                    <h1 className="text-lg font-semibold">{title}</h1>
+                    {subtitle && <p className="text-sm text-muted-foreground">{subtitle}</p>}
+                </div>
+            </div>
             <div className="flex items-center gap-4">
                 <Link href="/">Dashboard</Link>
                 <DropdownMenu>

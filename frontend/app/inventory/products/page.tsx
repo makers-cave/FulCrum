@@ -1,7 +1,7 @@
 // app/products/page.tsx
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import {
   Card,
@@ -22,9 +22,16 @@ import { productsData } from "@/lib/data";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { SafeImage } from "@/components/SafeImage";
+import { usePageHeader } from "@/contexts/PageHeaderContext";
 
 
 export default function ProductsPage() {
+    const { setHeader } = usePageHeader()
+
+  useEffect(() => {
+    setHeader("Products", "View your sellable items")
+  }, [setHeader])
+  
   const [products] = useState<Product[]>(productsData);
   const [query, setQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<string>("All");
