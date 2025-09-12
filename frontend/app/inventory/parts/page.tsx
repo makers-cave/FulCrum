@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { useEffect, useState } from "react"
-import { Edit, Trash2, Package, Filter, ReceiptText, User, MapPin, DollarSign, Calendar, Grid, Info, ShoppingCart, ChevronDown, ChevronRight, Loader2, Factory, PlusCircle } from "lucide-react"
+import { Edit, Trash2, Package, Filter, ReceiptText, User, MapPin, DollarSign, Calendar, Grid, Info, ShoppingCart, ChevronDown, ChevronRight, Loader2, Factory, PlusCircle, PencilRuler } from "lucide-react"
 import {
   Table,
   TableBody,
@@ -34,14 +34,15 @@ import { EllipsedBadge } from "@/components/ellipsedBadge"
 import { EllipsedText } from "@/components/EllipsedText"
 import { SafeImage } from "@/components/SafeImage"
 import { usePageHeader } from "@/contexts/PageHeaderContext"
+import Link from "next/link"
 
 // ---------------- Page ----------------
 export default function PartsPage() {
-    const { setHeader } = usePageHeader()
-  
-    useEffect(() => {
-      setHeader("Parts",  "Manage and track your parts")
-    }, [setHeader])
+  const { setHeader } = usePageHeader()
+
+  useEffect(() => {
+    setHeader("Parts", "Manage and track your parts")
+  }, [setHeader])
   const [parts, setParts] = useState<Part[]>(sampleParts)
   const [search, setSearch] = useState("")
   const [filterCategory, setFilterCategory] = useState<string>("All")
@@ -152,7 +153,6 @@ export default function PartsPage() {
                 <TableHead>Stock</TableHead>
                 <TableHead>Price</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -185,24 +185,6 @@ export default function PartsPage() {
                       {part.status}
                     </Badge>
                   </TableCell>
-                  <TableCell className="text-right space-x-2">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => alert(`Edit ${part.name}`)}
-                    >
-                      <Edit className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="destructive"
-                      onClick={() =>
-                        setParts(parts.filter((p) => p._id !== part._id))
-                      }
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -219,6 +201,16 @@ export default function PartsPage() {
           {loading && (
             <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
           )}
+          {selectedPart != null && <div className="flex items-center gap-2">
+            <Button variant="outline" asChild size="sm">
+              <Link href={`/inventory/parts/${selectedPart?._id}`}>
+              <PencilRuler />Edit
+              </Link>
+            </Button>
+            <Button variant="destructive" size="sm" onClick={() => alert("Archive product")}>
+              <Trash2 />Archive
+            </Button>
+          </div>}
         </CardHeader>
         <CardContent className="p-4 grid gap-4">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_2fr] gap-4 w-full">
