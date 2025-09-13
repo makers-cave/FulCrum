@@ -13,7 +13,7 @@ import {
   Cog,
   MapPinHouse
 } from "lucide-react";
-import { Customer, Part, PartLocation, Product, Tenant } from "./types";
+import { Customer, Part, PartLocation, Product, Tenant, WarehouseLocation } from "./types";
 import { tree } from "next/dist/build/templates/app-page";
 
 export const sideBarData = {
@@ -340,4 +340,10 @@ export const productsData: Product[] = [
       { id: "part-S649", partName: "Shipping Box", partSku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Shipping", stock: 500 },
     ],
   },
+];
+
+export const sampleLocations:WarehouseLocation[] = [
+  { _id: "loc1", name: "US-HTX-Ergode", description: "Main warehouse in Houston, TX", category: "Warehouse", sku: "WH-HTX", status: "Active" },
+  { _id: "loc2", name: "US-HTX-Reserve", description: "Reserve stock area in Houston, TX", category: "Warehouse", sku: "WH-HTX-RSV", status: "Active" },
+  { _id: "loc3", name: "US-HTX-Solon", description: "Overflow storage in Solon, OH", category: "Warehouse", sku: "WH-SOL", status: "Inactive" },
 ];
