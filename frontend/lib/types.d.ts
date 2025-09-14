@@ -117,3 +117,29 @@ type Product = {
   linkedParts?: PartLink[];
   bathchPerWeek?: number;
 };
+
+export type WarehouseLocation = {
+  _id: string;
+  name: string;
+  description?: string;
+  image?: string;
+  address?: Address;
+  contactPerson?: string;
+  phone?: string;
+  email?: string;
+  category: string;
+  sku: string;
+  status: "Active" | "Inactive";
+  capacity?: number;
+  currentOccupancy?: number;
+  parentLocation?: string;
+};
+
+export type Address = {
+  street: string;
+  addressLine2?: string;
+  city: string;
+  state?: string;
+  zipCode: string;
+  country: string;
+};
