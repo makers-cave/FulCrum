@@ -68,9 +68,12 @@ export type Part = {
   description: string
   category: string
   sku: string
+  mpn?: string
+  upc?: string
+  manufacturer?: string
   stock: number
-  price: string
-  image: string
+  price: number
+  image?: string
   status: "In Stock" | "Low Stock" | "Out of Stock"
   isAssemblable?: boolean
   isSellable?: boolean

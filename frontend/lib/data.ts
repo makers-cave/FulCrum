@@ -216,7 +216,7 @@ export const inventoryDashboardData = {
   ]
 }
 
-export const sampleParts: Part[] = [
+export const partsData: Part[] = [
   {
     _id: "1",
     name: "Stepper Motor NEMA 17",

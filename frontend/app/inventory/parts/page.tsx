@@ -27,7 +27,7 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 import { Part, PartLocation } from "@/lib/types"
-import { sampleParts, partsLocation } from "@/lib/data"
+import { partsData, partsLocation } from "@/lib/data"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/react-collapsible"
 import { Separator } from "@/components/ui/separator"
 import { EllipsedBadge } from "@/components/ellipsedBadge"
@@ -43,7 +43,7 @@ export default function PartsPage() {
   useEffect(() => {
     setHeader("Parts", "Manage and track your parts")
   }, [setHeader])
-  const [parts, setParts] = useState<Part[]>(sampleParts)
+  const [parts, setParts] = useState<Part[]>(partsData)
   const [search, setSearch] = useState("")
   const [filterCategory, setFilterCategory] = useState<string>("All")
   const [filterStatus, setFilterStatus] = useState<string>("All")
