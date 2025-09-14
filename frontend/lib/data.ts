@@ -224,7 +224,8 @@ export const partsData: Part[] = [
     category: "Motors",
     sku: "MTR-001",
     stock: 120,
-    price: "$14.99",
+    price: 14.99,
+    manufacturer: { _id: "1", name: "Manufacturer Alpha"},
     image: "/motor.jpg",
     status: "In Stock",
     isAssemblable: true,
@@ -232,7 +233,8 @@ export const partsData: Part[] = [
     isPurchasable: true,
     owner: "Delightloop Inc.",
     defaultLocation: "US-HTX-Ergode",
-    respnsibleUser: "Mario"
+    respnsibleUser: "Mario",
+    isVirtual: false
   },
   {
     _id: "2",
@@ -241,7 +243,8 @@ export const partsData: Part[] = [
     category: "Microcontrollers",
     sku: "MCU-002",
     stock: 15,
-    price: "$22.50",
+    price: 22.50,
+    manufacturer: { _id: "2", name: "Manufacturer Beta"},
     image: "/arduino.jpg",
     status: "Low Stock",
     isAssemblable: true,
@@ -249,7 +252,8 @@ export const partsData: Part[] = [
     isPurchasable: true,
     owner: "SliceWorx LLC",
     defaultLocation: "US-HTX-Reserve",
-    respnsibleUser: "Emily"
+    respnsibleUser: "Emily",
+    isVirtual: false
   },
   {
     _id: "3",
@@ -316,6 +320,7 @@ export const productsData: Product[] = [
       { id: "part-box", partName: "Package Box", partSku: "BOX-002", qtyPerProduct: 1, linkType: "Packaging", stock: 300 },
       { id: "part-S649", partName: "Shipping Box", partSku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Shipping", stock: 500 },
     ],
+    manufacturer: { _id: "1", name: "Manufacturer Alpha"}
   },
   {
     id: "p2",
@@ -339,6 +344,7 @@ export const productsData: Product[] = [
       { id: "part-box", partName: "Package Box", partSku: "BOX-002", qtyPerProduct: 1, linkType: "Packaging", stock: 300 },
       { id: "part-S649", partName: "Shipping Box", partSku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Shipping", stock: 500 },
     ],
+    manufacturer: { _id: "2", name: "Manufacturer Beta" }
   },
 ];
 

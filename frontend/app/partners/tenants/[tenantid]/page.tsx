@@ -48,9 +48,6 @@ export default function TenantPage() {
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
-      {/* <h1 className="text-2xl font-bold">
-        <span className="text-primary">{tenant.name}</span>
-      </h1> */}
       {editingField === "name" ? (
         <Input className='text-2xl font-bold'
           defaultValue={tenant?.name}

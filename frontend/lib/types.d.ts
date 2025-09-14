@@ -70,13 +70,14 @@ export type Part = {
   sku: string
   mpn?: string
   upc?: string
-  manufacturer?: string
+  manufacturer?: {_id: string; name: string}
   stock: number
   price: number
   image?: string
   status: "In Stock" | "Low Stock" | "Out of Stock"
   isAssemblable?: boolean
   isSellable?: boolean
+  isVirtual: any;
   isPurchasable?: boolean
   owner?: string
   defaultLocation?: string
@@ -116,6 +117,7 @@ type Product = {
   description?: string;
   linkedParts?: PartLink[];
   bathchPerWeek?: number;
+  manufacturer?: { _id: string; name: string };
 };
 
 export type WarehouseLocation = {

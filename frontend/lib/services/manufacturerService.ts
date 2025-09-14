@@ -20,4 +20,9 @@ async function getManufacturer(manufacturerId: string): Promise<Manufacturer | n
   return manufacturersData.find((c) => c._id === manufacturerId) ?? null
 }
 
-export { getManufacturer, getDefaultManufacturer }
+async function getManufacturersshort(): Promise<{_id:string, name:string}[]> {
+  // replace with real fetch
+  return manufacturersData
+}
+
+export { getManufacturer, getDefaultManufacturer, getManufacturersshort }
