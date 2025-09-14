@@ -262,7 +262,7 @@ export const partsData: Part[] = [
     category: "Electronics",
     sku: "DRV-003",
     stock: 0,
-    price: "$9.90",
+    price: 9.90,
     image: "/driver.jpg",
     status: "Out of Stock",
     isAssemblable: false,
@@ -270,7 +270,9 @@ export const partsData: Part[] = [
     isPurchasable: true,
     owner: "Countless Dimensions",
     defaultLocation: "US-HTX-Solon",
-    respnsibleUser: "John Kramer"
+    respnsibleUser: "John Kramer",
+    isVirtual: false
+
   },
 ]
 export const partsLocation:PartLocation[] = [

@@ -18,6 +18,7 @@ import { Spinner } from "@/components/spinner";
 import { NotFound } from "@/components/notFound";
 import { PickInput } from "@/components/pickInput";
 import { getManufacturers, getManufacturersshort } from "@/lib/services/manufacturerService";
+import { SelectEx } from "@/components/selectEx";
 
 const PartPage = () => {
     const { setHeader } = usePageHeader()
@@ -178,15 +179,14 @@ const PartPage = () => {
 
 Category / Subcategory — For grouping parts (e.g., Electronics > Resistors).
 
-Brand / Manufacturer
-
-Manufacturer Part Number (MPN) — Supplier-side part number.
-
-Barcode / QR code / RFID tag
-
-Image(s) — For visual identification.
-
-Model / Version / Revision — Especially for technical parts. */}
+Barcode / QR code / RFID tag */}
+                        <div>
+                            <label className="text-sm font-medium">Model/Version</label>
+                            <Input value={part.model} onChange={(e) =>
+                                setPart({ ...part, model: e.target.value }) // ✅ updates object on change
+                            }
+                                placeholder="Enter Model, version or revision" />
+                        </div>
                         <div>
                             <label className="text-sm font-medium">SKU</label>
                             <Input value={part.sku} onChange={(e) =>
@@ -210,16 +210,13 @@ Model / Version / Revision — Especially for technical parts. */}
                         </div>
                         <div>
                             <label className="text-sm font-medium">Manufacturer</label>
-                            <PickInput
-                                label="Product"
-                                value={part.manufacturer?.name || ""}
-                                onChange={setProductName}
-                                fetchOptions={getManufacturersshort}
-                                displayField="name"
+                            <SelectEx 
+                            data={getManufacturersshort()}
+                            value={part.manufacturer || null}
+                            onDataChange={(value) => setPart({ ...part, manufacturer: value || undefined })}
+                            // placeholder="Select manufacturer..."
+                            className="w-full"
                             />
-                            {/* <Input value={part.manufacturer} onChange={(e) =>
-                                setPart({ ...part, manufacturer: e.target.value }) // ✅ updates object on change
-                            } placeholder="Select manufacturer" /> */}
                         </div>
                     </CardContent>
                 </Card>

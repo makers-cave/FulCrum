@@ -14,9 +14,9 @@ import { Pickaxe } from "lucide-react";
 
 type PickInputProps<T> = {
   label?: string;
-  value: string;
+  value: {_id:string, name:string};
   valueID?: string;
-  onChange: (val: string) => void;
+  onChange: (val: {_id:string, name:string}) => void;
   fetchOptions: () => Promise<T[]>;
   displayField: keyof T;
 };
@@ -79,7 +79,7 @@ export function PickInput<T extends { _id: string }>({
                     key={item._id}
                     className="p-2 cursor-pointer hover:bg-accent"
                     onClick={() => {
-                      onChange(String(item[displayField]));
+                      onChange(item);
                       setOpen(false);
                     }}
                   >

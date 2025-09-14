@@ -82,6 +82,7 @@ export type Part = {
   owner?: string
   defaultLocation?: string
   respnsibleUser?: string
+  model?: string
 }
 export type PartLocation = {
   _id: string
@@ -144,4 +145,9 @@ export type Address = {
   state?: string;
   zipCode: string;
   country: string;
+};
+
+export type SelectData = {
+  _id: string;
+  name: string;
 };

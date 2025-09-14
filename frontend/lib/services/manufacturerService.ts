@@ -1,6 +1,6 @@
 import { useId } from "react"
 import { manufacturersData } from "../data"
-import { Manufacturer } from "../types"
+import { Manufacturer, SelectData } from "../types"
 
 
 function getDefaultManufacturer(): Manufacturer {
@@ -20,7 +20,7 @@ async function getManufacturer(manufacturerId: string): Promise<Manufacturer | n
   return manufacturersData.find((c) => c._id === manufacturerId) ?? null
 }
 
-async function getManufacturersshort(): Promise<{_id:string, name:string}[]> {
+function getManufacturersshort(): SelectData[] {
   // replace with real fetch
   return manufacturersData
 }
