@@ -294,7 +294,7 @@ export const partsLocation:PartLocation[] = [
 
 export const productsData: Product[] = [
   {
-    id: "p1",
+    _id: "p1",
     name: "ESP32 IoT Starter Kit",
     sku: "PROD-ESP32KIT",
     status: "Published",
@@ -319,7 +319,7 @@ export const productsData: Product[] = [
     manufacturer: { _id: "1", name: "Manufacturer Alpha"}
   },
   {
-    id: "p2",
+    _id: "p2",
     name: "Robotics Kit - Beginner",
     sku: "PROD-ROBO-BEG",
     status: "Draft",
@@ -343,7 +343,11 @@ export const productsData: Product[] = [
     manufacturer: { _id: "2", name: "Manufacturer Beta" }
   },
 ];
-
+export const productTypes: SelectData[] =[
+  {_id: "digital", name: "Digital/Virtual"},
+  {_id: "physical", name: "Physical"},
+  {_id: "service", name: "Service"}
+]
 export const sampleLocations:WarehouseLocation[] = [
   { _id: "loc1", name: "US-HTX-Ergode", description: "Main warehouse in Houston, TX", category: "Warehouse", sku: "WH-HTX", status: "Active" },
   { _id: "loc2", name: "US-HTX-Reserve", description: "Reserve stock area in Houston, TX", category: "Warehouse", sku: "WH-HTX-RSV", status: "Active" },
@@ -546,3 +550,419 @@ export const PartCategories:SelectData[] = [
     ]
   }
 ]
+
+export const productCategories: SelectData[] = [
+  {
+    _id: "1",
+    name: "Electronics",
+    children: [
+      {
+        _id: "101",
+        name: "Computers & Accessories",
+        children: [
+          { _id: "10101", name: "Laptops" },
+          { _id: "10102", name: "Desktops" },
+          { _id: "10103", name: "Monitors" },
+          { _id: "10104", name: "Keyboards" },
+          { _id: "10105", name: "Mice" },
+          { _id: "10106", name: "Printers" },
+          { _id: "10107", name: "Computer Components" },
+          { _id: "10108", name: "Networking Devices" },
+          { _id: "10109", name: "Software" },
+        ]
+      },
+      {
+        _id: "102",
+        name: "Smartphones & Accessories",
+        children: [
+          { _id: "10201", name: "Smartphones" },
+          { _id: "10202", name: "Tablets" },
+          { _id: "10203", name: "Phone Cases" },
+          { _id: "10204", name: "Screen Protectors" },
+          { _id: "10205", name: "Chargers & Cables" },
+          { _id: "10206", name: "Power Banks" },
+          { _id: "10207", name: "Headphones & Earbuds" },
+        ]
+      },
+      {
+        _id: "103",
+        name: "TV & Home Theater",
+        children: [
+          { _id: "10301", name: "Televisions" },
+          { _id: "10302", name: "Home Theater Systems" },
+          { _id: "10303", name: "Streaming Devices" },
+          { _id: "10304", name: "TV Mounts & Stands" },
+          { _id: "10305", name: "Projectors" },
+          { _id: "10306", name: "Speakers" },
+        ]
+      },
+      {
+        _id: "104",
+        name: "Cameras & Photography",
+        children: [
+          { _id: "10401", name: "Digital Cameras" },
+          { _id: "10402", name: "DSLR Cameras" },
+          { _id: "10403", name: "Lenses" },
+          { _id: "10404", name: "Camera Accessories" },
+          { _id: "10405", name: "Drones" },
+          { _id: "10406", name: "Action Cameras" },
+        ]
+      },
+      {
+        _id: "105",
+        name: "Audio & Headphones",
+        children: [
+          { _id: "10501", name: "Headphones" },
+          { _id: "10502", name: "Earbuds" },
+          { _id: "10503", name: "Speakers" },
+          { _id: "10504", name: "Soundbars" },
+          { _id: "10505", name: "Microphones" },
+          { _id: "10506", name: "Audio Interfaces" },
+        ]
+      },
+      {
+        _id: "106",
+        name: "Wearable Technology",
+        children: [
+          { _id: "10601", name: "Smartwatches" },
+          { _id: "10602", name: "Fitness Trackers" },
+          { _id: "10603", name: "VR Headsets" },
+          { _id: "10604", name: "Smart Glasses" },
+        ]
+      },
+      {
+        _id: "107",
+        name: "Gaming",
+        children: [
+          { _id: "10701", name: "Gaming Consoles" },
+          { _id: "10702", name: "Video Games" },
+          { _id: "10703", name: "Gaming Accessories" },
+          { _id: "10704", name: "Gaming PCs" },
+          { _id: "10705", name: "Gaming Chairs" },
+        ]
+      }
+    ]
+  },
+  {
+    _id: "2",
+    name: "Fashion",
+    children: [
+      {
+        _id: "201",
+        name: "Men's Fashion",
+        children: [
+          { _id: "20101", name: "Clothing" },
+          { _id: "20102", name: "Shoes" },
+          { _id: "20103", name: "Accessories" },
+          { _id: "20104", name: "Watches" },
+          { _id: "20105", name: "Jewelry" },
+        ]
+      },
+      {
+        _id: "202",
+        name: "Women's Fashion",
+        children: [
+          { _id: "20201", name: "Clothing" },
+          { _id: "20202", name: "Shoes" },
+          { _id: "20203", name: "Accessories" },
+          { _id: "20204", name: "Handbags" },
+          { _id: "20205", name: "Jewelry" },
+          { _id: "20206", name: "Watches" },
+        ]
+      },
+      {
+        _id: "203",
+        name: "Kids' Fashion",
+        children: [
+          { _id: "20301", name: "Boys' Clothing" },
+          { _id: "20302", name: "Girls' Clothing" },
+          { _id: "20303", name: "Kids' Shoes" },
+          { _id: "20304", name: "Baby Clothing" },
+        ]
+      }
+    ]
+  },
+  {
+    _id: "3",
+    name: "Home & Kitchen",
+    children: [
+      {
+        _id: "301",
+        name: "Furniture",
+        children: [
+          { _id: "30101", name: "Living Room Furniture" },
+          { _id: "30102", name: "Bedroom Furniture" },
+          { _id: "30103", name: "Kitchen & Dining Furniture" },
+          { _id: "30104", name: "Office Furniture" },
+          { _id: "30105", name: "Outdoor Furniture" },
+        ]
+      },
+      {
+        _id: "302",
+        name: "Kitchen & Dining",
+        children: [
+          { _id: "30201", name: "Cookware" },
+          { _id: "30202", name: "Cutlery" },
+          { _id: "30203", name: "Small Appliances" },
+          { _id: "30204", name: "Tableware" },
+          { _id: "30205", name: "Kitchen Tools" },
+        ]
+      },
+      {
+        _id: "303",
+        name: "Home Décor",
+        children: [
+          { _id: "30301", name: "Wall Art" },
+          { _id: "30302", name: "Lighting" },
+          { _id: "30303", name: "Rugs" },
+          { _id: "30304", name: "Curtains & Blinds" },
+          { _id: "30305", name: "Home Fragrance" },
+        ]
+      },
+      {
+        _id: "304",
+        name: "Bedding & Bath",
+        children: [
+          { _id: "30401", name: "Bed Linens" },
+          { _id: "30402", name: "Bath Towels" },
+          { _id: "30403", name: "Pillows" },
+          { _id: "30404", name: "Comforters" },
+        ]
+      },
+      {
+        _id: "305",
+        name: "Home Improvement",
+        children: [
+          { _id: "30501", name: "Tools" },
+          { _id: "30502", name: "Paint & Supplies" },
+          { _id: "30503", name: "Hardware" },
+          { _id: "30504", name: "Storage & Organization" },
+        ]
+      }
+    ]
+  },
+  {
+    _id: "4",
+    name: "Health & Beauty",
+    children: [
+      {
+        _id: "401",
+        name: "Skincare",
+        children: [
+          { _id: "40101", name: "Moisturizers" },
+          { _id: "40102", name: "Cleansers" },
+          { _id: "40103", name: "Serums & Treatments" },
+          { _id: "40104", name: "Sunscreen" },
+          { _id: "40105", name: "Face Masks" },
+        ]
+      },
+      {
+        _id: "402",
+        name: "Makeup",
+        children: [
+          { _id: "40201", name: "Foundation" },
+          { _id: "40202", name: "Lipstick" },
+          { _id: "40203", name: "Eyeshadow" },
+          { _id: "40204", name: "Mascara" },
+          { _id: "40205", name: "Blush" },
+        ]
+      },
+      {
+        _id: "403",
+        name: "Hair Care",
+        children: [
+          { _id: "40301", name: "Shampoo & Conditioner" },
+          { _id: "40302", name: "Hair Styling Products" },
+          { _id: "40303", name: "Hair Color" },
+          { _id: "40304", name: "Hair Accessories" },
+        ]
+      },
+      {
+        _id: "404",
+        name: "Fragrance",
+        children: [
+          { _id: "40401", name: "Women's Perfume" },
+          { _id: "40402", name: "Men's Cologne" },
+          { _id: "40403", name: "Body Sprays" },
+        ]
+      },
+      {
+        _id: "405",
+        name: "Personal Care",
+        children: [
+          { _id: "40501", name: "Oral Care" },
+          { _id: "40502", name: "Shaving & Hair Removal" },
+          { _id: "40503", name: "Deodorant" },
+          { _id: "40504", name: "Bath & Body" },
+        ]
+      }
+    ]
+  },
+  {
+    _id: "5",
+    name: "Sports & Outdoors",
+    children: [
+      {
+        _id: "501",
+        name: "Exercise & Fitness",
+        children: [
+          { _id: "50101", name: "Cardio Equipment" },
+          { _id: "50102", name: "Strength Training" },
+          { _id: "50103", name: "Yoga & Pilates" },
+          { _id: "50104", name: "Fitness Accessories" },
+        ]
+      },
+      {
+        _id: "502",
+        name: "Outdoor Recreation",
+        children: [
+          { _id: "50201", name: "Camping & Hiking" },
+          { _id: "50202", name: "Cycling" },
+          { _id: "50203", name: "Water Sports" },
+          { _id: "50204", name: "Winter Sports" },
+        ]
+      },
+      {
+        _id: "503",
+        name: "Sports",
+        children: [
+          { _id: "50301", name: "Team Sports" },
+          { _id: "50302", name: "Racquet Sports" },
+          { _id: "50303", name: "Golf" },
+          { _id: "50304", name: "Fishing" },
+        ]
+      },
+      {
+        _id: "504",
+        name: "Athletic Clothing & Shoes",
+        children: [
+          { _id: "50401", name: "Men's Athletic Wear" },
+          { _id: "50402", name: "Women's Athletic Wear" },
+          { _id: "50403", name: "Athletic Shoes" },
+          { _id: "50404", name: "Sports Accessories" },
+        ]
+      }
+    ]
+  },
+  {
+    _id: "6",
+    name: "Toys & Games",
+    children: [
+      {
+        _id: "601",
+        name: "Toys",
+        children: [
+          { _id: "60101", name: "Action Figures" },
+          { _id: "60102", name: "Dolls & Accessories" },
+          { _id: "60103", name: "Building Sets" },
+          { _id: "60104", name: "Educational Toys" },
+          { _id: "60105", name: "Outdoor Toys" },
+        ]
+      },
+      {
+        _id: "602",
+        name: "Games",
+        children: [
+          { _id: "60201", name: "Board Games" },
+          { _id: "60202", name: "Card Games" },
+          { _id: "60203", name: "Puzzles" },
+          { _id: "60204", name: "Video Games" },
+        ]
+      },
+      {
+        _id: "603",
+        name: "Baby & Toddler",
+        children: [
+          { _id: "60301", name: "Baby Toys" },
+          { _id: "60302", name: "Stuffed Animals" },
+          { _id: "60303", name: "Play Vehicles" },
+        ]
+      }
+    ]
+  },
+  {
+    _id: "7",
+    name: "Automotive",
+    children: [
+      {
+        _id: "701",
+        name: "Car Parts & Accessories",
+        children: [
+          { _id: "70101", name: "Interior Accessories" },
+          { _id: "70102", name: "Exterior Accessories" },
+          { _id: "70103", name: "Performance Parts" },
+          { _id: "70104", name: "Replacement Parts" },
+        ]
+      },
+      {
+        _id: "702",
+        name: "Car Electronics",
+        children: [
+          { _id: "70201", name: "Car Audio" },
+          { _id: "70202", name: "GPS & Navigation" },
+          { _id: "70203", name: "Car Security" },
+          { _id: "70204", name: "Dash Cams" },
+        ]
+      },
+      {
+        _id: "703",
+        name: "Motorcycle & Powersports",
+        children: [
+          { _id: "70301", name: "Motorcycle Parts" },
+          { _id: "70302", name: "Motorcycle Gear" },
+          { _id: "70303", name: "ATV & UTV" },
+        ]
+      },
+      {
+        _id: "704",
+        name: "Tools & Equipment",
+        children: [
+          { _id: "70401", name: "Repair Tools" },
+          { _id: "70402", name: "Diagnostic Tools" },
+          { _id: "70403", name: "Car Care" },
+        ]
+      }
+    ]
+  },
+  {
+    _id: "8",
+    name: "Books & Media",
+    children: [
+      {
+        _id: "801",
+        name: "Books",
+        children: [
+          { _id: "80101", name: "Fiction" },
+          { _id: "80102", name: "Non-Fiction" },
+          { _id: "80103", name: "Children's Books" },
+          { _id: "80104", name: "Textbooks" },
+        ]
+      },
+      {
+        _id: "802",
+        name: "Movies & TV",
+        children: [
+          { _id: "80201", name: "DVDs & Blu-rays" },
+          { _id: "80202", name: "Digital Movies" },
+        ]
+      },
+      {
+        _id: "803",
+        name: "Music",
+        children: [
+          { _id: "80301", name: "CDs" },
+          { _id: "80302", name: "Vinyl Records" },
+          { _id: "80303", name: "Digital Music" },
+        ]
+      },
+      {
+        _id: "804",
+        name: "Magazines & Newspapers",
+        children: [
+          { _id: "80401", name: "Print Magazines" },
+          { _id: "80402", name: "Digital Magazines" },
+        ]
+      }
+    ]
+  }
+];

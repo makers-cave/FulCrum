@@ -10,7 +10,7 @@ import { partsData } from "@/lib/data";
 import { getPart, getPartCategories } from "@/lib/services/partsService";
 import { Part } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import { Box, Calendar, CalendarPlus, Car, DollarSign, Grid, Info, List, MapPin, PencilRuler, ReceiptText, Table, Trash2, User } from "lucide-react";
+import { Atom, Box, Calendar, CalendarPlus, Car, DollarSign, Grid, Info, List, MapPin, PencilRuler, ReceiptText, ScanEye, Table, Trash2, User } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -56,9 +56,6 @@ const PartPage = () => {
         }
         loadParts()
     }, [selectedPartId]);
-
-
-    const [productName, setProductName] = useState("");
 
     if (loading) {
         return <Spinner text="Loading part..." />
@@ -170,8 +167,11 @@ const PartPage = () => {
 
                 {/* 🔹 Additional editable fields below */}
                 <Card>
-                    <CardHeader>
-                        <CardTitle>Identification & Classification</CardTitle>
+
+                    <CardHeader className="flex items-center justify-between">
+                        <CardTitle className="flex items-center gap-2">
+                            <ScanEye className="h-4 w-4" /> Identification & Classification
+                        </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
                         <div>
@@ -204,29 +204,31 @@ const PartPage = () => {
                         </div>
                         <div>
                             <label className="text-sm font-medium">Manufacturer</label>
-                            <SelectEx 
-                            data={getManufacturersshort()}
-                            value={part.manufacturer || null}
-                            onDataChange={(value) => setPart({ ...part, manufacturer: value || undefined })}
-                            placeholder="Select manufacturer..."
-                            className="w-full"
+                            <SelectEx
+                                data={getManufacturersshort()}
+                                value={part.manufacturer || null}
+                                onDataChange={(value) => setPart({ ...part, manufacturer: value || undefined })}
+                                placeholder="Select manufacturer..."
+                                className="w-full"
                             />
                         </div>
                         <div>
                             <label className="text-sm font-medium">Category</label>
-                            <SelectEx 
-                            data={getPartCategories()}
-                            value={part.category || null}
-                            onDataChange={(value) => setPart({ ...part, category: value || undefined })}
-                            placeholder="Select Category..."
-                            className="w-full"
+                            <SelectEx
+                                data={getPartCategories()}
+                                value={part.category || null}
+                                onDataChange={(value) => setPart({ ...part, category: value || undefined })}
+                                placeholder="Select Category..."
+                                className="w-full"
                             />
                         </div>
                     </CardContent>
                 </Card>
                 <Card>
-                    <CardHeader>
-                        <CardTitle>Physical Attributes</CardTitle>  
+                    <CardHeader className="flex items-center justify-between">
+                        <CardTitle className="flex items-center gap-2">
+                            <Atom className="h-4 w-4" /> Physical Attributes
+                        </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -244,13 +246,13 @@ const PartPage = () => {
                                 }
                                     placeholder="Enter Width in mm" />
                             </div>
-                            <div>       
-                                <label className="text-sm font-medium">Height (mm)</label>      
+                            <div>
+                                <label className="text-sm font-medium">Height (mm)</label>
                                 <Input type="number" value={part.physical?.height || ''} onChange={(e) =>
                                     setPart({ ...part, physical: { ...part.physical, height: e.target.value ? parseFloat(e.target.value) : undefined } }) // ✅ updates object on change
                                 }
                                     placeholder="Enter Height in mm" />
-                            </div>  
+                            </div>
                             <div>
                                 <label className="text-sm font-medium">Weight (grams)</label>
                                 <Input type="number" value={part.physical?.weight || ''} onChange={(e) =>
@@ -259,7 +261,7 @@ const PartPage = () => {
                                     placeholder="Enter Weight in grams" />
                             </div>
                             <div>
-                                <label className="text-sm font-medium">Volume (cubic cm)</label>    
+                                <label className="text-sm font-medium">Volume (cubic cm)</label>
                                 <Input type="number" value={part.physical?.volume || ''} onChange={(e) =>
                                     setPart({ ...part, physical: { ...part.physical, volume: e.target.value ? parseFloat(e.target.value) : undefined } }) // ✅ updates object on change
                                 }
@@ -281,14 +283,14 @@ const PartPage = () => {
                             </div>
                             <div>
                                 <label className="text-sm font-medium">Material</label>
-                                <Input value={part.physical?.material || ''} onChange={(e) =>   
+                                <Input value={part.physical?.material || ''} onChange={(e) =>
                                     setPart({ ...part, physical: { ...part.physical, material: e.target.value || undefined } }) // ✅ updates object on change
                                 }
                                     placeholder="Enter Material" />
                             </div>
                         </div>
-                        </CardContent>
-                        </Card>
+                    </CardContent>
+                </Card>
                 <Card>
                     <CardContent >
                         <Button className="mt-4">Save Changes</Button>

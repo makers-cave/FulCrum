@@ -115,14 +115,17 @@ type PartLink = {
 };
 
 type Product = {
-  id: string;
+  upc: string | number | readonly string[] | undefined;
+  mpn: string | number | readonly string[] | undefined;
+  model: string | number | readonly string[] | undefined;
+  _id: string;
   name: string;
   sku: string;
   status: "Published" | "Draft" | "Discontinued";
   price: number;
   currency: string;
   image: string; // path such as /assets/...
-  category: string;
+  category?: SelectData;
   availableQty: number;
   reservedQty: number;
   leadTimeDays?: number;
@@ -132,6 +135,10 @@ type Product = {
   linkedParts?: PartLink[];
   bathchPerWeek?: number;
   manufacturer?: { _id: string; name: string };
+  isAssembled?: boolean;
+  productType?: SelectData;
+  canBeAssembled?: boolean;
+  isInidividualShip?: boolean
 };
 
 export type WarehouseLocation = {

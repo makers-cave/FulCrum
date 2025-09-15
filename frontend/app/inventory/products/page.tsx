@@ -23,6 +23,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Label } from "@/components/ui/label";
 import { SafeImage } from "@/components/SafeImage";
 import { usePageHeader } from "@/contexts/PageHeaderContext";
+import Link from "next/link";
 
 
 export default function ProductsPage() {
@@ -35,7 +36,7 @@ export default function ProductsPage() {
   const [products] = useState<Product[]>(productsData);
   const [query, setQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<string>("All");
-  const [selectedProductId, setSelectedProductId] = useState<string | null>(products[0]?.id ?? null);
+  const [selectedProductId, setSelectedProductId] = useState<string | null>(products[0]?._id ?? null);
 
   const categories = useMemo(() => {
     const s = new Set<string>();
@@ -51,7 +52,7 @@ export default function ProductsPage() {
     return matchesQuery && matchesCategory;
   });
 
-  const selectedProduct = products.find((p) => p.id === selectedProductId) ?? null;
+  const selectedProduct = products.find((p) => p._id === selectedProductId) ?? null;
 
   return (
     <div className="p-6 space-y-6">
@@ -132,9 +133,9 @@ export default function ProductsPage() {
             <TableBody>
               {visible.map((p) => (
                 <TableRow
-                  key={p.id}
-                  className={`cursor-pointer ${selectedProductId === p.id ? "bg-muted" : ""}`}
-                  onClick={() => setSelectedProductId(p.id)}
+                  key={p._id}
+                  className={`cursor-pointer ${selectedProductId === p._id ? "bg-muted" : ""}`}
+                  onClick={() => setSelectedProductId(p._id)}
                 >
                   <TableCell>
                     <div className="w-10 h-10 relative rounded overflow-hidden bg-muted">
@@ -172,9 +173,13 @@ export default function ProductsPage() {
           </CardTitle>
 
           <div className="flex items-center gap-2">
-            <Button variant="outline" size="sm" onClick={() => alert("Edit product (navigate)")}>
+            {selectedProduct != null && <div className="flex items-center gap-2">
+            <Button variant="outline" asChild size="sm">
+              <Link href={`/inventory/products/${selectedProduct?._id}`}>
               <PencilRuler />Edit
+              </Link>
             </Button>
+            </div>}
             <Button variant="destructive" size="sm" onClick={() => alert("Archive product")}>
               <Trash2 />Archive
             </Button>
@@ -254,6 +259,7 @@ export default function ProductsPage() {
               </div>
             </div>
           </div>
+          <div>Bill of Materials (BOM)</div>
           <div className="flex justify-between items-center border rounded-md p-3 md:col-span-[1fr,2fr,2fr]">
             <Table>
               <TableHeader>
