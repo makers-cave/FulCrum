@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { usePageHeader } from "@/contexts/PageHeaderContext";
 import { partsData } from "@/lib/data";
-import { getPart } from "@/lib/services/partsService";
+import { getPart, getPartCategories } from "@/lib/services/partsService";
 import { Part } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { Box, Calendar, CalendarPlus, DollarSign, Grid, Info, List, MapPin, PencilRuler, ReceiptText, Table, Trash2, User } from "lucide-react";
@@ -17,7 +17,7 @@ import { useEffect, useState } from "react";
 import { Spinner } from "@/components/spinner";
 import { NotFound } from "@/components/notFound";
 import { PickInput } from "@/components/pickInput";
-import { getManufacturers, getManufacturersshort } from "@/lib/services/manufacturerService";
+import { getManufacturersshort } from "@/lib/services/manufacturerService";
 import { SelectEx } from "@/components/selectEx";
 
 const PartPage = () => {
@@ -174,12 +174,6 @@ const PartPage = () => {
                         <CardTitle>Identification & Classification</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
-
-                        {/* 
-
-Category / Subcategory — For grouping parts (e.g., Electronics > Resistors).
-
-Barcode / QR code / RFID tag */}
                         <div>
                             <label className="text-sm font-medium">Model/Version</label>
                             <Input value={part.model} onChange={(e) =>
@@ -214,7 +208,17 @@ Barcode / QR code / RFID tag */}
                             data={getManufacturersshort()}
                             value={part.manufacturer || null}
                             onDataChange={(value) => setPart({ ...part, manufacturer: value || undefined })}
-                            // placeholder="Select manufacturer..."
+                            placeholder="Select manufacturer..."
+                            className="w-full"
+                            />
+                        </div>
+                        <div>
+                            <label className="text-sm font-medium">Category</label>
+                            <SelectEx 
+                            data={getPartCategories()}
+                            value={part.category || null}
+                            onDataChange={(value) => setPart({ ...part, category: value || undefined })}
+                            placeholder="Select Category..."
                             className="w-full"
                             />
                         </div>

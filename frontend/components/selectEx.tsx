@@ -1,4 +1,3 @@
-// components/manufacturer-select.tsx
 "use client";
 
 import {
@@ -9,8 +8,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { SelectData } from "@/lib/types";
-import { Check, ChevronDown, Delete } from "lucide-react";
-import { Button } from "./ui/button";
 
 interface SelectExProps {
   data: SelectData[];
@@ -48,14 +45,19 @@ export function SelectEx({
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="null">-</SelectItem>
-        {data.map((dataItem) => (
-          <SelectItem key={dataItem._id} value={dataItem._id}>
-            <div className="flex items-center justify-between w-full">
-              <span>{dataItem.name}</span>
-            </div>
-          </SelectItem>
-        ))}
+        <SelectChildRow data ={data} level={0} />
       </SelectContent>
     </Select>
   );
+}
+function SelectChildRow({ data, level }: { data: SelectData[] | undefined; level: number }) {
+  if (!data) return null;
+  return data.map((child) => (
+    <>
+      <SelectItem key={child._id} value={child._id} style={{ paddingLeft: `${level * 16}px` }}>
+        {child.name}
+      </SelectItem>
+      <SelectChildRow data={child.children} level={level + 1} />
+    </>
+    ));
 }

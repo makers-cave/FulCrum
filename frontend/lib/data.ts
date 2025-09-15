@@ -13,8 +13,9 @@ import {
   Cog,
   MapPinHouse
 } from "lucide-react";
-import { Customer, Part, PartLocation, Product, Tenant, WarehouseLocation } from "./types";
+import { Customer, Part, PartLocation, Product, SelectData, Tenant, WarehouseLocation } from "./types";
 import { tree } from "next/dist/build/templates/app-page";
+import { Children } from "react";
 
 export const sideBarData = {
   menu: [
@@ -355,3 +356,200 @@ export const sampleLocations:WarehouseLocation[] = [
   { _id: "loc2", name: "US-HTX-Reserve", description: "Reserve stock area in Houston, TX", category: "Warehouse", sku: "WH-HTX-RSV", status: "Active" },
   { _id: "loc3", name: "US-HTX-Solon", description: "Overflow storage in Solon, OH", category: "Warehouse", sku: "WH-SOL", status: "Inactive" },
 ];
+
+export const PartCategories:SelectData[] = [
+  {
+    _id: "auto",
+    name: "Automotive Parts",
+    children: [
+      {
+        _id: "engine",
+        name: "Engine Components",
+        children: [
+          {
+            _id: "cylinder_parts",
+            name: "Cylinder Parts",
+            children: [
+              { _id: "piston_rings", name: "Piston Rings", children: [] },
+              { _id: "piston_pins", name: "Piston Pins", children: [] }
+            ]
+          },
+          { _id: "gaskets", name: "Gaskets", children: [] }
+        ]
+      },
+      {
+        _id: "cooling_system",
+        name: "Cooling System",
+        children: [
+          { _id: "radiators", name: "Radiators", children: [] },
+          { _id: "water_pumps", name: "Water Pumps", children: [] }
+        ]
+      },
+      {
+        _id: "brake_system",
+        name: "Braking System",
+        children: [
+          { _id: "pads_rotors", name: "Pads and Rotors", children: [] },
+          { _id: "calipers", name: "Calipers", children: [] },
+          { _id: "master_cylinders", name: "Master Cylinders", children: [] }
+        ]
+      },
+      {
+        _id: "electrical",
+        name: "Electrical System",
+        children: [
+          { _id: "batteries", name: "Batteries", children: [] },
+          { _id: "starters", name: "Starters", children: [] },
+          { _id: "alternators", name: "Alternators", children: [] }
+        ]
+      },
+      {
+        _id: "suspension",
+        name: "Suspension and Steering",
+        children: [
+          { _id: "shock_absorbers", name: "Shock Absorbers", children: [] },
+          { _id: "control_arms", name: "Control Arms", children: [] },
+          { _id: "tie_rods", name: "Tie Rods", children: [] }
+        ]
+      },
+      {
+        _id: "exhaust",
+        name: "Exhaust System",
+        children: [
+          { _id: "mufflers", name: "Mufflers", children: [] },
+          { _id: "catalytic_converters", name: "Catalytic Converters", children: [] }
+        ]
+      }
+    ]
+  },
+  {
+    _id: "electronics",
+    name: "Electronic Components",
+    children: [
+      {
+        _id: "passive",
+        name: "Passive Components",
+        children: [
+          {
+            _id: "resistors",
+            name: "Resistors",
+            children: [
+              { _id: "fixed_resistors", name: "Fixed Resistors", children: [] },
+              { _id: "variable_resistors", name: "Variable Resistors", children: [] }
+            ]
+          },
+          {
+            _id: "capacitors",
+            name: "Capacitors",
+            children: [
+              { _id: "ceramic_capacitors", name: "Ceramic Capacitors", children: [] },
+              { _id: "electrolytic_capacitors", name: "Electrolytic Capacitors", children: [] }
+            ]
+          },
+          {
+            _id: "inductors",
+            name: "Inductors",
+            children: [
+              { _id: "chokes", name: "Chokes", children: [] }
+            ]
+          }
+        ]
+      },
+      {
+        _id: "active",
+        name: "Active Components",
+        children: [
+          {
+            _id: "semiconductors",
+            name: "Semiconductors",
+            children: [
+              { _id: "diodes", name: "Diodes", children: [] },
+              { _id: "transistors", name: "Transistors", children: [] }
+            ]
+          },
+          {
+            _id: "ics",
+            name: "Integrated Circuits (ICs)",
+            children: [
+              { _id: "processors", name: "Microprocessors", children: [] },
+              { _id: "memory", name: "Memory Chips", children: [] }
+            ]
+          }
+        ]
+      },
+      {
+        _id: "electromechanical",
+        name: "Electromechanical Components",
+        children: [
+          { _id: "connectors", name: "Connectors", children: [] },
+          { _id: "switches", name: "Switches", children: [] },
+          { _id: "relays", name: "Relays", children: [] }
+        ]
+      }
+    ]
+  },
+  {
+    _id: "home_appliances",
+    name: "Home Appliance Parts",
+    children: [
+      {
+        _id: "kitchen_appliances",
+        name: "Kitchen Appliance Parts",
+        children: [
+          {
+            _id: "refrigeration",
+            name: "Refrigeration Parts",
+            children: [
+              { _id: "compressors", name: "Compressors", children: [] },
+              { _id: "thermostats", name: "Thermostats", children: [] }
+            ]
+          },
+          {
+            _id: "cooking",
+            name: "Cooking Appliance Parts",
+            children: [
+              { _id: "heating_elements", name: "Heating Elements", children: [] },
+              { _id: "igniters", name: "Igniters", children: [] }
+            ]
+          }
+        ]
+      },
+      {
+        _id: "laundry_appliances",
+        name: "Laundry Appliance Parts",
+        children: [
+          {
+            _id: "washer_parts",
+            name: "Washer Parts",
+            children: [
+              { _id: "drive_belts", name: "Drive Belts", children: [] },
+              { _id: "pumps", name: "Pumps", children: [] }
+            ]
+          },
+          {
+            _id: "dryer_parts",
+            name: "Dryer Parts",
+            children: [
+              { _id: "heating_elements_dryer", name: "Heating Elements", children: [] },
+              { _id: "rollers", name: "Drum Rollers", children: [] }
+            ]
+          }
+        ]
+      },
+      {
+        _id: "hvac",
+        name: "HVAC and Air Care Parts",
+        children: [
+          {
+            _id: "air_conditioning_parts",
+            name: "Air Conditioning Parts",
+            children: [
+              { _id: "blower_motors", name: "Blower Motors", children: [] },
+              { _id: "capacitors_hvac", name: "Capacitors", children: [] }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

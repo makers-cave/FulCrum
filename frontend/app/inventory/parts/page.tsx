@@ -53,7 +53,7 @@ export default function PartsPage() {
       part.name.toLowerCase().includes(search.toLowerCase()) ||
       part.sku.toLowerCase().includes(search.toLowerCase())
     const matchesCategory =
-      filterCategory === "All" || part.category === filterCategory
+      filterCategory === "All" || part.category?.name === filterCategory
     const matchesStatus =
       filterStatus === "All" || part.status === filterStatus
     return matchesSearch && matchesCategory && matchesStatus
@@ -159,7 +159,7 @@ export default function PartsPage() {
               {filteredParts.map((part) => (
                 <TableRow key={part._id} onClick={() => setSelectedPart(part)} className="cursor-pointer hover:bg-accent">
                   <TableCell>
-                    <Image
+                    <SafeImage
                       src={part.image}
                       alt={part.name}
                       width={40}
@@ -168,7 +168,7 @@ export default function PartsPage() {
                     />
                   </TableCell>
                   <TableCell className="font-medium">{part.name}</TableCell>
-                  <TableCell>{part.category}</TableCell>
+                  <TableCell>{part.category?.name}</TableCell>
                   <TableCell>{part.sku}</TableCell>
                   <TableCell>{part.stock}</TableCell>
                   <TableCell>{part.price}</TableCell>

@@ -66,7 +66,7 @@ export type Part = {
   _id: string
   name: string
   description: string
-  category: string
+  category?: {_id: string; name: string}
   sku: string
   mpn?: string
   upc?: string
@@ -150,4 +150,5 @@ export type Address = {
 export type SelectData = {
   _id: string;
   name: string;
+  children?: SelectData[];
 };

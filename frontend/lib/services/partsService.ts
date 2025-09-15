@@ -1,5 +1,5 @@
 import { useId } from "react";
-import { partsData } from "../data";
+import { PartCategories, partsData } from "../data";
 import { Part } from "../types";
 
 // function getDefaultPart(): Part {
@@ -23,4 +23,7 @@ async function getPart(partId: string): Promise<Part | null> {
   return partsData.find((p) => p._id === partId) ?? null
 }
 
-export { getPart }
+function getPartCategories(): { _id: string; name: string }[] {
+  return PartCategories;
+}
+export { getPart, getPartCategories }
