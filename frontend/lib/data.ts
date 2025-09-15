@@ -222,7 +222,6 @@ export const partsData: Part[] = [
     _id: "1",
     name: "Stepper Motor NEMA 17",
     description: "High-torque stepper motor suitable for 3D printers and CNC machines.",
-    category: "Motors",
     sku: "MTR-001",
     stock: 120,
     price: 14.99,
@@ -233,15 +232,13 @@ export const partsData: Part[] = [
     isSellable: false,
     isPurchasable: true,
     owner: "Delightloop Inc.",
-    defaultLocation: "US-HTX-Ergode",
-    respnsibleUser: "Mario",
     isVirtual: false
   },
   {
     _id: "2",
     name: "Arduino Uno R3",
     description: "Popular microcontroller board based on the ATmega328P.",
-    category: "Microcontrollers",
+    category: { _id: "cylinder_parts", name: "Cylinder Parts" },
     sku: "MCU-002",
     stock: 15,
     price: 22.50,
@@ -251,16 +248,14 @@ export const partsData: Part[] = [
     isAssemblable: true,
     isSellable: true,
     isPurchasable: true,
-    owner: "SliceWorx LLC",
-    defaultLocation: "US-HTX-Reserve",
-    respnsibleUser: "Emily",
+
     isVirtual: false
   },
   {
     _id: "3",
     name: "L298N Motor Driver",
     description: "Dual H-Bridge motor driver module for controlling DC motors and stepper motors.",
-    category: "Electronics",
+
     sku: "DRV-003",
     stock: 0,
     price: 9.90,
@@ -269,9 +264,7 @@ export const partsData: Part[] = [
     isAssemblable: false,
     isSellable: false,
     isPurchasable: true,
-    owner: "Countless Dimensions",
-    defaultLocation: "US-HTX-Solon",
-    respnsibleUser: "John Kramer",
+
     isVirtual: false
 
   },

@@ -62,6 +62,17 @@ export type Carrier = {
   email?: string;
   phone?: string;
 };
+export interface PhysicalAttributes {
+  length?: number; // mm
+  width?: number;  // mm
+  height?: number; // mm
+  weight?: number; // grams
+  volume?: number; // cubic cm
+  uom?: string;    // pieces, meters, kg, liters
+  color?: string;
+  material?: string;
+}
+
 export type Part = {
   _id: string
   name: string
@@ -80,9 +91,11 @@ export type Part = {
   isVirtual: any;
   isPurchasable?: boolean
   owner?: string
-  defaultLocation?: string
-  respnsibleUser?: string
   model?: string
+  physical?: PhysicalAttributes
+  tags?: string[]
+  createdAt?: Date
+  updatedAt?: Date
 }
 export type PartLocation = {
   _id: string

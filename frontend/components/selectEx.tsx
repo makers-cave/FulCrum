@@ -17,6 +17,21 @@ interface SelectExProps {
   className?: string;
 }
 
+function findSelectDataById(data: SelectData[], id: string): SelectData | null {
+  const found = data.find((m) => m._id === id);
+  if (found) return found;
+
+  for (const item of data) {
+    if (item.children && item.children.length > 0) {
+      const found = findSelectDataById(item.children, id);
+      if (found) {
+        return found;
+      }
+    }
+  }
+  
+  return null;
+}
 export function SelectEx({
   data: data,
   value: value,
@@ -28,8 +43,8 @@ export function SelectEx({
     if (value === "null") {
       onSelectDataChange(null);
     } else {
-      const manufacturer = data.find((m) => m._id === value);
-      onSelectDataChange(manufacturer || null);
+      const selectedItem =findSelectDataById(data, value);// data.find((m) => m._id === value);
+      onSelectDataChange(selectedItem || null);
     }
   };
 

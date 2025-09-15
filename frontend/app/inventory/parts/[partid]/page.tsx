@@ -10,7 +10,7 @@ import { partsData } from "@/lib/data";
 import { getPart, getPartCategories } from "@/lib/services/partsService";
 import { Part } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import { Box, Calendar, CalendarPlus, DollarSign, Grid, Info, List, MapPin, PencilRuler, ReceiptText, Table, Trash2, User } from "lucide-react";
+import { Box, Calendar, CalendarPlus, Car, DollarSign, Grid, Info, List, MapPin, PencilRuler, ReceiptText, Table, Trash2, User } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -225,10 +225,76 @@ const PartPage = () => {
                     </CardContent>
                 </Card>
                 <Card>
+                    <CardHeader>
+                        <CardTitle>Physical Attributes</CardTitle>  
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label className="text-sm font-medium">Length (mm)</label>
+                                <Input type="number" value={part.physical?.length || ''} onChange={(e) =>
+                                    setPart({ ...part, physical: { ...part.physical, length: e.target.value ? parseFloat(e.target.value) : undefined } }) // ✅ updates object on change
+                                }
+                                    placeholder="Enter Length in mm" />
+                            </div>
+                            <div>
+                                <label className="text-sm font-medium">Width (mm)</label>
+                                <Input type="number" value={part.physical?.width || ''} onChange={(e) =>
+                                    setPart({ ...part, physical: { ...part.physical, width: e.target.value ? parseFloat(e.target.value) : undefined } }) // ✅ updates object on change
+                                }
+                                    placeholder="Enter Width in mm" />
+                            </div>
+                            <div>       
+                                <label className="text-sm font-medium">Height (mm)</label>      
+                                <Input type="number" value={part.physical?.height || ''} onChange={(e) =>
+                                    setPart({ ...part, physical: { ...part.physical, height: e.target.value ? parseFloat(e.target.value) : undefined } }) // ✅ updates object on change
+                                }
+                                    placeholder="Enter Height in mm" />
+                            </div>  
+                            <div>
+                                <label className="text-sm font-medium">Weight (grams)</label>
+                                <Input type="number" value={part.physical?.weight || ''} onChange={(e) =>
+                                    setPart({ ...part, physical: { ...part.physical, weight: e.target.value ? parseFloat(e.target.value) : undefined } }) // ✅ updates object on change
+                                }
+                                    placeholder="Enter Weight in grams" />
+                            </div>
+                            <div>
+                                <label className="text-sm font-medium">Volume (cubic cm)</label>    
+                                <Input type="number" value={part.physical?.volume || ''} onChange={(e) =>
+                                    setPart({ ...part, physical: { ...part.physical, volume: e.target.value ? parseFloat(e.target.value) : undefined } }) // ✅ updates object on change
+                                }
+                                    placeholder="Enter Volume in cubic cm" />
+                            </div>
+                            <div>
+                                <label className="text-sm font-medium">Unit of Measure (UOM)</label>
+                                <Input value={part.physical?.uom || ''} onChange={(e) =>
+                                    setPart({ ...part, physical: { ...part.physical, uom: e.target.value || undefined } }) // ✅ updates object on change
+                                }
+                                    placeholder="Enter Unit of Measure (e.g., pieces, meters)" />
+                            </div>
+                            <div>
+                                <label className="text-sm font-medium">Color</label>
+                                <Input value={part.physical?.color || ''} onChange={(e) =>
+                                    setPart({ ...part, physical: { ...part.physical, color: e.target.value || undefined } }) // ✅ updates object on change
+                                }
+                                    placeholder="Enter Color" />
+                            </div>
+                            <div>
+                                <label className="text-sm font-medium">Material</label>
+                                <Input value={part.physical?.material || ''} onChange={(e) =>   
+                                    setPart({ ...part, physical: { ...part.physical, material: e.target.value || undefined } }) // ✅ updates object on change
+                                }
+                                    placeholder="Enter Material" />
+                            </div>
+                        </div>
+                        </CardContent>
+                        </Card>
+                <Card>
                     <CardContent >
                         <Button className="mt-4">Save Changes</Button>
                     </CardContent>
                 </Card>
+
             </div >
         )
     }
