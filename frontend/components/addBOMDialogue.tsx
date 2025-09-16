@@ -20,6 +20,7 @@ import { SelectData } from "@/lib/types";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
 import { PencilRuler } from "lucide-react";
 import { SafeImage } from "./SafeImage";
+import { Input } from "./ui/input";
 
 
 type AddItemsDialogProps = {
@@ -35,7 +36,7 @@ export default function AddItemsDialog({
 }: AddItemsDialogProps) {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [open, setOpen] = useState(false);
-
+  const [search, setSearch] = useState("");
   const toggleSelection = (id: string) => {
     setSelectedIds((prev) => {
       const newSet = new Set(prev);
@@ -52,7 +53,12 @@ export default function AddItemsDialog({
     setSelectedIds(new Set());
     setOpen(false);
   };
-
+  const filteredItems = items.filter((item) => {
+    const matchesSearch =
+      item.name.toLowerCase().includes(search.toLowerCase()) ||
+      item.sku?.toLowerCase().includes(search.toLowerCase())
+    return matchesSearch
+  })
   const renderTable = (items: SelectData[]) => (
     <div className="h-50 overflow-y-auto relative">
       <Table className="w-full text-sm border sticky top-0 shadow-sm">
@@ -74,7 +80,7 @@ export default function AddItemsDialog({
                 />
               </TableCell>
               <TableCell className="p-2">
-                <SafeImage width={40} height={40} className="rounded" src={item.image} alt={item.name}/>
+                <SafeImage width={40} height={40} className="rounded" src={item.image} alt={item.name} />
               </TableCell>
               <TableCell className="p-2">{item.name}</TableCell>
               <TableCell className="p-2">{item.sku}</TableCell>
@@ -97,13 +103,22 @@ export default function AddItemsDialog({
           <DialogTitle>Select Items to Add</DialogTitle>
         </DialogHeader>
         <Tabs defaultValue="parts">
-          <TabsList >
-            {tabs.map((tab) => (
-              <TabsTrigger className="px-4 rounded-t-sm" key={tab.filterKey} value={tab.filterKey}>{tab.title}</TabsTrigger>
-            ))}
-          </TabsList>
+          <div className="flex items-center justify-between">
+            <TabsList >
+              {tabs.map((tab) => (
+                <TabsTrigger className="px-4 rounded-t-sm" key={tab.filterKey} value={tab.filterKey}>{tab.title}</TabsTrigger>
+              ))}
+            </TabsList>
+            <Input
+              type="text"
+              placeholder="Search..."
+              className="ml-auto w-48"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
           {tabs.map((tab) => (
-            <TabsContent value={tab.filterKey}>{renderTable(items.filter(i => i.filterKey === tab.filterKey))}</TabsContent>
+            <TabsContent value={tab.filterKey}>{renderTable(filteredItems.filter(i => i.filterKey === tab.filterKey))}</TabsContent>
           ))}
         </Tabs>
         <div className="flex justify-end gap-2 mt-4">
