@@ -4,16 +4,25 @@ import { SafeImage } from "@/components/SafeImage";
 import { SelectEx } from "@/components/selectEx";
 import { Spinner } from "@/components/spinner";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { usePageHeader } from "@/contexts/PageHeaderContext";
 import { getManufacturersshort } from "@/lib/services/manufacturerService";
 import { getProduct, getProductCategories, getProductTypes } from "@/lib/services/productService";
-import { Product } from "@/lib/types";
+import { Part, Product } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import { Atom, Cog, Container, DiamondPercent, DollarSign, FileCog, FolderCog, MapPin, ReceiptText, ScanEye, User } from "lucide-react";
+import { Atom, Cog, Container, DiamondPercent, DollarSign, FileCog, FolderCog, MapPin, PencilRuler, ReceiptText, ScanEye, User } from "lucide-react";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const ProductPage = () => {
   const { setHeader } = usePageHeader()
@@ -33,6 +42,18 @@ const ProductPage = () => {
   const handleChange = (field: keyof Product, value: string) => {
     setProduct((prev) => prev ? { ...prev, [field]: !prev[field] } : prev);
   };
+  const [openDialog, setOpenDialog] = useState<boolean>(false);
+
+  const parts = [
+    { id: "p1", name: "Motor", sku: "MTR-001" },
+    { id: "p2", name: "Sensor", sku: "SNS-002" },
+  ];
+  
+  const products = [
+    { id: "pr1", name: "Robot Arm", sku: "RB-100" },
+  ];
+
+
   useEffect(() => {
     async function loadProducts() {
       try {
@@ -156,6 +177,7 @@ const ProductPage = () => {
             </div>
           </CardContent>
         </Card>
+        {/* Attributes Section */}
         <Card>
           <CardHeader className="flex items-center justify-between">
             <CardTitle className="flex items-center gap-2">
@@ -214,9 +236,99 @@ const ProductPage = () => {
             </div>
           </CardContent>
         </Card>
-      </div>
+        {/* BOM Section */}
+        <Card>
+          <CardHeader className="flex items-center justify-between">
+            <CardTitle className="flex items-center gap-2">
+              <ReceiptText className="h-4 w-4" />
+              Bill of Material (BOM)
+            </CardTitle>
+            <div className="flex items-center gap-2">
+              <Button variant="outline" size="sm" onClick={() => setOpenDialog(true)}>
+                <PencilRuler />Add items
+                {/* <Link href={`/inventory/products/`}>
+                  <PencilRuler />Edit
+                </Link> */}
+              </Button>
+            </div>
+          </CardHeader>
+          <CardContent>
+
+          </CardContent>
+        </Card>
+        <AddBomDialog parts={parts} products={products} onAdd={handleAddItems} />;
+        </div>
     )
   }
+}
+
+function AddBomDialog({ open, onClose, onSelectItem, parts, products }: { open: boolean, onClose: (value: boolean) => void, onSelectItem: ({ part: Part, product }) => void, parts: Part[], products: Product[] }) {
+  return (
+    <Dialog open={open} onOpenChange={onClose}>
+      <DialogContent className="max-w-2xl">
+        <DialogHeader>
+          <DialogTitle>Add Item to BOM</DialogTitle>
+        </DialogHeader>
+
+        <Tabs defaultValue="parts" className="w-full">
+          <TabsList className="mb-4">
+            <TabsTrigger value="parts">Parts</TabsTrigger>
+            <TabsTrigger value="products">Products</TabsTrigger>
+          </TabsList>
+
+          {/* Parts Tab */}
+          <TabsContent value="parts">
+            <Input placeholder="Search parts..." className="mb-3" />
+            {/* <div className="space-y-2 max-h-60 overflow-y-auto">
+                {parts.map((p) => (
+                  <div
+                    key={p._id}
+                    className="flex justify-between items-center border rounded p-2 cursor-pointer hover:bg-muted"
+                    onClick={() => {
+                      onSelectItem({ ...p, type: "part" });
+                      onClose(false);
+                    }}
+                  >
+                    <span>{p.name}</span>
+                    <span className="text-xs text-muted-foreground">
+                      Stock: {p.stock}
+                    </span>
+                  </div>
+                ))}
+              </div> */}
+          </TabsContent>
+
+          {/* Products Tab */}
+          <TabsContent value="products">
+            <Input placeholder="Search products..." className="mb-3" />
+            {/* <div className="space-y-2 max-h-60 overflow-y-auto">
+                {products.map((prod) => (
+                  <div
+                    key={prod._id}
+                    className="flex justify-between items-center border rounded p-2 cursor-pointer hover:bg-muted"
+                    onClick={() => {
+                      onSelectItem({ ...prod, type: "product" });
+                      onClose(false);
+                    }}
+                  >
+                    <span>{prod.name}</span>
+                    <span className="text-xs text-muted-foreground">
+                      Stock: {prod.stock}
+                    </span>
+                  </div>
+                ))} 
+              </div> */}
+          </TabsContent>
+        </Tabs>
+
+        <div className="flex justify-end mt-4">
+          <Button variant="secondary" onClick={() => onClose(false)}>
+            Cancel
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
 }
 
 export default ProductPage
