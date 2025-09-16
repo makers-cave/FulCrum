@@ -225,7 +225,7 @@ export const partsData: Part[] = [
     sku: "MTR-001",
     stock: 120,
     price: 14.99,
-    manufacturer: { _id: "1", name: "Manufacturer Alpha"},
+    manufacturer: { _id: "1", name: "Manufacturer Alpha" },
     image: "/motor.jpg",
     status: "In Stock",
     isAssemblable: true,
@@ -242,7 +242,7 @@ export const partsData: Part[] = [
     sku: "MCU-002",
     stock: 15,
     price: 22.50,
-    manufacturer: { _id: "2", name: "Manufacturer Beta"},
+    manufacturer: { _id: "2", name: "Manufacturer Beta" },
     image: "/arduino.jpg",
     status: "Low Stock",
     isAssemblable: true,
@@ -269,10 +269,10 @@ export const partsData: Part[] = [
 
   },
 ]
-export const partsLocation:PartLocation[] = [
+export const partsLocation: PartLocation[] = [
   {
-    _id: "abce", 
-    name: "US-HTX-Ergode", 
+    _id: "abce",
+    name: "US-HTX-Ergode",
     quantity: 120,
     reserved: 5,
     subLocations: [
@@ -281,14 +281,15 @@ export const partsLocation:PartLocation[] = [
       { _id: "abce3", name: "Aisle 5, Shelf C", quantity: 40 },
     ]
   },
-  { _id: "abcf", 
-    name: "US-HTX-Reserve", 
+  {
+    _id: "abcf",
+    name: "US-HTX-Reserve",
     quantity: 20,
     reserved: 2,
-    subLocations: [ 
+    subLocations: [
       { _id: "abcf1", name: "Backroom Shelf 1", quantity: 15 },
-      { _id: "abcf3", name: "Backroom Shelf 2", quantity: 5, reserved:2 },
-    ] 
+      { _id: "abcf3", name: "Backroom Shelf 2", quantity: 5, reserved: 2 },
+    ]
   }
 ]
 
@@ -310,13 +311,13 @@ export const productsData: Product[] = [
     description: "Starter kit with ESP32, sensors, cables and example projects.",
     bathchPerWeek: 50,
     linkedParts: [
-      { id: "part-esp32", partName: "ESP32-WROOM Module", partSku: "MTR-ESP32", qtyPerProduct: 1, linkType: "Assembly", stock: 120  },
-      { id: "part-usb", partName: "USB Cable", partSku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Content", stock: 150  },
-      { id: "part-sensor", partName: "DHT22 Sensor", partSku: "SNS-DHT22", qtyPerProduct: 1, linkType: "Content", stock: 150  },
+      { id: "part-esp32", partName: "ESP32-WROOM Module", partSku: "MTR-ESP32", qtyPerProduct: 1, linkType: "Assembly", stock: 120 },
+      { id: "part-usb", partName: "USB Cable", partSku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Content", stock: 150 },
+      { id: "part-sensor", partName: "DHT22 Sensor", partSku: "SNS-DHT22", qtyPerProduct: 1, linkType: "Content", stock: 150 },
       { id: "part-box", partName: "Package Box", partSku: "BOX-002", qtyPerProduct: 1, linkType: "Packaging", stock: 300 },
       { id: "part-S649", partName: "Shipping Box", partSku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Shipping", stock: 500 },
     ],
-    manufacturer: { _id: "1", name: "Manufacturer Alpha"}
+    manufacturer: { _id: "1", name: "Manufacturer Alpha" }
   },
   {
     _id: "p2",
@@ -336,25 +337,25 @@ export const productsData: Product[] = [
     bathchPerWeek: 20,
     linkedParts: [
       { id: "part-motor", partName: "Stepper Motor NEMA 17", partSku: "MTR-001", qtyPerProduct: 2, linkType: "Content", stock: 120 },
-      { id: "part-driver", partName: "Motor Driver L298N", partSku: "DRV-003", qtyPerProduct: 1, linkType: "Assembly", stock: 150 }, 
+      { id: "part-driver", partName: "Motor Driver L298N", partSku: "DRV-003", qtyPerProduct: 1, linkType: "Assembly", stock: 150 },
       { id: "part-box", partName: "Package Box", partSku: "BOX-002", qtyPerProduct: 1, linkType: "Packaging", stock: 300 },
       { id: "part-S649", partName: "Shipping Box", partSku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Shipping", stock: 500 },
     ],
     manufacturer: { _id: "2", name: "Manufacturer Beta" }
   },
 ];
-export const productTypes: SelectData[] =[
-  {_id: "digital", name: "Digital/Virtual"},
-  {_id: "physical", name: "Physical"},
-  {_id: "service", name: "Service"}
+export const productTypes: SelectData[] = [
+  { _id: "digital", name: "Digital/Virtual" },
+  { _id: "physical", name: "Physical" },
+  { _id: "service", name: "Service" }
 ]
-export const sampleLocations:WarehouseLocation[] = [
+export const sampleLocations: WarehouseLocation[] = [
   { _id: "loc1", name: "US-HTX-Ergode", description: "Main warehouse in Houston, TX", category: "Warehouse", sku: "WH-HTX", status: "Active" },
   { _id: "loc2", name: "US-HTX-Reserve", description: "Reserve stock area in Houston, TX", category: "Warehouse", sku: "WH-HTX-RSV", status: "Active" },
   { _id: "loc3", name: "US-HTX-Solon", description: "Overflow storage in Solon, OH", category: "Warehouse", sku: "WH-SOL", status: "Inactive" },
 ];
 
-export const PartCategories:SelectData[] = [
+export const PartCategories: SelectData[] = [
   {
     _id: "auto",
     name: "Automotive Parts",
@@ -966,3 +967,16 @@ export const productCategories: SelectData[] = [
     ]
   }
 ];
+
+export const bomItems: SelectData[] = [
+  { _id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", filterKey: "part" },
+  { _id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", filterKey: "part"  },
+  { _id: "part-box", name: "Package Box", sku: "BOX-002", filterKey: "part"  },
+  { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", filterKey: "part"  },
+  { _id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", filterKey: "part" },
+  { _id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", filterKey: "part"  },
+  { _id: "part-box", name: "Package Box", sku: "BOX-002", filterKey: "part"  },
+  { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", filterKey: "part"  },
+  { _id: "p2", name: "Robotics Kit - Beginner", sku: "PROD-ROBO-BEG", filterKey: "product"  },
+  { _id: "p1", name: "ESP32 IoT Starter Kit", sku: "PROD-ESP32KIT", filterKey: "product"  }
+]

@@ -171,4 +171,7 @@ export type SelectData = {
   _id: string;
   name: string;
   children?: SelectData[];
+  filterKey?: string;
+  image?: string;
+  sku?:string;
 };

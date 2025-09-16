@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { usePageHeader } from "@/contexts/PageHeaderContext";
 import { getManufacturersshort } from "@/lib/services/manufacturerService";
 import { getProduct, getProductCategories, getProductTypes } from "@/lib/services/productService";
-import { Part, Product } from "@/lib/types";
+import { Part, Product, SelectData } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { Atom, Cog, Container, DiamondPercent, DollarSign, FileCog, FolderCog, MapPin, PencilRuler, ReceiptText, ScanEye, User } from "lucide-react";
 import Link from "next/link";
@@ -23,6 +23,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import AddItemsDialog from "@/components/addBOMDialogue";
+import { bomItems } from "@/lib/data";
 
 const ProductPage = () => {
   const { setHeader } = usePageHeader()
@@ -43,16 +45,18 @@ const ProductPage = () => {
     setProduct((prev) => prev ? { ...prev, [field]: !prev[field] } : prev);
   };
   const [openDialog, setOpenDialog] = useState<boolean>(false);
-
-  const parts = [
-    { id: "p1", name: "Motor", sku: "MTR-001" },
-    { id: "p2", name: "Sensor", sku: "SNS-002" },
-  ];
-  
-  const products = [
-    { id: "pr1", name: "Robot Arm", sku: "RB-100" },
-  ];
-
+  // Handle selection from dialog
+  const handleSelectItem = (items:SelectData[]) => {
+    // setBom((prev) => [
+    //   ...prev,
+    //   {
+    //     ...item,
+    //     qty: 1, // default qty
+    //     linkType: "Assembly", // default link type
+    //   },
+    // ]);
+  };
+const dialogTabs = [{ filterKey: "part", title: "Parts" }, { filterKey: "product", title: "Products" }]
 
   useEffect(() => {
     async function loadProducts() {
@@ -244,91 +248,20 @@ const ProductPage = () => {
               Bill of Material (BOM)
             </CardTitle>
             <div className="flex items-center gap-2">
-              <Button variant="outline" size="sm" onClick={() => setOpenDialog(true)}>
+              {/* <Button variant="outline" size="sm" onClick={() => setOpenDialog(true)}>
                 <PencilRuler />Add items
-                {/* <Link href={`/inventory/products/`}>
-                  <PencilRuler />Edit
-                </Link> */}
-              </Button>
+              </Button> */}
+              <AddItemsDialog items={bomItems} onAdd={handleSelectItem} tabs={dialogTabs} />
             </div>
           </CardHeader>
           <CardContent>
 
           </CardContent>
         </Card>
-        <AddBomDialog parts={parts} products={products} onAdd={handleAddItems} />;
+        {/* <AddItemsDialog items={bomItems} onAdd={handleSelectItem} tabs={dialogTabs} /> */}
         </div>
     )
   }
-}
-
-function AddBomDialog({ open, onClose, onSelectItem, parts, products }: { open: boolean, onClose: (value: boolean) => void, onSelectItem: ({ part: Part, product }) => void, parts: Part[], products: Product[] }) {
-  return (
-    <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl">
-        <DialogHeader>
-          <DialogTitle>Add Item to BOM</DialogTitle>
-        </DialogHeader>
-
-        <Tabs defaultValue="parts" className="w-full">
-          <TabsList className="mb-4">
-            <TabsTrigger value="parts">Parts</TabsTrigger>
-            <TabsTrigger value="products">Products</TabsTrigger>
-          </TabsList>
-
-          {/* Parts Tab */}
-          <TabsContent value="parts">
-            <Input placeholder="Search parts..." className="mb-3" />
-            {/* <div className="space-y-2 max-h-60 overflow-y-auto">
-                {parts.map((p) => (
-                  <div
-                    key={p._id}
-                    className="flex justify-between items-center border rounded p-2 cursor-pointer hover:bg-muted"
-                    onClick={() => {
-                      onSelectItem({ ...p, type: "part" });
-                      onClose(false);
-                    }}
-                  >
-                    <span>{p.name}</span>
-                    <span className="text-xs text-muted-foreground">
-                      Stock: {p.stock}
-                    </span>
-                  </div>
-                ))}
-              </div> */}
-          </TabsContent>
-
-          {/* Products Tab */}
-          <TabsContent value="products">
-            <Input placeholder="Search products..." className="mb-3" />
-            {/* <div className="space-y-2 max-h-60 overflow-y-auto">
-                {products.map((prod) => (
-                  <div
-                    key={prod._id}
-                    className="flex justify-between items-center border rounded p-2 cursor-pointer hover:bg-muted"
-                    onClick={() => {
-                      onSelectItem({ ...prod, type: "product" });
-                      onClose(false);
-                    }}
-                  >
-                    <span>{prod.name}</span>
-                    <span className="text-xs text-muted-foreground">
-                      Stock: {prod.stock}
-                    </span>
-                  </div>
-                ))} 
-              </div> */}
-          </TabsContent>
-        </Tabs>
-
-        <div className="flex justify-end mt-4">
-          <Button variant="secondary" onClick={() => onClose(false)}>
-            Cancel
-          </Button>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
 }
 
 export default ProductPage
