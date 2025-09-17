@@ -272,14 +272,14 @@ export default function ProductsPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {selectedProduct?.linkedParts?.map((part) => (
+                {selectedProduct?.BOM?.map((part) => (
                   <TableRow>
                     <TableCell>
                       <div className="w-10 h-10 relative rounded overflow-hidden bg-muted">
                         <SafeImage src={part.image} alt={part.image} fill className="object-contain" />
                       </div>
                     </TableCell>
-                    <TableCell>{part.partName}</TableCell>
+                    <TableCell>{part.name}</TableCell>
                     <TableCell>{part.qtyPerProduct}</TableCell>
                     <TableCell>{part.stock}</TableCell>
                     <TableCell>

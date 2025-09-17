@@ -310,12 +310,12 @@ export const productsData: Product[] = [
     dimensions: "22x16x6 cm",
     description: "Starter kit with ESP32, sensors, cables and example projects.",
     bathchPerWeek: 50,
-    linkedParts: [
-      { id: "part-esp32", partName: "ESP32-WROOM Module", partSku: "MTR-ESP32", qtyPerProduct: 1, linkType: "Assembly", stock: 120 },
-      { id: "part-usb", partName: "USB Cable", partSku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Content", stock: 150 },
-      { id: "part-sensor", partName: "DHT22 Sensor", partSku: "SNS-DHT22", qtyPerProduct: 1, linkType: "Content", stock: 150 },
-      { id: "part-box", partName: "Package Box", partSku: "BOX-002", qtyPerProduct: 1, linkType: "Packaging", stock: 300 },
-      { id: "part-S649", partName: "Shipping Box", partSku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Shipping", stock: 500 },
+    BOM: [
+      { _id: "part-esp32", name: "ESP32-WROOM Module", sku: "MTR-ESP32", qtyPerProduct: 1, linkType: "Assembly", stock: 120, partType:"part" },
+      { _id: "part-usb", name: "USB Cable", sku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Content", stock: 150, partType: "product" },
+      { _id: "part-sensor", name: "DHT22 Sensor", sku: "SNS-DHT22", qtyPerProduct: 1, linkType: "Content", stock: 150, partType:"part" },
+      { _id: "part-box", name: "Package Box", sku: "BOX-002", qtyPerProduct: 1, linkType: "Packaging", stock: 300, partType:"part" },
+      { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Shipping", stock: 500, partType:"product" },
     ],
     manufacturer: { _id: "1", name: "Manufacturer Alpha" }
   },
@@ -335,11 +335,11 @@ export const productsData: Product[] = [
     dimensions: "40x30x10 cm",
     description: "Entry-level robotics kit with motors, wheels and controller.",
     bathchPerWeek: 20,
-    linkedParts: [
-      { id: "part-motor", partName: "Stepper Motor NEMA 17", partSku: "MTR-001", qtyPerProduct: 2, linkType: "Content", stock: 120 },
-      { id: "part-driver", partName: "Motor Driver L298N", partSku: "DRV-003", qtyPerProduct: 1, linkType: "Assembly", stock: 150 },
-      { id: "part-box", partName: "Package Box", partSku: "BOX-002", qtyPerProduct: 1, linkType: "Packaging", stock: 300 },
-      { id: "part-S649", partName: "Shipping Box", partSku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Shipping", stock: 500 },
+    BOM: [
+      { _id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", qtyPerProduct: 2, linkType: "Content", stock: 120, partType:"product" },
+      { _id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", qtyPerProduct: 1, linkType: "Assembly", stock: 150, partType:"product" },
+      { _id: "part-box", name: "Package Box", sku: "BOX-002", qtyPerProduct: 1, linkType: "Packaging", stock: 300, partType:"product" },
+      { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Shipping", stock: 500, partType:"product" },
     ],
     manufacturer: { _id: "2", name: "Manufacturer Beta" }
   },

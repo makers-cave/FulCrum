@@ -104,14 +104,15 @@ export type PartLocation = {
   reserved?: number
   subLocations?: PartLocation[]
 }
-type PartLink = {
-  id: string;
-  partName: string;
+type bOMItem = {
+  _id: string;
+  name: string;
   image?: string;
-  partSku: string;
-  qtyPerProduct: number;
+  sku?: string;
+  qtyPerProduct?: number;
   linkType?: "Content" | "Assembly" | "Packaging" | "Shipping";
   stock?: number;
+  partType?: "product" | "part";
 };
 
 type Product = {
@@ -132,7 +133,7 @@ type Product = {
   weightKg?: number;
   dimensions?: string;
   description?: string;
-  linkedParts?: PartLink[];
+  BOM?: bOMItem[];
   bathchPerWeek?: number;
   manufacturer?: { _id: string; name: string };
   isAssembled?: boolean;

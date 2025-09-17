@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { usePageHeader } from "@/contexts/PageHeaderContext";
 import { getManufacturersshort } from "@/lib/services/manufacturerService";
 import { getProduct, getProductCategories, getProductTypes } from "@/lib/services/productService";
-import { Part, Product, SelectData } from "@/lib/types";
+import { bOMItem, Part, Product, SelectData } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { Atom, Cog, Container, DiamondPercent, DollarSign, FileCog, FolderCog, MapPin, PencilRuler, ReceiptText, ScanEye, User } from "lucide-react";
 import Link from "next/link";
@@ -25,6 +25,10 @@ import {
 } from "@/components/ui/dialog";
 import AddItemsDialog from "@/components/addBOMDialogue";
 import { bomItems } from "@/lib/data";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { EditableCell } from "@/components/editTableCell";
+
+const linkTypes = ["Assembly", "Content", "Packaging", "Shipping"]
 
 const ProductPage = () => {
   const { setHeader } = usePageHeader()
@@ -46,7 +50,7 @@ const ProductPage = () => {
   };
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   // Handle selection from dialog
-  const handleSelectItem = (items:SelectData[]) => {
+  const handleSelectItems = (items: SelectData[]) => {
     // setBom((prev) => [
     //   ...prev,
     //   {
@@ -56,7 +60,21 @@ const ProductPage = () => {
     //   },
     // ]);
   };
-const dialogTabs = [{ filterKey: "part", title: "Parts" }, { filterKey: "product", title: "Products" }]
+  const handleBOMUpdate = (updatedRow: bOMItem) => {
+    console.log(updatedRow);
+    
+    setProduct((prev) =>
+      prev
+        ? {
+          ...prev,                  // keep all the old fields of product
+          BOM: prev.BOM?.map((row) =>
+            row._id === updatedRow._id ? updatedRow : row
+          ),
+        }
+        : prev // handle the null case
+    )
+  }
+  const dialogTabs = [{ filterKey: "part", title: "Parts" }, { filterKey: "product", title: "Products" }]
 
   useEffect(() => {
     async function loadProducts() {
@@ -248,18 +266,52 @@ const dialogTabs = [{ filterKey: "part", title: "Parts" }, { filterKey: "product
               Bill of Material (BOM)
             </CardTitle>
             <div className="flex items-center gap-2">
-              {/* <Button variant="outline" size="sm" onClick={() => setOpenDialog(true)}>
-                <PencilRuler />Add items
-              </Button> */}
-              <AddItemsDialog items={bomItems} onAdd={handleSelectItem} tabs={dialogTabs} />
+              <AddItemsDialog items={bomItems} onAdd={handleSelectItems} tabs={dialogTabs} />
             </div>
           </CardHeader>
           <CardContent>
-
+            <div className="flex justify-between items-center border rounded-md p-3 md:col-span-[1fr,2fr,2fr]">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Image</TableHead>
+                    <TableHead>Item</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Qty/Product</TableHead>
+                    <TableHead>LinkType</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {product?.BOM?.map((bomItem) => (
+                    <TableRow>
+                      <TableCell>
+                        <div className="w-10 h-10 relative rounded overflow-hidden bg-muted">
+                          <SafeImage src={bomItem.image} alt={bomItem.image} fill className="object-contain" />
+                        </div>
+                      </TableCell>
+                      <TableCell>{bomItem.name}</TableCell>
+                      <TableCell>{bomItem.partType}</TableCell>
+                      <EditableCell
+                        row={bomItem}
+                        field="qtyPerProduct"
+                        type="input"
+                        onChange={handleBOMUpdate}
+                      />
+                      <EditableCell
+                        row={bomItem}
+                        field="linkType"
+                        type="select"
+                        options={linkTypes}
+                        onChange={handleBOMUpdate}
+                      />
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           </CardContent>
         </Card>
-        {/* <AddItemsDialog items={bomItems} onAdd={handleSelectItem} tabs={dialogTabs} /> */}
-        </div>
+      </div>
     )
   }
 }
