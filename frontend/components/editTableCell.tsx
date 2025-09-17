@@ -48,6 +48,9 @@ export function EditableCell<T extends { _id: string }>({
               handleValueChange(val)
               setIsEditing(false)
             }}
+            onOpenChange={(open) => {
+              if (!open) setIsEditing(false); // ✅ acts like blur
+            }}
           >
             <SelectTrigger className="w-[130px]">
               <SelectValue placeholder="Select" />
