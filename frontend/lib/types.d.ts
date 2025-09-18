@@ -77,11 +77,11 @@ export type Part = {
   _id: string
   name: string
   description: string
-  category?: {_id: string; name: string}
+  category?: { _id: string; name: string }
   sku: string
   mpn?: string
   upc?: string
-  manufacturer?: {_id: string; name: string}
+  manufacturer?: { _id: string; name: string }
   stock: number
   price: number
   image?: string
@@ -174,7 +174,7 @@ export type SelectData = {
   children?: SelectData[];
   filterKey?: string;
   image?: string;
-  sku?:string;
+  sku?: string;
 };
 
 export type StockOverview = {
@@ -182,10 +182,38 @@ export type StockOverview = {
   image?: string;
   name: string;
   sku: string;
+  type: "part" | "product";
   category?: string;
   available: number;
   reserved?: number;
   intransit?: number;
   inproduction?: number;
   isStale?: boolean;
+}
+
+export type Lot = {
+  _id: string;
+  part_id?: string;
+  product_id?: string;
+  lotNumber: string; // Batch ID (unique identifier for the lot)
+  supplierBatchNumber?: string;
+  quantity: number;
+  status: "Available" | "Quarantined" | "On Hold" | "Depleted";
+  receivedDate?: Date;
+  manufactureDate?: Date;
+  expiryDate?: Date;
+  supplier?: SelectData;
+  unitCost?: number;
+  location?: SelectData; // Warehouse, Bin, Shelf location
+  certificateOfAnalysisUrl?: string; // Link to CoA document
+  packageCount?: string;
+  packageDesc?: string;
+};
+
+export type LotHistory = {
+  _id: string;
+  lot_id: string;
+  date: Date;
+  action: string;
+  details?: string;
 }

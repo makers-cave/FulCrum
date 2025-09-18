@@ -5,21 +5,25 @@ import { Input } from "@/components/ui/input"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { usePageHeader } from "@/contexts/PageHeaderContext";
-import { Package } from "lucide-react";
+import { Package, PlusCircle, SquareParking } from "lucide-react";
 import { useEffect, useState } from "react"
-import { partsStock, productsStock } from "@/lib/data";
+import { lotsData, partsStock } from "@/lib/data";
 import { SafeImage } from "@/components/SafeImage";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const StockPage = () => {
-    const { setHeader } = usePageHeader()
-  
-    useEffect(() => {
-      setHeader("Stock Management", "View part/product stock and add edit lots")
-    }, [setHeader])
+  const { setHeader } = usePageHeader();
+  const [selectedPart, setSelectedPart] = useState("");
+
+  useEffect(() => {
+    setHeader("Stock Management", "View part/product stock and add edit lots")
+  }, [setHeader])
   const [search, setSearch] = useState("");
   const [hideStale, setHideStale] = useState(true);
   return (
     <div className="p-6 space-y-6">
+      {/* Parts and Product List */}
       <Card>
         <CardHeader className="flex items-center justify-between">
           <CardTitle className="flex items-center gap-2">
@@ -29,11 +33,11 @@ const StockPage = () => {
         </CardHeader>
         <CardContent>
           {/* Parts Tab */}
-          <Tabs defaultValue="parts">
+          <Tabs defaultValue="parts" onValueChange={() => setSelectedPart("")}>
             <div className="flex items-center justify-between">
               <TabsList >
                 <TabsTrigger key="parts" value="parts" className="px-4 rounded-t-sm">Parts</TabsTrigger>
-                <TabsTrigger key="products" value="products" className="px-4 rounded-t-sm">Parts</TabsTrigger>
+                <TabsTrigger key="products" value="products" className="px-4 rounded-t-sm">Products</TabsTrigger>
               </TabsList>
               <Input
                 type="text"
@@ -43,9 +47,9 @@ const StockPage = () => {
                 onChange={(e) => setSearch(e.target.value)}
               />
               <Checkbox className="ml-2"
-              id="hideStale"
-              checked={hideStale}
-              onCheckedChange={(checked) => setHideStale(checked as boolean)}/>
+                id="hideStale"
+                checked={hideStale}
+                onCheckedChange={(checked) => setHideStale(checked as boolean)} />
               <label htmlFor="hideStale" className="ml-1" title="Hide the products or part which are 0 stocks and not in transit.">Hide stale</label>
             </div>
             <TabsContent value="parts">
@@ -62,8 +66,10 @@ const StockPage = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {partsStock.map((partStock) => (
-                    <TableRow>
+                  {partsStock.filter(i => i.type == "part").map((partStock) => (
+                    <TableRow key={partStock._id}
+                    className={`cursor-pointer ${selectedPart === partStock._id ? "bg-muted" : ""}`}
+                    onClick={() => setSelectedPart(partStock._id)}>
                       <TableCell>
                         <div className="w-10 h-10 relative rounded overflow-hidden bg-muted">
                           <SafeImage src={partStock.image} alt={partStock.image} fill className="object-contain" />
@@ -96,8 +102,9 @@ const StockPage = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {productsStock.map((productStock) => (
-                    <TableRow>
+                  {partsStock.filter(i => i.type == "product").map((productStock) => (
+                    <TableRow key={productStock._id} className={`cursor-pointer ${selectedPart === productStock._id ? "bg-muted" : ""}`}
+                    onClick={() => setSelectedPart(productStock._id)}>
                       <TableCell>
                         <div className="w-10 h-10 relative rounded overflow-hidden bg-muted">
                           <SafeImage src={productStock.image} alt={productStock.image} fill className="object-contain" />
@@ -116,6 +123,57 @@ const StockPage = () => {
               </Table>
             </TabsContent>
           </Tabs>
+        </CardContent>
+      </Card>
+      {/* Lots list */}
+      <Card>
+        <CardHeader className="flex items-center justify-between">
+          <CardTitle className="flex items-center gap-2">
+            <SquareParking className="h-5 w-5" />
+            Lots
+
+          </CardTitle>
+          <div className="flex items-center gap-2">
+            <Button variant="default" className="flex items-center gap-2">
+              <PlusCircle className="h-4 w-4" /> Add
+            </Button>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Lot #</TableHead>
+                <TableHead>Batch</TableHead>
+                <TableHead>Location</TableHead>
+                <TableHead>Quantity</TableHead>
+                <TableHead>Packages</TableHead>
+                <TableHead>Received</TableHead>
+                <TableHead>Expiry</TableHead>
+                <TableHead>Action</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {lotsData.filter(i => i.part_id == selectedPart || i.product_id == selectedPart).map((lot) => (
+                <TableRow key={lot._id}>
+                  <TableCell>
+                    {lot._id}
+                  </TableCell>
+                  <TableCell>{lot.supplierBatchNumber}</TableCell>
+                  <TableCell>{lot.location?.image}</TableCell>
+                  <TableCell>{lot.quantity}</TableCell>
+                  <TableCell>{lot.packageCount}</TableCell>
+                  <TableCell>{lot.receivedDate?.toDateString()}</TableCell>
+                  <TableCell>{lot.expiryDate?.toDateString()}</TableCell>
+                  <TableCell>
+                    <Button variant="outline" size="sm">
+                      Edit
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </CardContent>
       </Card>
     </div>

@@ -13,7 +13,7 @@ import {
   Cog,
   MapPinHouse
 } from "lucide-react";
-import { Customer, Part, PartLocation, Product, SelectData, StockOverview, Tenant, WarehouseLocation } from "./types";
+import { Customer, Lot, Part, PartLocation, Product, SelectData, StockOverview, Tenant, WarehouseLocation } from "./types";
 import { tree } from "next/dist/build/templates/app-page";
 import { Children } from "react";
 
@@ -982,14 +982,87 @@ export const bomItems: SelectData[] = [
 ]
 
 export const partsStock: StockOverview[] = [
-  { _id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", available: 2000, reserved: 20 },
-  { _id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", available: 1500, reserved: 15, intransit: 1000 },
-  { _id: "part-box1", name: "Package Box 1", sku: "BOX-001", available: 3000, reserved: 20 },
-  { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", available: 5000, reserved: 55 },
-  { _id: "part-box2", name: "Package Box 2", sku: "BOX-002", available: 2000 }]
-
-export const productsStock: StockOverview[] = [
-  { _id: "p2", name: "Robotics Kit - Beginner", sku: "PROD-ROBO-BEG", available: 50, reserved: 5, inproduction: 10 },
-  { _id: "p1", name: "ESP32 IoT Starter Kit", sku: "PROD-ESP32KIT", available: 20, inproduction: 5 },
-  { _id: "p3", name: "Poloriud Sunglasses", sku: "PROD-POLSUN", available: 0, intransit: 100 }
+  { _id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", available: 2000, reserved: 20 , type: "part"},
+  { _id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", available: 1500, reserved: 15, intransit: 1000, type: "part" },
+  { _id: "part-box1", name: "Package Box 1", sku: "BOX-001", available: 3000, reserved: 20, type: "part" },
+  { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", available: 5000, reserved: 55, type: "part" },
+  { _id: "part-box2", name: "Package Box 2", sku: "BOX-002", available: 2000, type: "part" },
+  { _id: "p2", name: "Robotics Kit - Beginner", sku: "PROD-ROBO-BEG", available: 50, reserved: 5, inproduction: 10, type: "product" },
+  { _id: "p1", name: "ESP32 IoT Starter Kit", sku: "PROD-ESP32KIT", available: 20, inproduction: 5, type: "product" },
+  { _id: "p3", name: "Poloriud Sunglasses", sku: "PROD-POLSUN", available: 0, intransit: 100, type: "product" }
 ]
+export const lotsData: Lot[] = [
+  {
+    _id: "lot-001",
+    part_id: "part-motor",
+    lotNumber: "LOT-2024-001",
+    quantity: 500,
+    receivedDate: new Date("2024-06-01"),
+    expiryDate: new Date("2026-06-01"),
+    status: "Available"
+  },
+  {
+    _id: "lot-002",
+    part_id: "part-driver",
+    lotNumber: "LOT-2024-002",
+    quantity: 300,
+    receivedDate: new Date("2024-05-15"),
+    expiryDate: new Date("2026-05-15"),
+    status: "Available"
+  },
+  {
+    _id: "lot-003",
+    part_id: "part-box1",
+    lotNumber: "LOT-2024-003",
+    quantity: 1000,
+    receivedDate: new Date("2024-04-20"),
+    expiryDate: new Date("2027-04-20"),
+    status: "Available"
+  },
+  {
+    _id: "lot-004",
+    part_id: "part-S649",
+    lotNumber: "LOT-2024-004",
+    quantity: 2000,
+    receivedDate: new Date("2024-03-10"),
+    expiryDate: new Date("2027-03-10"),
+    status: "Available"
+  },
+  {
+    _id: "lot-005",
+    part_id: "part-box2",
+    lotNumber: "LOT-2024-005",
+    quantity: 500,
+    receivedDate: new Date("2024-02-05"),
+    expiryDate: new Date("2027-02-05"),
+    status: "Available"
+  },
+  {
+    _id: "lot-006",
+    product_id: "p2",
+    lotNumber: "LOT-2024-006",
+    quantity: 20,
+    receivedDate: new Date("2024-06-05"),
+    expiryDate: new Date("2026-06-05"),
+    status: "Available"
+  },
+  {
+    _id: "lot-007",
+    product_id: "p1",
+    lotNumber: "LOT-2024-007",
+    quantity: 10,
+    receivedDate: new Date("2024-06-10"),
+    expiryDate: new Date("2026-06-10"),
+    status: "Available"
+  },
+  {
+    _id: "lot-008",
+    product_id: "p3",
+    lotNumber: "LOT-2024-008",
+    quantity: 100,
+    receivedDate: new Date("2024-05-01"),
+    expiryDate: new Date("2026-05-01"),
+    status: "Quarantined"
+  }
+]
+
