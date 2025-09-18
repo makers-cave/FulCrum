@@ -311,11 +311,11 @@ export const productsData: Product[] = [
     description: "Starter kit with ESP32, sensors, cables and example projects.",
     bathchPerWeek: 50,
     BOM: [
-      { _id: "part-esp32", name: "ESP32-WROOM Module", sku: "MTR-ESP32", qtyPerProduct: 1, linkType: "Assembly", stock: 120, partType:"part" },
+      { _id: "part-esp32", name: "ESP32-WROOM Module", sku: "MTR-ESP32", qtyPerProduct: 1, linkType: "Assembly", stock: 120, partType: "part" },
       { _id: "part-usb", name: "USB Cable", sku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Content", stock: 150, partType: "product" },
-      { _id: "part-sensor", name: "DHT22 Sensor", sku: "SNS-DHT22", qtyPerProduct: 1, linkType: "Content", stock: 150, partType:"part" },
-      { _id: "part-box", name: "Package Box", sku: "BOX-002", qtyPerProduct: 1, linkType: "Packaging", stock: 300, partType:"part" },
-      { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Shipping", stock: 500, partType:"product" },
+      { _id: "part-sensor", name: "DHT22 Sensor", sku: "SNS-DHT22", qtyPerProduct: 1, linkType: "Content", stock: 150, partType: "part" },
+      { _id: "part-box", name: "Package Box", sku: "BOX-002", qtyPerProduct: 1, linkType: "Packaging", stock: 300, partType: "part" },
+      { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Shipping", stock: 500, partType: "product" },
     ],
     manufacturer: { _id: "1", name: "Manufacturer Alpha" }
   },
@@ -336,10 +336,10 @@ export const productsData: Product[] = [
     description: "Entry-level robotics kit with motors, wheels and controller.",
     bathchPerWeek: 20,
     BOM: [
-      { _id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", qtyPerProduct: 2, linkType: "Content", stock: 120, partType:"product" },
-      { _id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", qtyPerProduct: 1, linkType: "Assembly", stock: 150, partType:"product" },
-      { _id: "part-box", name: "Package Box", sku: "BOX-002", qtyPerProduct: 1, linkType: "Packaging", stock: 300, partType:"product" },
-      { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Shipping", stock: 500, partType:"product" },
+      { _id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", qtyPerProduct: 2, linkType: "Content", stock: 120, partType: "product" },
+      { _id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", qtyPerProduct: 1, linkType: "Assembly", stock: 150, partType: "product" },
+      { _id: "part-box", name: "Package Box", sku: "BOX-002", qtyPerProduct: 1, linkType: "Packaging", stock: 300, partType: "product" },
+      { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Shipping", stock: 500, partType: "product" },
     ],
     manufacturer: { _id: "2", name: "Manufacturer Beta" }
   },
@@ -970,24 +970,26 @@ export const productCategories: SelectData[] = [
 
 export const bomItems: SelectData[] = [
   { _id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", filterKey: "part" },
-  { _id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", filterKey: "part"  },
-  { _id: "part-box", name: "Package Box", sku: "BOX-002", filterKey: "part"  },
-  { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", filterKey: "part"  },
+  { _id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", filterKey: "part" },
+  { _id: "part-box", name: "Package Box", sku: "BOX-002", filterKey: "part" },
+  { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", filterKey: "part" },
   { _id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", filterKey: "part" },
-  { _id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", filterKey: "part"  },
-  { _id: "part-box", name: "Package Box", sku: "BOX-002", filterKey: "part"  },
-  { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", filterKey: "part"  },
-  { _id: "p2", name: "Robotics Kit - Beginner", sku: "PROD-ROBO-BEG", filterKey: "product"  },
-  { _id: "p1", name: "ESP32 IoT Starter Kit", sku: "PROD-ESP32KIT", filterKey: "product"  }
+  { _id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", filterKey: "part" },
+  { _id: "part-box", name: "Package Box", sku: "BOX-002", filterKey: "part" },
+  { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", filterKey: "part" },
+  { _id: "p2", name: "Robotics Kit - Beginner", sku: "PROD-ROBO-BEG", filterKey: "product" },
+  { _id: "p1", name: "ESP32 IoT Starter Kit", sku: "PROD-ESP32KIT", filterKey: "product" }
 ]
 
 export const partsStock: StockOverview[] = [
-  { _id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", available: 2000, reserved: 20},
+  { _id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", available: 2000, reserved: 20 },
   { _id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", available: 1500, reserved: 15, intransit: 1000 },
-  { _id: "part-box1", name: "Package Box 1", sku: "BOX-001", available: 3000, reserved:20 },
-  { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", available:5000, reserved:55 },
-  { _id: "part-box2", name: "Package Box 2", sku: "BOX-002", available: 2000 },
+  { _id: "part-box1", name: "Package Box 1", sku: "BOX-001", available: 3000, reserved: 20 },
+  { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", available: 5000, reserved: 55 },
+  { _id: "part-box2", name: "Package Box 2", sku: "BOX-002", available: 2000 }]
+
+export const productsStock: StockOverview[] = [
   { _id: "p2", name: "Robotics Kit - Beginner", sku: "PROD-ROBO-BEG", available: 50, reserved: 5, inproduction: 10 },
-  { _id: "p1", name: "ESP32 IoT Starter Kit", sku: "PROD-ESP32KIT", available: 20, inproduction:5 },
-  { _id: "p3", name: "Poloriud Sunglasses", sku: "PROD-POLSUN", available: 0, intransit:100}
+  { _id: "p1", name: "ESP32 IoT Starter Kit", sku: "PROD-ESP32KIT", available: 20, inproduction: 5 },
+  { _id: "p3", name: "Poloriud Sunglasses", sku: "PROD-POLSUN", available: 0, intransit: 100 }
 ]

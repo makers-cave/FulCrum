@@ -1,13 +1,23 @@
 "use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input"
-import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { usePageHeader } from "@/contexts/PageHeaderContext";
 import { Package } from "lucide-react";
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { partsStock, productsStock } from "@/lib/data";
+import { SafeImage } from "@/components/SafeImage";
 
 const StockPage = () => {
+    const { setHeader } = usePageHeader()
+  
+    useEffect(() => {
+      setHeader("Stock Management", "View part/product stock and add edit lots")
+    }, [setHeader])
   const [search, setSearch] = useState("");
+  const [hideStale, setHideStale] = useState(true);
   return (
     <div className="p-6 space-y-6">
       <Card>
@@ -32,6 +42,11 @@ const StockPage = () => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
+              <Checkbox className="ml-2"
+              id="hideStale"
+              checked={hideStale}
+              onCheckedChange={(checked) => setHideStale(checked as boolean)}/>
+              <label htmlFor="hideStale" className="ml-1" title="Hide the products or part which are 0 stocks and not in transit.">Hide stale</label>
             </div>
             <TabsContent value="parts">
               <Table>
@@ -47,6 +62,21 @@ const StockPage = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
+                  {partsStock.map((partStock) => (
+                    <TableRow>
+                      <TableCell>
+                        <div className="w-10 h-10 relative rounded overflow-hidden bg-muted">
+                          <SafeImage src={partStock.image} alt={partStock.image} fill className="object-contain" />
+                        </div>
+                      </TableCell>
+                      <TableCell>{partStock.name}</TableCell>
+                      <TableCell>{partStock.sku}</TableCell>
+                      <TableCell>{partStock.category}</TableCell>
+                      <TableCell>{partStock.available}</TableCell>
+                      <TableCell>{partStock.reserved ?? 0}</TableCell>
+                      <TableCell>{partStock.intransit ?? 0}</TableCell>
+                    </TableRow>
+                  ))}
                 </TableBody>
               </Table>
             </TabsContent>
@@ -62,9 +92,26 @@ const StockPage = () => {
                     <TableHead>Available Stock</TableHead>
                     <TableHead>Reserved Stock</TableHead>
                     <TableHead>In Production</TableHead>
+                    <TableHead>In Transit</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
+                  {productsStock.map((productStock) => (
+                    <TableRow>
+                      <TableCell>
+                        <div className="w-10 h-10 relative rounded overflow-hidden bg-muted">
+                          <SafeImage src={productStock.image} alt={productStock.image} fill className="object-contain" />
+                        </div>
+                      </TableCell>
+                      <TableCell>{productStock.name}</TableCell>
+                      <TableCell>{productStock.sku}</TableCell>
+                      <TableCell>{productStock.category}</TableCell>
+                      <TableCell>{productStock.available}</TableCell>
+                      <TableCell>{productStock.reserved ?? 0}</TableCell>
+                      <TableCell>{productStock.inproduction ?? 0}</TableCell>
+                      <TableCell>{productStock.intransit ?? 0}</TableCell>
+                    </TableRow>
+                  ))}
                 </TableBody>
               </Table>
             </TabsContent>

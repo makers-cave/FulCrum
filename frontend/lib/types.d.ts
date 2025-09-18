@@ -187,4 +187,5 @@ export type StockOverview = {
   reserved?: number;
   intransit?: number;
   inproduction?: number;
+  isStale?: boolean;
 }

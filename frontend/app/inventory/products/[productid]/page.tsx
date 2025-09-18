@@ -51,14 +51,8 @@ const ProductPage = () => {
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   // Handle selection from dialog
   const handleSelectItems = (items: SelectData[]) => {
-    // setBom((prev) => [
-    //   ...prev,
-    //   {
-    //     ...item,
-    //     qty: 1, // default qty
-    //     linkType: "Assembly", // default link type
-    //   },
-    // ]);
+
+
   };
   const handleBOMUpdate = (updatedRow: bOMItem) => {
     console.log(updatedRow);
