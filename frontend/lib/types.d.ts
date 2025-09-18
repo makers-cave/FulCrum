@@ -176,3 +176,15 @@ export type SelectData = {
   image?: string;
   sku?:string;
 };
+
+export type StockOverview = {
+  _id: string;
+  image?: string;
+  name: string;
+  sku: string;
+  category?: string;
+  available: number;
+  reserved?: number;
+  intransit?: number;
+  inproduction?: number;
+}
