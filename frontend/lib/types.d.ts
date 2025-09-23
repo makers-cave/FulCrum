@@ -10,6 +10,15 @@ export type Tenant = {
   avatar?: string;
   email?: string;
   phone?: string;
+  address?: Address; // Physical address of the tenant
+  contactPerson?: string; // Primary contact person
+  preferredShippingMethod?: string; // Preferred shipping method (e.g., "Air", "Ground", "Sea")
+  paymentTerms?: string; // Payment terms (e.g., Net 30, Net 60)
+  leadTimeDays?: number; // Average lead time for orders or deliveries
+  certifications?: string[]; // Certifications relevant to warehouse management (e.g., ISO, FDA)
+  operatingRegions?: string[]; // Regions or countries the tenant operates in
+  categoriesHandled?: string[]; // Categories of products or parts handled
+  rating?: number; // Tenant rating
 };
 
 export type Customer = {
@@ -23,6 +32,15 @@ export type Customer = {
   avatar?: string;
   email?: string;
   phone?: string;
+  address?: Address;
+  contactPerson?: string;
+  preferred?: boolean;
+  categoriesPurchased?: string[]; // Categories of products or parts purchased
+  paymentTerms?: string; // Payment terms (e.g., Net 30, Net 60)
+  orderHistory?: { orderId: string; date: Date; totalAmount: number }[]; // List of past orders
+  rating?: number; // Customer rating
+  leadTimeDays?: number; // Average lead time for orders
+  preferredShippingMethod?: string; // e.g., "Air", "Ground", "Sea"
 };
 
 export type Supplier = {
@@ -36,6 +54,13 @@ export type Supplier = {
   avatar?: string;
   email?: string;
   phone?: string;
+  address?: Address;
+  contactPerson?: string;
+  paymentTerms?: string; // Payment terms (e.g., Full Advance, 50/50, Net 30, Net 60)
+  leadTimeDays?: number;
+  rating?: number;
+  preferred?: boolean;
+  categoriesSupplied?: string[];
 };
 
 export type Manufacturer = {
@@ -49,18 +74,33 @@ export type Manufacturer = {
   avatar?: string;
   email?: string;
   phone?: string;
+  address?: Address;
+  contactPerson?: string;
+  rating?: number;
+  preferred?: boolean;
+  categoriesManufactured?: string[];
+  leadTimeDays?: number;
+  paymentTerms?: string; // Payment terms (e.g., Full Advance, 50/50, Net 30, Net 60)
+  certifications?: string[]; // List of certifications (e.g., ISO, FDA)
+  productionCapacity?: string; // e.g., "1000 units per week"
 };
 export type Carrier = {
   _id: string;
   name: string;
   description?: string;
-  isAlsoManufacturer?: boolean;
-  isAlsoSupplier?: boolean;
-  isAlsoCustomer?: boolean;
-  currency?: string;
-  avatar?: string;
   email?: string;
   phone?: string;
+  address?: Address;
+  contactPerson?: string;
+  rating?: number;
+  preferred?: boolean;
+  trackingUrl?: string; // URL for tracking shipments
+  servicesOffered?: string[]; // e.g., "Express", "Standard", "Overnight"
+  capacity?: string; // e.g., "10 tons", "1000 kg"
+  operatingRegions?: string[]; // List of regions or countries they operate in
+  leadTimeDays?: number; // Average lead time for deliveries
+  insuranceProvided?: boolean; // Whether the carrier provides insurance for shipments
+  certifications?: string[]; // e.g., "ISO 9001", "Hazmat Certified"
 };
 export interface PhysicalAttributes {
   length?: number; // mm
