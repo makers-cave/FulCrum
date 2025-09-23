@@ -193,6 +193,8 @@ export type StockOverview = {
 
 export type Lot = {
   _id: string;
+  image?: string;
+  description?: string;
   part_id?: string;
   product_id?: string;
   lotNumber: string; // Batch ID (unique identifier for the lot)
