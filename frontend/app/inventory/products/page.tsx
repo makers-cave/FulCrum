@@ -40,7 +40,7 @@ export default function ProductsPage() {
 
   const categories = useMemo(() => {
     const s = new Set<string>();
-    products.forEach((p) => s.add(p.category));
+    products.forEach((p) => s.add(p.category?.name ?? "Uncategorized"));
     return ["All", ...Array.from(s)];
   }, [products]);
 
@@ -48,7 +48,7 @@ export default function ProductsPage() {
     const matchesQuery =
       p.name.toLowerCase().includes(query.toLowerCase()) ||
       p.sku.toLowerCase().includes(query.toLowerCase());
-    const matchesCategory = categoryFilter === "All" || p.category === categoryFilter;
+    const matchesCategory = categoryFilter === "All" || p.category?.name === categoryFilter;
     return matchesQuery && matchesCategory;
   });
 
@@ -62,7 +62,7 @@ export default function ProductsPage() {
           placeholder="Search product name or SKU..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="max-w-lg"
+          className="w-64"
         />
         {/* Filter Dialog */}
         <Dialog>
@@ -200,7 +200,7 @@ export default function ProductsPage() {
                   <span>Category</span>
                 </div>
                 <Badge>
-                  {selectedProduct?.category}
+                  {selectedProduct?.category?.name}
                 </Badge>
               </div>
               <div className="flex justify-between items-center p-2 text-sm">

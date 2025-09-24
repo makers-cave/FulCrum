@@ -182,11 +182,12 @@ type Product = {
   isInidividualShip?: boolean
 };
 
-export type WarehouseLocation = {
+export type Location = {
   _id: string;
   name: string;
   description?: string;
   image?: string;
+  processOrders?: boolean; // Can this location process orders (e.g., packing/shipping)
   address?: Address;
   contactPerson?: string;
   phone?: string;
@@ -259,5 +260,23 @@ export type LotHistory = {
   action: string;
   qtyChange?: number;
   details?: string;
+  order?: string;
   user: string;
 }
+
+export type Order = {
+  _id: string;
+  invoiceId?: string;
+  customer: string;
+  date: string;
+  items: number;
+  status: "pending" | "picking" | "shipped";
+  location: SelectData;
+  tracking?: string;
+  shipTo?: Address;
+  itemsList?: { _id:string; name: string; sku: string; qty: number, lot?: SelectData }[]; // List of items in the order
+  pickFrom?: Lot;
+  shipBy?: Date;
+  carrier?: SelectData;
+  shippingCost?: number;
+};

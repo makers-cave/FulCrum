@@ -8,6 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { SelectData } from "@/lib/types";
+import React from "react";
 
 interface SelectExProps {
   data: SelectData[];
@@ -68,11 +69,11 @@ export function SelectEx({
 function SelectChildRow({ data, level }: { data: SelectData[] | undefined; level: number }) {
   if (!data) return null;
   return data.map((child) => (
-    <>
-      <SelectItem key={child._id} value={child._id} style={{ paddingLeft: `${level * 16}px` }}>
+    <React.Fragment key={child._id}>
+      <SelectItem value={child._id} style={{ paddingLeft: `${level * 16}px` }}>
         {child.name}
       </SelectItem>
       <SelectChildRow data={child.children} level={level + 1} />
-    </>
-    ));
+    </React.Fragment>
+  ));
 }

@@ -1,5 +1,5 @@
 "use client"
-import { KeyRound, KeySquare, Link, LogOut, Moon, Settings, Sun, User } from "lucide-react"
+import { Download, KeyRound, KeySquare, Link, LogOut, Moon, Settings, Sun, User } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu"
 import { Button } from "./ui/button"
@@ -9,7 +9,7 @@ import { usePageHeader } from "@/contexts/PageHeaderContext"
 
 const Navbar = () => {
     const { theme, setTheme } = useTheme();
-      const { title, subtitle } = usePageHeader()
+    const { title, subtitle } = usePageHeader()
     return (
         <nav className="p-4 flex justify-between items-center">
             <div className="flex items-center gap-4">
@@ -20,7 +20,7 @@ const Navbar = () => {
                 </div>
             </div>
             <div className="flex items-center gap-4">
-                <Link href="/">Dashboard</Link>
+                <Download />
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button size="icon">

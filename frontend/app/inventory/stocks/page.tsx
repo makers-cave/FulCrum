@@ -159,7 +159,7 @@ const StockPage = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {lotsData.filter(i => i.part == selectedPart || i.product == selectedPart).map((lot) => (
+              {lotsData.filter(i => i.part?._id == selectedPart || i.product?._id == selectedPart).map((lot) => (
                 <TableRow key={lot._id}>
                   <TableCell>
                     {lot._id}
@@ -171,7 +171,7 @@ const StockPage = () => {
                   <TableCell>{lot.expiryDate?.toDateString()}</TableCell>
                   <TableCell>
                     <Button variant="outline" asChild size="sm">
-                      <Link href={`/inventory/lots/lot-001`}>
+                      <Link href={`/inventory/lots/${lot._id}`} className="flex items-center gap-2">
                         <PencilRuler />Edit
                       </Link>
                     </Button>

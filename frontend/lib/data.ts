@@ -13,7 +13,7 @@ import {
   Cog,
   MapPinHouse
 } from "lucide-react";
-import { Customer, Lot, LotHistory, Part, PartLocation, Product, SelectData, StockOverview, Tenant, WarehouseLocation } from "./types";
+import { Customer, Lot, LotHistory, Order, Part, PartLocation, Product, SelectData, StockOverview, Tenant, Location } from "./types";
 import { tree } from "next/dist/build/templates/app-page";
 import { Children } from "react";
 
@@ -349,10 +349,10 @@ export const productTypes: SelectData[] = [
   { _id: "physical", name: "Physical" },
   { _id: "service", name: "Service" }
 ]
-export const sampleLocations: WarehouseLocation[] = [
+export const sampleLocations: Location[] = [
   { _id: "loc1", name: "US-HTX-Ergode", description: "Main warehouse in Houston, TX", category: "Warehouse", sku: "WH-HTX", status: "Active" },
   { _id: "loc2", name: "US-HTX-Reserve", description: "Reserve stock area in Houston, TX", category: "Warehouse", sku: "WH-HTX-RSV", status: "Active" },
-  { _id: "loc3", name: "US-HTX-Solon", description: "Overflow storage in Solon, OH", category: "Warehouse", sku: "WH-SOL", status: "Inactive" },
+  { _id: "loc3", name: "US-HTX-Solon", description: "Overflow storage in Solon, OH", category: "Warehouse", sku: "WH-SOL", status: "Active", processOrders: true },
 ];
 
 export const PartCategories: SelectData[] = [
@@ -995,7 +995,7 @@ export const lotsData: Lot[] = [
   {
     _id: "lot-001",
     description: "Initial stock of stepper motors",
-    part: {_id: "part-motor", name: "Stepper Motor NEMA 17" },
+    part: { _id: "part-motor", name: "Stepper Motor NEMA 17" },
     lotNumber: "LOT-2024-001",
     quantity: 500,
     receivedDate: new Date("2024-06-01"),
@@ -1004,7 +1004,7 @@ export const lotsData: Lot[] = [
   },
   {
     _id: "lot-002",
-    part: {_id:"part-driver", name: "Motor Driver L298N" },
+    part: { _id: "part-driver", name: "Motor Driver L298N" },
     lotNumber: "LOT-2024-002",
     quantity: 300,
     receivedDate: new Date("2024-05-15"),
@@ -1013,7 +1013,7 @@ export const lotsData: Lot[] = [
   },
   {
     _id: "lot-003",
-    part: {_id:"part-box1", name: "Package Box 1" },
+    part: { _id: "part-box1", name: "Package Box 1" },
     lotNumber: "LOT-2024-003",
     quantity: 1000,
     receivedDate: new Date("2024-04-20"),
@@ -1103,7 +1103,7 @@ export const lotHistories: LotHistory[] = [
     lot_id: "lot-002",
     action: "Inspected",
     date: new Date("2024-05-16"),
-    qtyChange: 0, 
+    qtyChange: 0,
     user: "Jane Smith"
   },
   {
@@ -1114,7 +1114,8 @@ export const lotHistories: LotHistory[] = [
     qtyChange: 300,
     user: "Emily Johnson"
   },
-  { _id: "history-007",
+  {
+    _id: "history-007",
     lot_id: "lot-003",
     action: "Received",
     date: new Date("2024-04-20"),
@@ -1138,4 +1139,43 @@ export const lotHistories: LotHistory[] = [
     user: "Emily Johnson"
   }
 
+];
+export const orders: Order[] = [
+  {
+    _id: "ORD-1001",
+    customer: "John Doe",
+    date: "2025-09-20",
+    items: 3,
+    status: "picking",
+    location: {_id: "loc3", name: "US-HTX-Solon"},
+    itemsList: [
+      { _id: "p1", sku: "PROD-ESP32KIT", name: "ESP32 IoT Starter Kit" , qty: 1 },
+      { _id: "p2", sku: "PROD-ROBO-BEG", name: "Robotics Kit - Beginner", qty: 2 }
+    ]
+  },
+  {
+    _id: "ORD-1002",
+    customer: "Acme Corp",
+    date: "2025-09-21",
+    items: 5,
+    status: "shipped",
+    location: {_id: "loc3", name: "US-HTX-Solon"},
+    tracking: "1Z984...",
+        itemsList: [
+      { _id: "p1", sku: "PROD-ESP32KIT", name: "ESP32 IoT Starter Kit" , qty: 2 },
+      { _id: "p2", sku: "PROD-ROBO-BEG", name: "Robotics Kit - Beginner", qty: 3 }
+    ]
+  },
+  {
+    _id: "ORD-1003",
+    customer: "Jane Smith",
+    date: "2025-09-22",
+    items: 2,
+    status: "pending",
+    location: {_id: "loc3", name: "US-HTX-Solon"},
+    itemsList: [
+      { _id: "p1", sku: "PROD-ESP32KIT", name: "ESP32 IoT Starter Kit" , qty: 1 },
+      { _id: "p2", sku: "PROD-ROBO-BEG", name: "Robotics Kit - Beginner", qty: 1 }
+    ]
+  }
 ];

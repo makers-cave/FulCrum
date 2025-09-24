@@ -15,9 +15,11 @@ import Image from "next/image"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
 import { sideBarData } from "@/lib/data"
+import { usePathname } from "next/navigation"
 
 
 const AppSidebar = () => {
+  const pathname = usePathname()
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="py-4">
@@ -52,8 +54,11 @@ const AppSidebar = () => {
               </Link>
             </div>
           </SidebarGroupLabel>
-          </SidebarGroup>
-          {sideBarData.menu.map((menuitem) => (
+        </SidebarGroup>
+        {sideBarData.menu.map((menuitem) => {
+
+          return (
+
             <Collapsible
               defaultOpen={true}
               className="group/collapsible"
@@ -89,27 +94,34 @@ const AppSidebar = () => {
                 {/* Submenu */}
                 <CollapsibleContent>
                   <SidebarGroupContent>
-                    <SidebarMenu> {/* indent submenu */}
+                    <SidebarMenu>
                       {menuitem.items &&
-                        menuitem.items.map((item) => (
-                          <SidebarMenuItem key={item._id}>
-                            <SidebarMenuButton asChild>
-                              <Link href={item.href} className="flex items-center gap-2">
-                                <item.icon className="h-4 w-4 text-gray-500" />
-                                <span>{item.title}</span>
-                              </Link>
-                            </SidebarMenuButton>
-                            {item.badgeData && (
-                              <SidebarMenuBadge>{item.badgeData}</SidebarMenuBadge>
-                            )}
-                          </SidebarMenuItem>
-                        ))}
+                        menuitem.items.map((item) => {
+                          const isActive = pathname.startsWith(item.href)
+                          return (
+                            <SidebarMenuItem key={item._id} className={` ${isActive
+                                ? "bg-muted font-semibold text-primary rounded-md"
+                                : "hover:bg-muted/50"
+                              }`}>
+                              <SidebarMenuButton asChild>
+                                <Link href={item.href} className="flex items-center gap-2">
+                                  <item.icon className="h-4 w-4 text-gray-500" />
+                                  <span>{item.title}</span>
+                                </Link>
+                              </SidebarMenuButton>
+                              {item.badgeData && (
+                                <SidebarMenuBadge>{item.badgeData}</SidebarMenuBadge>
+                              )}
+                            </SidebarMenuItem>
+                          )
+                        })}
                     </SidebarMenu>
                   </SidebarGroupContent>
                 </CollapsibleContent>
               </SidebarGroup>
             </Collapsible>
-          ))}
+          )
+        })}
       </SidebarContent>
 
       <SidebarSeparator />
