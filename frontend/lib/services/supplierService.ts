@@ -1,6 +1,6 @@
 import { useId } from "react"
 import { suppliersData } from "../data"
-import { Supplier } from "../types"
+import { SelectData, Supplier } from "../types"
 
 
 function getDefaultSupplier(): Supplier {
@@ -19,5 +19,7 @@ async function getSupplier(supplierId: string): Promise<Supplier | null> {
   // replace with real fetch
   return suppliersData.find((c) => c._id === supplierId) ?? null
 }
-
-export { getSupplier, getDefaultSupplier }
+function getSuppliersShort(): SelectData[] {
+  return suppliersData
+}
+export { getSupplier, getDefaultSupplier, getSuppliersShort }

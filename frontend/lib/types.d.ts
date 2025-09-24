@@ -235,8 +235,8 @@ export type Lot = {
   _id: string;
   image?: string;
   description?: string;
-  part_id?: string;
-  product_id?: string;
+  part?: SelectData;
+  product?: SelectData;
   lotNumber: string; // Batch ID (unique identifier for the lot)
   supplierBatchNumber?: string;
   quantity: number;
@@ -245,7 +245,7 @@ export type Lot = {
   manufactureDate?: Date;
   expiryDate?: Date;
   supplier?: SelectData;
-  unitCost?: number;
+  totalCost?: number;
   location?: SelectData; // Warehouse, Bin, Shelf location
   certificateOfAnalysisUrl?: string; // Link to CoA document
   packageCount?: string;
@@ -257,5 +257,7 @@ export type LotHistory = {
   lot_id: string;
   date: Date;
   action: string;
+  qtyChange?: number;
   details?: string;
+  user: string;
 }

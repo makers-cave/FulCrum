@@ -13,7 +13,7 @@ import {
   Cog,
   MapPinHouse
 } from "lucide-react";
-import { Customer, Lot, Part, PartLocation, Product, SelectData, StockOverview, Tenant, WarehouseLocation } from "./types";
+import { Customer, Lot, LotHistory, Part, PartLocation, Product, SelectData, StockOverview, Tenant, WarehouseLocation } from "./types";
 import { tree } from "next/dist/build/templates/app-page";
 import { Children } from "react";
 
@@ -982,7 +982,7 @@ export const bomItems: SelectData[] = [
 ]
 
 export const partsStock: StockOverview[] = [
-  { _id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", available: 2000, reserved: 20 , type: "part"},
+  { _id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", available: 2000, reserved: 20, type: "part" },
   { _id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", available: 1500, reserved: 15, intransit: 1000, type: "part" },
   { _id: "part-box1", name: "Package Box 1", sku: "BOX-001", available: 3000, reserved: 20, type: "part" },
   { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", available: 5000, reserved: 55, type: "part" },
@@ -994,7 +994,8 @@ export const partsStock: StockOverview[] = [
 export const lotsData: Lot[] = [
   {
     _id: "lot-001",
-    part_id: "part-motor",
+    description: "Initial stock of stepper motors",
+    part: {_id: "part-motor", name: "Stepper Motor NEMA 17" },
     lotNumber: "LOT-2024-001",
     quantity: 500,
     receivedDate: new Date("2024-06-01"),
@@ -1003,7 +1004,7 @@ export const lotsData: Lot[] = [
   },
   {
     _id: "lot-002",
-    part_id: "part-driver",
+    part: {_id:"part-driver", name: "Motor Driver L298N" },
     lotNumber: "LOT-2024-002",
     quantity: 300,
     receivedDate: new Date("2024-05-15"),
@@ -1012,7 +1013,7 @@ export const lotsData: Lot[] = [
   },
   {
     _id: "lot-003",
-    part_id: "part-box1",
+    part: {_id:"part-box1", name: "Package Box 1" },
     lotNumber: "LOT-2024-003",
     quantity: 1000,
     receivedDate: new Date("2024-04-20"),
@@ -1021,7 +1022,7 @@ export const lotsData: Lot[] = [
   },
   {
     _id: "lot-004",
-    part_id: "part-S649",
+    part: { _id: "part-S649", name: "Shipping Box" },
     lotNumber: "LOT-2024-004",
     quantity: 2000,
     receivedDate: new Date("2024-03-10"),
@@ -1030,7 +1031,7 @@ export const lotsData: Lot[] = [
   },
   {
     _id: "lot-005",
-    part_id: "part-box2",
+    part: { _id: "part-box2", name: "Package Box 2" },
     lotNumber: "LOT-2024-005",
     quantity: 500,
     receivedDate: new Date("2024-02-05"),
@@ -1039,7 +1040,7 @@ export const lotsData: Lot[] = [
   },
   {
     _id: "lot-006",
-    product_id: "p2",
+    product: { _id: "p2", name: "Robotics Kit - Beginner" },
     lotNumber: "LOT-2024-006",
     quantity: 20,
     receivedDate: new Date("2024-06-05"),
@@ -1048,7 +1049,7 @@ export const lotsData: Lot[] = [
   },
   {
     _id: "lot-007",
-    product_id: "p1",
+    product: { _id: "p1", name: "ESP32 IoT Starter Kit" },
     lotNumber: "LOT-2024-007",
     quantity: 10,
     receivedDate: new Date("2024-06-10"),
@@ -1057,7 +1058,7 @@ export const lotsData: Lot[] = [
   },
   {
     _id: "lot-008",
-    product_id: "p3",
+    product: { _id: "p3", name: "Poloriud Sunglasses" },
     lotNumber: "LOT-2024-008",
     quantity: 100,
     receivedDate: new Date("2024-05-01"),
@@ -1065,4 +1066,76 @@ export const lotsData: Lot[] = [
     status: "Quarantined"
   }
 ]
+export const lotHistories: LotHistory[] = [
+  {
+    _id: "history-001",
+    lot_id: "lot-001",
+    action: "Received",
+    date: new Date("2024-06-01"),
+    qtyChange: 500,
+    user: "John Doe"
+  },
+  {
+    _id: "history-002",
+    lot_id: "lot-001",
+    action: "Inspected",
+    date: new Date("2024-06-02"),
+    qtyChange: 0,
+    user: "Jane Smith"
+  },
+  {
+    _id: "history-003",
+    lot_id: "lot-001",
+    action: "Moved to Storage",
+    date: new Date("2024-06-03"),
+    qtyChange: 500, user: "Emily Johnson"
+  },
+  {
+    _id: "history-004",
+    lot_id: "lot-002",
+    action: "Received",
+    date: new Date("2024-05-15"),
+    qtyChange: 300,
+    user: "John Doe"
+  },
+  {
+    _id: "history-005",
+    lot_id: "lot-002",
+    action: "Inspected",
+    date: new Date("2024-05-16"),
+    qtyChange: 0, 
+    user: "Jane Smith"
+  },
+  {
+    _id: "history-006",
+    lot_id: "lot-002",
+    action: "Moved to Storage",
+    date: new Date("2024-05-17"),
+    qtyChange: 300,
+    user: "Emily Johnson"
+  },
+  { _id: "history-007",
+    lot_id: "lot-003",
+    action: "Received",
+    date: new Date("2024-04-20"),
+    qtyChange: 1000,
+    user: "John Doe"
+  },
+  {
+    _id: "history-008",
+    lot_id: "lot-003",
+    action: "Inspected",
+    date: new Date("2024-04-21"),
+    qtyChange: 0,
+    user: "Jane Smith"
+  },
+  {
+    _id: "history-009",
+    lot_id: "lot-003",
+    action: "Moved to Storage",
+    date: new Date("2024-04-22"),
+    qtyChange: 1000,
+    user: "Emily Johnson"
+  }
 
+];

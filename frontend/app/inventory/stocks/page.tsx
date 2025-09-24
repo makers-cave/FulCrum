@@ -159,7 +159,7 @@ const StockPage = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {lotsData.filter(i => i.part_id == selectedPart || i.product_id == selectedPart).map((lot) => (
+              {lotsData.filter(i => i.part == selectedPart || i.product == selectedPart).map((lot) => (
                 <TableRow key={lot._id}>
                   <TableCell>
                     {lot._id}
