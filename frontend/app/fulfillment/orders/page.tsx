@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Package, Truck, Eye, Filter, PlusCircle, ListOrdered, NotepadText, ScanBarcode } from "lucide-react";
+import { Package, Truck, Eye, Filter, PlusCircle, ListOrdered, NotepadText, ScanBarcode, AlignHorizontalDistributeCenter } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -29,7 +29,9 @@ function StatusBadge({ status }: { status: Order["status"] }) {
             return null;
     }
 }
-
+function autoAllocate() {
+    alert("Auto Allocate clicked!");
+}
 export default function OrdersPage() {
     const { setHeader } = usePageHeader()
     const [orders, setOrders] = useState<Order[]>(null!); // Replace null! with actual data fetching logic
@@ -60,10 +62,10 @@ export default function OrdersPage() {
         loadParts()
     });
     if (loading) {
-        return <Spinner text="Loading Lot..." />
+        return <Spinner text="Loading Orders..." />
     }
     else if (error || !orders) {
-        return <NotFound entityName="Lots" backHref="/inventory/stocks" backLabel="Go back to Stocks" />
+        return <NotFound entityName="Orders" backHref="/" backLabel="Go back to Dashboard" />
     } else {
         return (
             <div className="p-6 space-y-6">
@@ -178,9 +180,12 @@ export default function OrdersPage() {
                         <CardTitle className="flex items-center gap-2">
                             <NotepadText className="h-5 w-5" />
                             Order details
-                        </CardTitle>
-                        {selectedOrder && <div className="flex items-center gap-2">
+                            {selectedOrder && <div className="flex items-center gap-2">
                             <StatusBadge status={selectedOrder.status} />
+                        </div>}
+                        </CardTitle>
+                        {selectedOrder && selectedOrder.status != "shipped" && <div className="flex items-center gap-2">
+                            <Button variant="outline" size="sm" onClick={() => autoAllocate()}>Auto Allocate</Button>
                         </div>}
                     </CardHeader>
                     <CardContent className="p-4 grid gap-4">
@@ -217,6 +222,7 @@ export default function OrdersPage() {
                                                 <TableHead>Product</TableHead>
                                                 <TableHead>Qty</TableHead>
                                                 <TableHead>Lot</TableHead>
+                                                <TableHead>Action</TableHead>
                                             </TableRow>
                                         </TableHeader>
                                         <TableBody>
@@ -226,6 +232,13 @@ export default function OrdersPage() {
                                                     <TableCell>{item.name}</TableCell>
                                                     <TableCell>{item.qty}</TableCell>
                                                     <TableCell>{item.lot?.name}</TableCell>
+                                                    <TableCell>
+                                                        {selectedOrder.status !== "shipped" && (
+                                                            <Button size="sm" variant="outline" title="Allocate from lot">
+                                                                <AlignHorizontalDistributeCenter className="h-4 w-4 mr-1" />
+                                                            </Button>
+                                                        )}
+                                                    </TableCell>
                                                 </TableRow>
                                             ))}
                                         </TableBody>
