@@ -7,11 +7,16 @@ async function getLot(lotID: string): Promise<Lot | null> {
   return lotsData.find((p) => p._id === lotID) ?? null
 }
 
-function getLots():Lot[] {
+function getLots(): Lot[] {
   return lotsData;
 }
-async function getLotHistory(lotID: string): Promise< LotHistory[] | null> {
-return lotHistories.filter((lh) => lh.lot_id === lotID) ?? null
-
+async function getLotHistory(lotID: string): Promise<LotHistory[] | null> {
+  return lotHistories.filter((lh) => lh.lot_id === lotID) ?? null
+}
+async function getLotsbyPart(partid:string): Promise<Lot[] | null>  {
+  return lotsData.filter((lot) => lot.part?._id === partid) ?? null;
+}
+async function getLotsbyProducts(prodid:string): Promise<Lot[] | null>  {
+  return lotsData.filter((lot) => lot.product?._id === prodid) ?? null;  
 }
 export { getLot, getLots, getLotHistory }

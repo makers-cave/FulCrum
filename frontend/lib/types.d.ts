@@ -274,9 +274,17 @@ export type Order = {
   location: SelectData;
   tracking?: string;
   shipTo?: Address;
-  itemsList?: { _id:string; name: string; sku: string; qty: number, lot?: SelectData }[]; // List of items in the order
+  itemsList?: { _id:string; name: string; sku: string; qty: number, lots?: SelectData[] }[]; // List of items in the order
   pickFrom?: Lot;
   shipBy?: Date;
   carrier?: SelectData;
   shippingCost?: number;
+  storeId?: string;
 };
+
+export type TenantResources = {
+  _id: string;
+  tenantID: string;
+  restourceIds: string; // IDs of resources associated with the tenant
+  resourceType: "part" | "product" | "lot" | "order" | "location" | "supplier" | "customer" | "manufacturer" | "carrier";
+}

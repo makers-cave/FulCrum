@@ -185,7 +185,7 @@ export default function OrdersPage() {
                         </div>}
                         </CardTitle>
                         {selectedOrder && selectedOrder.status != "shipped" && <div className="flex items-center gap-2">
-                            <Button variant="outline" size="sm" onClick={() => autoAllocate()}>Auto Allocate</Button>
+                            <Button variant="outline" size="sm" onClick={() => autoAllocate()}><AlignHorizontalDistributeCenter className="h-4 w-4 mr-1" />Allocate Lots</Button>
                         </div>}
                     </CardHeader>
                     <CardContent className="p-4 grid gap-4">
@@ -221,8 +221,7 @@ export default function OrdersPage() {
                                                 <TableHead>SKU</TableHead>
                                                 <TableHead>Product</TableHead>
                                                 <TableHead>Qty</TableHead>
-                                                <TableHead>Lot</TableHead>
-                                                <TableHead>Action</TableHead>
+                                                <TableHead>Lots</TableHead>
                                             </TableRow>
                                         </TableHeader>
                                         <TableBody>
@@ -231,13 +230,8 @@ export default function OrdersPage() {
                                                     <TableCell>{item.sku}</TableCell>
                                                     <TableCell>{item.name}</TableCell>
                                                     <TableCell>{item.qty}</TableCell>
-                                                    <TableCell>{item.lot?.name}</TableCell>
                                                     <TableCell>
-                                                        {selectedOrder.status !== "shipped" && (
-                                                            <Button size="sm" variant="outline" title="Allocate from lot">
-                                                                <AlignHorizontalDistributeCenter className="h-4 w-4 mr-1" />
-                                                            </Button>
-                                                        )}
+                                                        {item.lots?.map(lot => (<Badge key={lot._id} className="mr-1">{lot.name}</Badge>))}   
                                                     </TableCell>
                                                 </TableRow>
                                             ))}
