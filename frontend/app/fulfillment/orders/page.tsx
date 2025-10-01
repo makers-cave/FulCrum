@@ -15,6 +15,7 @@ import { Order } from "@/lib/types";
 import { getOrders } from "@/lib/services/ordersService";
 import { Spinner } from "@/components/spinner";
 import { NotFound } from "@/components/notFound";
+import AddLotDialog from "@/app/inventory/stocks/addLotsDialogue";
 
 // Status Badge helper
 function StatusBadge({ status }: { status: Order["status"] }) {
@@ -128,6 +129,9 @@ export default function OrdersPage() {
                             <ListOrdered className="h-5 w-5" />
                             Orders
                         </CardTitle>
+                        <div className="flex items-center gap-2">
+                            <Button variant="outline" size="sm" onClick={() => autoAllocate()}><AlignHorizontalDistributeCenter className="h-4 w-4 mr-1" />Allocate all</Button>
+                        </div>
                     </CardHeader>
                     <CardContent className="p-4 grid gap-4">
                         <Table>
@@ -153,17 +157,17 @@ export default function OrdersPage() {
                                         <TableCell>{order.location.name}</TableCell>
                                         <TableCell className="flex gap-2">
                                             {order.status === "pending" && (
-                                                <Button size="sm" variant="outline">
+                                                <Button size="sm" variant="outline" onClick={(e) => { e.stopPropagation(); alert("Pick Clicked"); }}>
                                                     <Package className="h-4 w-4 mr-1" /> Pick
                                                 </Button>
                                             )}
                                             {order.status === "picking" && (
-                                                <Button size="sm" variant="outline">
+                                                <Button size="sm" variant="outline" onClick={(e) => { e.stopPropagation(); alert("Ship Clicked"); }}>
                                                     <Truck className="h-4 w-4 mr-1" /> Ship
                                                 </Button>
                                             )}
                                             {order.status === "shipped" && (
-                                                <Button size="sm" variant="outline">
+                                                <Button size="sm" variant="outline" onClick={(e) => { e.stopPropagation(); alert("Track Clicked"); }}>
                                                     <ScanBarcode className="h-4 w-4 mr-1" /> Track
                                                 </Button>
                                             )}
@@ -184,9 +188,11 @@ export default function OrdersPage() {
                             <StatusBadge status={selectedOrder.status} />
                         </div>}
                         </CardTitle>
-                        {selectedOrder && selectedOrder.status != "shipped" && <div className="flex items-center gap-2">
-                            <Button variant="outline" size="sm" onClick={() => autoAllocate()}><AlignHorizontalDistributeCenter className="h-4 w-4 mr-1" />Allocate Lots</Button>
-                        </div>}
+                        {selectedOrder && selectedOrder.status != "shipped" && 
+                        <AddLotDialog order={selectedOrder} onUpdate={setSelectedOrder}></AddLotDialog>}
+                        {/* <div className="flex items-center gap-2">
+                            <Button variant="outline" size="sm" onClick={() => autoAllocateOrder()}><AlignHorizontalDistributeCenter className="h-4 w-4 mr-1" />Allocate Lots</Button>
+                        </div>} */}
                     </CardHeader>
                     <CardContent className="p-4 grid gap-4">
 
