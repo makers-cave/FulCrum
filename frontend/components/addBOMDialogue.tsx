@@ -48,7 +48,7 @@ export default function AddItemsDialog({
 
   const handleAdd = () => {
     const allItems = [...items];
-    const selectedItems = allItems.filter((i) => selectedIds.has(i._id));
+    const selectedItems = allItems.filter((i) => selectedIds.has(i.id));
     onAdd(selectedItems);
     setSelectedIds(new Set());
     setOpen(false);
@@ -72,11 +72,11 @@ export default function AddItemsDialog({
         </TableHeader>
         <TableBody>
           {items.map((item) => (
-            <TableRow key={item._id} >
+            <TableRow key={item.id} >
               <TableCell className="p-2">
                 <Checkbox
-                  checked={selectedIds.has(item._id)}
-                  onCheckedChange={() => toggleSelection(item._id)}
+                  checked={selectedIds.has(item.id)}
+                  onCheckedChange={() => toggleSelection(item.id)}
                 />
               </TableCell>
               <TableCell className="p-2">

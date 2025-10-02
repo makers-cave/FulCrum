@@ -5,7 +5,7 @@ import { SelectData, Supplier } from "../types"
 
 function getDefaultSupplier(): Supplier {
   return {
-      _id: useId(),
+      id: useId(),
       name: "New Supplier",
       description: "This is description",
       isAlsoManufacturer: false,

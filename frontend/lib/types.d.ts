@@ -1,6 +1,6 @@
 
 export type Tenant = {
-  _id: string;
+  id: string;
   name: string;
   description?: string;
   isAlsoManufacturer?: boolean;
@@ -22,7 +22,7 @@ export type Tenant = {
 };
 
 export type Customer = {
-  _id: string;
+  id: string;
   name: string;
   description?: string;
   isAlsoManufacturer?: boolean;
@@ -44,7 +44,7 @@ export type Customer = {
 };
 
 export type Supplier = {
-  _id: string;
+  id: string;
   name: string;
   description?: string;
   isAlsoManufacturer?: boolean;
@@ -64,7 +64,7 @@ export type Supplier = {
 };
 
 export type Manufacturer = {
-  _id: string;
+  id: string;
   name: string;
   description?: string;
   isAlsoManufacturer?: boolean;
@@ -85,7 +85,7 @@ export type Manufacturer = {
   productionCapacity?: string; // e.g., "1000 units per week"
 };
 export type Carrier = {
-  _id: string;
+  id: string;
   name: string;
   description?: string;
   email?: string;
@@ -103,6 +103,7 @@ export type Carrier = {
   certifications?: string[]; // e.g., "ISO 9001", "Hazmat Certified"
 };
 export interface PhysicalAttributes {
+  id: string;
   length?: number; // mm
   width?: number;  // mm
   height?: number; // mm
@@ -114,7 +115,7 @@ export interface PhysicalAttributes {
 }
 
 export type Part = {
-  _id: string
+  id: string
   name: string
   description: string
   category?: { _id: string; name: string }
@@ -138,14 +139,14 @@ export type Part = {
   updatedAt?: Date
 }
 export type PartLocation = {
-  _id: string
+  id: string
   name: string
   quantity: number
   reserved?: number
   subLocations?: PartLocation[]
 }
 type bOMItem = {
-  _id: string;
+  id: string;
   name: string;
   image?: string;
   sku?: string;
@@ -159,7 +160,7 @@ type Product = {
   upc: string | number | readonly string[] | undefined;
   mpn: string | number | readonly string[] | undefined;
   model: string | number | readonly string[] | undefined;
-  _id: string;
+  id: string;
   name: string;
   sku: string;
   status: "Published" | "Draft" | "Discontinued";
@@ -183,7 +184,7 @@ type Product = {
 };
 
 export type Location = {
-  _id: string;
+  id: string;
   name: string;
   description?: string;
   image?: string;
@@ -201,6 +202,7 @@ export type Location = {
 };
 
 export type Address = {
+  id: string;
   street: string;
   addressLine2?: string;
   city: string;
@@ -210,7 +212,7 @@ export type Address = {
 };
 
 export type SelectData = {
-  _id: string;
+  id: string;
   name: string;
   children?: SelectData[];
   filterKey?: string;
@@ -219,7 +221,7 @@ export type SelectData = {
 };
 
 export type StockOverview = {
-  _id: string;
+  id: string;
   image?: string;
   name: string;
   sku: string;
@@ -233,7 +235,7 @@ export type StockOverview = {
 }
 
 export type Lot = {
-  _id: string;
+  id: string;
   image?: string;
   description?: string;
   part?: SelectData;
@@ -254,7 +256,7 @@ export type Lot = {
 };
 
 export type LotHistory = {
-  _id: string;
+  id: string;
   lot_id: string;
   date: Date;
   action: string;
@@ -271,7 +273,7 @@ export type OrderLots = {
   allocatedQty: number;
 }
 export type Order = {
-  _id: string;
+  id: string;
   invoiceId?: string;
   customer: string;
   date: string;
@@ -289,7 +291,7 @@ export type Order = {
 };
 
 export type TenantResources = {
-  _id: string;
+  id: string;
   tenantID: string;
   restourceIds: string; // IDs of resources associated with the tenant
   resourceType: "part" | "product" | "lot" | "order" | "location" | "supplier" | "customer" | "manufacturer" | "carrier";

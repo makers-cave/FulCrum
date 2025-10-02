@@ -13,7 +13,7 @@ import {
   Cog,
   MapPinHouse
 } from "lucide-react";
-import { Customer, Lot, LotHistory, Order, Part, PartLocation, Product, SelectData, StockOverview, Tenant, Location } from "./types";
+import { Customer, Lot, LotHistory, Order, Part, PartLocation, Product, SelectData, StockOverview, Tenant, Location, Supplier } from "./types";
 import { tree } from "next/dist/build/templates/app-page";
 import { Children } from "react";
 
@@ -125,40 +125,40 @@ export const partnerDashboardData = {
 
 // 🔹 Sample tanent data
 export const tenantData: Tenant[] = [
-  { _id: "1", name: "Tenant Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
-  { _id: "2", name: "Tenant Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
-  { _id: "3", name: "Tenant Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
+  { id: "1", name: "Tenant Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
+  { id: "2", name: "Tenant Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
+  { id: "3", name: "Tenant Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
 ];
 export const customersData: Customer[] = [
-  { _id: "1", name: "Customer Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
-  { _id: "2", name: "Customer Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
-  { _id: "3", name: "Customer Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
+  { id: "1", name: "Customer Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
+  { id: "2", name: "Customer Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
+  { id: "3", name: "Customer Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
 ];
-export const suppliersData = [
-  { _id: "1", name: "Supplier Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
-  { _id: "2", name: "Supplier Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
-  { _id: "3", name: "Supplier Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
+export const suppliersData: Supplier[] = [
+  { id: "1", name: "Supplier Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
+  { id: "2", name: "Supplier Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
+  { id: "3", name: "Supplier Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
 ];
 export const manufacturersData = [
-  { _id: "1", name: "Manufacturer Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
-  { _id: "2", name: "Manufacturer Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
-  { _id: "3", name: "Manufacturer Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
+  { id: "1", name: "Manufacturer Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
+  { id: "2", name: "Manufacturer Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
+  { id: "3", name: "Manufacturer Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
 ];
 export const carriersData = [
-  { _id: "1", name: "Carrier Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
-  { _id: "2", name: "Carrier Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
-  { _id: "3", name: "Carrier Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
+  { id: "1", name: "Carrier Alpha", email: "alpha@example.com", phone: "555-111-2222", avatar: "/avatars/alpha.png" },
+  { id: "2", name: "Carrier Beta", email: "beta@example.com", phone: "555-333-4444", avatar: "/avatars/beta.png" },
+  { id: "3", name: "Carrier Gamma", email: "gamma@example.com", phone: "555-777-8888", avatar: "/avatars/gamma.png" },
 ];
 export const sampleTenantOrders = {
   "1": [
-    { _id: "ORD-101", item: "W_idget A", qty: 120, status: "Shipped" },
-    { _id: "ORD-102", item: "W_idget B", qty: 50, status: "Pending" },
+    { id: "ORD-101", item: "W_idget A", qty: 120, status: "Shipped" },
+    { id: "ORD-102", item: "W_idget B", qty: 50, status: "Pending" },
   ],
   "2": [
-    { _id: "ORD-201", item: "Gadget X", qty: 200, status: "Delivered" },
+    { id: "ORD-201", item: "Gadget X", qty: 200, status: "Delivered" },
   ],
   "3": [
-    { _id: "ORD-301", item: "Part Z", qty: 75, status: "Shipped" },
+    { id: "ORD-301", item: "Part Z", qty: 75, status: "Shipped" },
   ],
 };
 
@@ -219,7 +219,7 @@ export const inventoryDashboardData = {
 
 export const partsData: Part[] = [
   {
-    _id: "1",
+    id: "1",
     name: "Stepper Motor NEMA 17",
     description: "High-torque stepper motor suitable for 3D printers and CNC machines.",
     sku: "MTR-001",
@@ -235,7 +235,7 @@ export const partsData: Part[] = [
     isVirtual: false
   },
   {
-    _id: "2",
+    id: "2",
     name: "Arduino Uno R3",
     description: "Popular microcontroller board based on the ATmega328P.",
     category: { _id: "cylinder_parts", name: "Cylinder Parts" },
@@ -252,7 +252,7 @@ export const partsData: Part[] = [
     isVirtual: false
   },
   {
-    _id: "3",
+    id: "3",
     name: "L298N Motor Driver",
     description: "Dual H-Bridge motor driver module for controlling DC motors and stepper motors.",
 
@@ -271,31 +271,31 @@ export const partsData: Part[] = [
 ]
 export const partsLocation: PartLocation[] = [
   {
-    _id: "abce",
+    id: "abce",
     name: "US-HTX-Ergode",
     quantity: 120,
     reserved: 5,
     subLocations: [
-      { _id: "abce1", name: "Aisle 1, Shelf B", quantity: 50, reserved: 5 },
-      { _id: "abce2", name: "Aisle 3, Shelf A", quantity: 30 },
-      { _id: "abce3", name: "Aisle 5, Shelf C", quantity: 40 },
+      { id: "abce1", name: "Aisle 1, Shelf B", quantity: 50, reserved: 5 },
+      { id: "abce2", name: "Aisle 3, Shelf A", quantity: 30 },
+      { id: "abce3", name: "Aisle 5, Shelf C", quantity: 40 },
     ]
   },
   {
-    _id: "abcf",
+    id: "abcf",
     name: "US-HTX-Reserve",
     quantity: 20,
     reserved: 2,
     subLocations: [
-      { _id: "abcf1", name: "Backroom Shelf 1", quantity: 15 },
-      { _id: "abcf3", name: "Backroom Shelf 2", quantity: 5, reserved: 2 },
+      { id: "abcf1", name: "Backroom Shelf 1", quantity: 15 },
+      { id: "abcf3", name: "Backroom Shelf 2", quantity: 5, reserved: 2 },
     ]
   }
 ]
 
 export const productsData: Product[] = [
   {
-    _id: "p1",
+    id: "p1",
     name: "ESP32 IoT Starter Kit",
     sku: "PROD-ESP32KIT",
     status: "Published",
@@ -311,16 +311,16 @@ export const productsData: Product[] = [
     description: "Starter kit with ESP32, sensors, cables and example projects.",
     bathchPerWeek: 50,
     BOM: [
-      { _id: "part-esp32", name: "ESP32-WROOM Module", sku: "MTR-ESP32", qtyPerProduct: 1, linkType: "Assembly", stock: 120, partType: "part" },
-      { _id: "part-usb", name: "USB Cable", sku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Content", stock: 150, partType: "product" },
-      { _id: "part-sensor", name: "DHT22 Sensor", sku: "SNS-DHT22", qtyPerProduct: 1, linkType: "Content", stock: 150, partType: "part" },
-      { _id: "part-box", name: "Package Box", sku: "BOX-002", qtyPerProduct: 1, linkType: "Packaging", stock: 300, partType: "part" },
-      { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Shipping", stock: 500, partType: "product" },
+      { id: "part-esp32", name: "ESP32-WROOM Module", sku: "MTR-ESP32", qtyPerProduct: 1, linkType: "Assembly", stock: 120, partType: "part" },
+      { id: "part-usb", name: "USB Cable", sku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Content", stock: 150, partType: "product" },
+      { id: "part-sensor", name: "DHT22 Sensor", sku: "SNS-DHT22", qtyPerProduct: 1, linkType: "Content", stock: 150, partType: "part" },
+      { id: "part-box", name: "Package Box", sku: "BOX-002", qtyPerProduct: 1, linkType: "Packaging", stock: 300, partType: "part" },
+      { id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Shipping", stock: 500, partType: "product" },
     ],
     manufacturer: { _id: "1", name: "Manufacturer Alpha" }
   },
   {
-    _id: "p2",
+    id: "p2",
     name: "Robotics Kit - Beginner",
     sku: "PROD-ROBO-BEG",
     status: "Draft",
@@ -336,214 +336,214 @@ export const productsData: Product[] = [
     description: "Entry-level robotics kit with motors, wheels and controller.",
     bathchPerWeek: 20,
     BOM: [
-      { _id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", qtyPerProduct: 2, linkType: "Content", stock: 120, partType: "product" },
-      { _id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", qtyPerProduct: 1, linkType: "Assembly", stock: 150, partType: "product" },
-      { _id: "part-box", name: "Package Box", sku: "BOX-002", qtyPerProduct: 1, linkType: "Packaging", stock: 300, partType: "product" },
-      { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Shipping", stock: 500, partType: "product" },
+      { id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", qtyPerProduct: 2, linkType: "Content", stock: 120, partType: "product" },
+      { id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", qtyPerProduct: 1, linkType: "Assembly", stock: 150, partType: "product" },
+      { id: "part-box", name: "Package Box", sku: "BOX-002", qtyPerProduct: 1, linkType: "Packaging", stock: 300, partType: "product" },
+      { id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", qtyPerProduct: 1, linkType: "Shipping", stock: 500, partType: "product" },
     ],
     manufacturer: { _id: "2", name: "Manufacturer Beta" }
   },
 ];
 export const productTypes: SelectData[] = [
-  { _id: "digital", name: "Digital/Virtual" },
-  { _id: "physical", name: "Physical" },
-  { _id: "service", name: "Service" }
+  { id: "digital", name: "Digital/Virtual" },
+  { id: "physical", name: "Physical" },
+  { id: "service", name: "Service" }
 ]
 export const sampleLocations: Location[] = [
-  { _id: "loc1", name: "US-HTX-Ergode", description: "Main warehouse in Houston, TX", category: "Warehouse", sku: "WH-HTX", status: "Active" },
-  { _id: "loc2", name: "US-HTX-Reserve", description: "Reserve stock area in Houston, TX", category: "Warehouse", sku: "WH-HTX-RSV", status: "Active" },
-  { _id: "loc3", name: "US-HTX-Solon", description: "Overflow storage in Solon, OH", category: "Warehouse", sku: "WH-SOL", status: "Active", processOrders: true },
+  { id: "loc1", name: "US-HTX-Ergode", description: "Main warehouse in Houston, TX", category: "Warehouse", sku: "WH-HTX", status: "Active" },
+  { id: "loc2", name: "US-HTX-Reserve", description: "Reserve stock area in Houston, TX", category: "Warehouse", sku: "WH-HTX-RSV", status: "Active" },
+  { id: "loc3", name: "US-HTX-Solon", description: "Overflow storage in Solon, OH", category: "Warehouse", sku: "WH-SOL", status: "Active", processOrders: true },
 ];
 
 export const PartCategories: SelectData[] = [
   {
-    _id: "auto",
+    id: "auto",
     name: "Automotive Parts",
     children: [
       {
-        _id: "engine",
+        id: "engine",
         name: "Engine Components",
         children: [
           {
-            _id: "cylinder_parts",
+            id: "cylinder_parts",
             name: "Cylinder Parts",
             children: [
-              { _id: "piston_rings", name: "Piston Rings", children: [] },
-              { _id: "piston_pins", name: "Piston Pins", children: [] }
+              { id: "piston_rings", name: "Piston Rings", children: [] },
+              { id: "piston_pins", name: "Piston Pins", children: [] }
             ]
           },
-          { _id: "gaskets", name: "Gaskets", children: [] }
+          { id: "gaskets", name: "Gaskets", children: [] }
         ]
       },
       {
-        _id: "cooling_system",
+        id: "cooling_system",
         name: "Cooling System",
         children: [
-          { _id: "radiators", name: "Radiators", children: [] },
-          { _id: "water_pumps", name: "Water Pumps", children: [] }
+          { id: "radiators", name: "Radiators", children: [] },
+          { id: "water_pumps", name: "Water Pumps", children: [] }
         ]
       },
       {
-        _id: "brake_system",
+        id: "brake_system",
         name: "Braking System",
         children: [
-          { _id: "pads_rotors", name: "Pads and Rotors", children: [] },
-          { _id: "calipers", name: "Calipers", children: [] },
-          { _id: "master_cylinders", name: "Master Cylinders", children: [] }
+          { id: "pads_rotors", name: "Pads and Rotors", children: [] },
+          { id: "calipers", name: "Calipers", children: [] },
+          { id: "master_cylinders", name: "Master Cylinders", children: [] }
         ]
       },
       {
-        _id: "electrical",
+        id: "electrical",
         name: "Electrical System",
         children: [
-          { _id: "batteries", name: "Batteries", children: [] },
-          { _id: "starters", name: "Starters", children: [] },
-          { _id: "alternators", name: "Alternators", children: [] }
+          { id: "batteries", name: "Batteries", children: [] },
+          { id: "starters", name: "Starters", children: [] },
+          { id: "alternators", name: "Alternators", children: [] }
         ]
       },
       {
-        _id: "suspension",
+        id: "suspension",
         name: "Suspension and Steering",
         children: [
-          { _id: "shock_absorbers", name: "Shock Absorbers", children: [] },
-          { _id: "control_arms", name: "Control Arms", children: [] },
-          { _id: "tie_rods", name: "Tie Rods", children: [] }
+          { id: "shock_absorbers", name: "Shock Absorbers", children: [] },
+          { id: "control_arms", name: "Control Arms", children: [] },
+          { id: "tie_rods", name: "Tie Rods", children: [] }
         ]
       },
       {
-        _id: "exhaust",
+        id: "exhaust",
         name: "Exhaust System",
         children: [
-          { _id: "mufflers", name: "Mufflers", children: [] },
-          { _id: "catalytic_converters", name: "Catalytic Converters", children: [] }
+          { id: "mufflers", name: "Mufflers", children: [] },
+          { id: "catalytic_converters", name: "Catalytic Converters", children: [] }
         ]
       }
     ]
   },
   {
-    _id: "electronics",
+    id: "electronics",
     name: "Electronic Components",
     children: [
       {
-        _id: "passive",
+        id: "passive",
         name: "Passive Components",
         children: [
           {
-            _id: "resistors",
+            id: "resistors",
             name: "Resistors",
             children: [
-              { _id: "fixed_resistors", name: "Fixed Resistors", children: [] },
-              { _id: "variable_resistors", name: "Variable Resistors", children: [] }
+              { id: "fixed_resistors", name: "Fixed Resistors", children: [] },
+              { id: "variable_resistors", name: "Variable Resistors", children: [] }
             ]
           },
           {
-            _id: "capacitors",
+            id: "capacitors",
             name: "Capacitors",
             children: [
-              { _id: "ceramic_capacitors", name: "Ceramic Capacitors", children: [] },
-              { _id: "electrolytic_capacitors", name: "Electrolytic Capacitors", children: [] }
+              { id: "ceramic_capacitors", name: "Ceramic Capacitors", children: [] },
+              { id: "electrolytic_capacitors", name: "Electrolytic Capacitors", children: [] }
             ]
           },
           {
-            _id: "inductors",
+            id: "inductors",
             name: "Inductors",
             children: [
-              { _id: "chokes", name: "Chokes", children: [] }
+              { id: "chokes", name: "Chokes", children: [] }
             ]
           }
         ]
       },
       {
-        _id: "active",
+        id: "active",
         name: "Active Components",
         children: [
           {
-            _id: "semiconductors",
+            id: "semiconductors",
             name: "Semiconductors",
             children: [
-              { _id: "diodes", name: "Diodes", children: [] },
-              { _id: "transistors", name: "Transistors", children: [] }
+              { id: "diodes", name: "Diodes", children: [] },
+              { id: "transistors", name: "Transistors", children: [] }
             ]
           },
           {
-            _id: "ics",
+            id: "ics",
             name: "Integrated Circuits (ICs)",
             children: [
-              { _id: "processors", name: "Microprocessors", children: [] },
-              { _id: "memory", name: "Memory Chips", children: [] }
+              { id: "processors", name: "Microprocessors", children: [] },
+              { id: "memory", name: "Memory Chips", children: [] }
             ]
           }
         ]
       },
       {
-        _id: "electromechanical",
+        id: "electromechanical",
         name: "Electromechanical Components",
         children: [
-          { _id: "connectors", name: "Connectors", children: [] },
-          { _id: "switches", name: "Switches", children: [] },
-          { _id: "relays", name: "Relays", children: [] }
+          { id: "connectors", name: "Connectors", children: [] },
+          { id: "switches", name: "Switches", children: [] },
+          { id: "relays", name: "Relays", children: [] }
         ]
       }
     ]
   },
   {
-    _id: "home_appliances",
+    id: "home_appliances",
     name: "Home Appliance Parts",
     children: [
       {
-        _id: "kitchen_appliances",
+        id: "kitchen_appliances",
         name: "Kitchen Appliance Parts",
         children: [
           {
-            _id: "refrigeration",
+            id: "refrigeration",
             name: "Refrigeration Parts",
             children: [
-              { _id: "compressors", name: "Compressors", children: [] },
-              { _id: "thermostats", name: "Thermostats", children: [] }
+              { id: "compressors", name: "Compressors", children: [] },
+              { id: "thermostats", name: "Thermostats", children: [] }
             ]
           },
           {
-            _id: "cooking",
+            id: "cooking",
             name: "Cooking Appliance Parts",
             children: [
-              { _id: "heating_elements", name: "Heating Elements", children: [] },
-              { _id: "igniters", name: "Igniters", children: [] }
+              { id: "heating_elements", name: "Heating Elements", children: [] },
+              { id: "igniters", name: "Igniters", children: [] }
             ]
           }
         ]
       },
       {
-        _id: "laundry_appliances",
+        id: "laundry_appliances",
         name: "Laundry Appliance Parts",
         children: [
           {
-            _id: "washer_parts",
+            id: "washer_parts",
             name: "Washer Parts",
             children: [
-              { _id: "drive_belts", name: "Drive Belts", children: [] },
-              { _id: "pumps", name: "Pumps", children: [] }
+              { id: "drive_belts", name: "Drive Belts", children: [] },
+              { id: "pumps", name: "Pumps", children: [] }
             ]
           },
           {
-            _id: "dryer_parts",
+            id: "dryer_parts",
             name: "Dryer Parts",
             children: [
-              { _id: "heating_elements_dryer", name: "Heating Elements", children: [] },
-              { _id: "rollers", name: "Drum Rollers", children: [] }
+              { id: "heating_elements_dryer", name: "Heating Elements", children: [] },
+              { id: "rollers", name: "Drum Rollers", children: [] }
             ]
           }
         ]
       },
       {
-        _id: "hvac",
+        id: "hvac",
         name: "HVAC and Air Care Parts",
         children: [
           {
-            _id: "air_conditioning_parts",
+            id: "air_conditioning_parts",
             name: "Air Conditioning Parts",
             children: [
-              { _id: "blower_motors", name: "Blower Motors", children: [] },
-              { _id: "capacitors_hvac", name: "Capacitors", children: [] }
+              { id: "blower_motors", name: "Blower Motors", children: [] },
+              { id: "capacitors_hvac", name: "Capacitors", children: [] }
             ]
           }
         ]
@@ -554,414 +554,414 @@ export const PartCategories: SelectData[] = [
 
 export const productCategories: SelectData[] = [
   {
-    _id: "1",
+    id: "1",
     name: "Electronics",
     children: [
       {
-        _id: "101",
+        id: "101",
         name: "Computers & Accessories",
         children: [
-          { _id: "10101", name: "Laptops" },
-          { _id: "10102", name: "Desktops" },
-          { _id: "10103", name: "Monitors" },
-          { _id: "10104", name: "Keyboards" },
-          { _id: "10105", name: "Mice" },
-          { _id: "10106", name: "Printers" },
-          { _id: "10107", name: "Computer Components" },
-          { _id: "10108", name: "Networking Devices" },
-          { _id: "10109", name: "Software" },
+          { id: "10101", name: "Laptops" },
+          { id: "10102", name: "Desktops" },
+          { id: "10103", name: "Monitors" },
+          { id: "10104", name: "Keyboards" },
+          { id: "10105", name: "Mice" },
+          { id: "10106", name: "Printers" },
+          { id: "10107", name: "Computer Components" },
+          { id: "10108", name: "Networking Devices" },
+          { id: "10109", name: "Software" },
         ]
       },
       {
-        _id: "102",
+        id: "102",
         name: "Smartphones & Accessories",
         children: [
-          { _id: "10201", name: "Smartphones" },
-          { _id: "10202", name: "Tablets" },
-          { _id: "10203", name: "Phone Cases" },
-          { _id: "10204", name: "Screen Protectors" },
-          { _id: "10205", name: "Chargers & Cables" },
-          { _id: "10206", name: "Power Banks" },
-          { _id: "10207", name: "Headphones & Earbuds" },
+          { id: "10201", name: "Smartphones" },
+          { id: "10202", name: "Tablets" },
+          { id: "10203", name: "Phone Cases" },
+          { id: "10204", name: "Screen Protectors" },
+          { id: "10205", name: "Chargers & Cables" },
+          { id: "10206", name: "Power Banks" },
+          { id: "10207", name: "Headphones & Earbuds" },
         ]
       },
       {
-        _id: "103",
+        id: "103",
         name: "TV & Home Theater",
         children: [
-          { _id: "10301", name: "Televisions" },
-          { _id: "10302", name: "Home Theater Systems" },
-          { _id: "10303", name: "Streaming Devices" },
-          { _id: "10304", name: "TV Mounts & Stands" },
-          { _id: "10305", name: "Projectors" },
-          { _id: "10306", name: "Speakers" },
+          { id: "10301", name: "Televisions" },
+          { id: "10302", name: "Home Theater Systems" },
+          { id: "10303", name: "Streaming Devices" },
+          { id: "10304", name: "TV Mounts & Stands" },
+          { id: "10305", name: "Projectors" },
+          { id: "10306", name: "Speakers" },
         ]
       },
       {
-        _id: "104",
+        id: "104",
         name: "Cameras & Photography",
         children: [
-          { _id: "10401", name: "Digital Cameras" },
-          { _id: "10402", name: "DSLR Cameras" },
-          { _id: "10403", name: "Lenses" },
-          { _id: "10404", name: "Camera Accessories" },
-          { _id: "10405", name: "Drones" },
-          { _id: "10406", name: "Action Cameras" },
+          { id: "10401", name: "Digital Cameras" },
+          { id: "10402", name: "DSLR Cameras" },
+          { id: "10403", name: "Lenses" },
+          { id: "10404", name: "Camera Accessories" },
+          { id: "10405", name: "Drones" },
+          { id: "10406", name: "Action Cameras" },
         ]
       },
       {
-        _id: "105",
+        id: "105",
         name: "Audio & Headphones",
         children: [
-          { _id: "10501", name: "Headphones" },
-          { _id: "10502", name: "Earbuds" },
-          { _id: "10503", name: "Speakers" },
-          { _id: "10504", name: "Soundbars" },
-          { _id: "10505", name: "Microphones" },
-          { _id: "10506", name: "Audio Interfaces" },
+          { id: "10501", name: "Headphones" },
+          { id: "10502", name: "Earbuds" },
+          { id: "10503", name: "Speakers" },
+          { id: "10504", name: "Soundbars" },
+          { id: "10505", name: "Microphones" },
+          { id: "10506", name: "Audio Interfaces" },
         ]
       },
       {
-        _id: "106",
+        id: "106",
         name: "Wearable Technology",
         children: [
-          { _id: "10601", name: "Smartwatches" },
-          { _id: "10602", name: "Fitness Trackers" },
-          { _id: "10603", name: "VR Headsets" },
-          { _id: "10604", name: "Smart Glasses" },
+          { id: "10601", name: "Smartwatches" },
+          { id: "10602", name: "Fitness Trackers" },
+          { id: "10603", name: "VR Headsets" },
+          { id: "10604", name: "Smart Glasses" },
         ]
       },
       {
-        _id: "107",
+        id: "107",
         name: "Gaming",
         children: [
-          { _id: "10701", name: "Gaming Consoles" },
-          { _id: "10702", name: "Video Games" },
-          { _id: "10703", name: "Gaming Accessories" },
-          { _id: "10704", name: "Gaming PCs" },
-          { _id: "10705", name: "Gaming Chairs" },
+          { id: "10701", name: "Gaming Consoles" },
+          { id: "10702", name: "Video Games" },
+          { id: "10703", name: "Gaming Accessories" },
+          { id: "10704", name: "Gaming PCs" },
+          { id: "10705", name: "Gaming Chairs" },
         ]
       }
     ]
   },
   {
-    _id: "2",
+    id: "2",
     name: "Fashion",
     children: [
       {
-        _id: "201",
+        id: "201",
         name: "Men's Fashion",
         children: [
-          { _id: "20101", name: "Clothing" },
-          { _id: "20102", name: "Shoes" },
-          { _id: "20103", name: "Accessories" },
-          { _id: "20104", name: "Watches" },
-          { _id: "20105", name: "Jewelry" },
+          { id: "20101", name: "Clothing" },
+          { id: "20102", name: "Shoes" },
+          { id: "20103", name: "Accessories" },
+          { id: "20104", name: "Watches" },
+          { id: "20105", name: "Jewelry" },
         ]
       },
       {
-        _id: "202",
+        id: "202",
         name: "Women's Fashion",
         children: [
-          { _id: "20201", name: "Clothing" },
-          { _id: "20202", name: "Shoes" },
-          { _id: "20203", name: "Accessories" },
-          { _id: "20204", name: "Handbags" },
-          { _id: "20205", name: "Jewelry" },
-          { _id: "20206", name: "Watches" },
+          { id: "20201", name: "Clothing" },
+          { id: "20202", name: "Shoes" },
+          { id: "20203", name: "Accessories" },
+          { id: "20204", name: "Handbags" },
+          { id: "20205", name: "Jewelry" },
+          { id: "20206", name: "Watches" },
         ]
       },
       {
-        _id: "203",
+        id: "203",
         name: "Kids' Fashion",
         children: [
-          { _id: "20301", name: "Boys' Clothing" },
-          { _id: "20302", name: "Girls' Clothing" },
-          { _id: "20303", name: "Kids' Shoes" },
-          { _id: "20304", name: "Baby Clothing" },
+          { id: "20301", name: "Boys' Clothing" },
+          { id: "20302", name: "Girls' Clothing" },
+          { id: "20303", name: "Kids' Shoes" },
+          { id: "20304", name: "Baby Clothing" },
         ]
       }
     ]
   },
   {
-    _id: "3",
+    id: "3",
     name: "Home & Kitchen",
     children: [
       {
-        _id: "301",
+        id: "301",
         name: "Furniture",
         children: [
-          { _id: "30101", name: "Living Room Furniture" },
-          { _id: "30102", name: "Bedroom Furniture" },
-          { _id: "30103", name: "Kitchen & Dining Furniture" },
-          { _id: "30104", name: "Office Furniture" },
-          { _id: "30105", name: "Outdoor Furniture" },
+          { id: "30101", name: "Living Room Furniture" },
+          { id: "30102", name: "Bedroom Furniture" },
+          { id: "30103", name: "Kitchen & Dining Furniture" },
+          { id: "30104", name: "Office Furniture" },
+          { id: "30105", name: "Outdoor Furniture" },
         ]
       },
       {
-        _id: "302",
+        id: "302",
         name: "Kitchen & Dining",
         children: [
-          { _id: "30201", name: "Cookware" },
-          { _id: "30202", name: "Cutlery" },
-          { _id: "30203", name: "Small Appliances" },
-          { _id: "30204", name: "Tableware" },
-          { _id: "30205", name: "Kitchen Tools" },
+          { id: "30201", name: "Cookware" },
+          { id: "30202", name: "Cutlery" },
+          { id: "30203", name: "Small Appliances" },
+          { id: "30204", name: "Tableware" },
+          { id: "30205", name: "Kitchen Tools" },
         ]
       },
       {
-        _id: "303",
+        id: "303",
         name: "Home Décor",
         children: [
-          { _id: "30301", name: "Wall Art" },
-          { _id: "30302", name: "Lighting" },
-          { _id: "30303", name: "Rugs" },
-          { _id: "30304", name: "Curtains & Blinds" },
-          { _id: "30305", name: "Home Fragrance" },
+          { id: "30301", name: "Wall Art" },
+          { id: "30302", name: "Lighting" },
+          { id: "30303", name: "Rugs" },
+          { id: "30304", name: "Curtains & Blinds" },
+          { id: "30305", name: "Home Fragrance" },
         ]
       },
       {
-        _id: "304",
+        id: "304",
         name: "Bedding & Bath",
         children: [
-          { _id: "30401", name: "Bed Linens" },
-          { _id: "30402", name: "Bath Towels" },
-          { _id: "30403", name: "Pillows" },
-          { _id: "30404", name: "Comforters" },
+          { id: "30401", name: "Bed Linens" },
+          { id: "30402", name: "Bath Towels" },
+          { id: "30403", name: "Pillows" },
+          { id: "30404", name: "Comforters" },
         ]
       },
       {
-        _id: "305",
+        id: "305",
         name: "Home Improvement",
         children: [
-          { _id: "30501", name: "Tools" },
-          { _id: "30502", name: "Paint & Supplies" },
-          { _id: "30503", name: "Hardware" },
-          { _id: "30504", name: "Storage & Organization" },
+          { id: "30501", name: "Tools" },
+          { id: "30502", name: "Paint & Supplies" },
+          { id: "30503", name: "Hardware" },
+          { id: "30504", name: "Storage & Organization" },
         ]
       }
     ]
   },
   {
-    _id: "4",
+    id: "4",
     name: "Health & Beauty",
     children: [
       {
-        _id: "401",
+        id: "401",
         name: "Skincare",
         children: [
-          { _id: "40101", name: "Moisturizers" },
-          { _id: "40102", name: "Cleansers" },
-          { _id: "40103", name: "Serums & Treatments" },
-          { _id: "40104", name: "Sunscreen" },
-          { _id: "40105", name: "Face Masks" },
+          { id: "40101", name: "Moisturizers" },
+          { id: "40102", name: "Cleansers" },
+          { id: "40103", name: "Serums & Treatments" },
+          { id: "40104", name: "Sunscreen" },
+          { id: "40105", name: "Face Masks" },
         ]
       },
       {
-        _id: "402",
+        id: "402",
         name: "Makeup",
         children: [
-          { _id: "40201", name: "Foundation" },
-          { _id: "40202", name: "Lipstick" },
-          { _id: "40203", name: "Eyeshadow" },
-          { _id: "40204", name: "Mascara" },
-          { _id: "40205", name: "Blush" },
+          { id: "40201", name: "Foundation" },
+          { id: "40202", name: "Lipstick" },
+          { id: "40203", name: "Eyeshadow" },
+          { id: "40204", name: "Mascara" },
+          { id: "40205", name: "Blush" },
         ]
       },
       {
-        _id: "403",
+        id: "403",
         name: "Hair Care",
         children: [
-          { _id: "40301", name: "Shampoo & Conditioner" },
-          { _id: "40302", name: "Hair Styling Products" },
-          { _id: "40303", name: "Hair Color" },
-          { _id: "40304", name: "Hair Accessories" },
+          { id: "40301", name: "Shampoo & Conditioner" },
+          { id: "40302", name: "Hair Styling Products" },
+          { id: "40303", name: "Hair Color" },
+          { id: "40304", name: "Hair Accessories" },
         ]
       },
       {
-        _id: "404",
+        id: "404",
         name: "Fragrance",
         children: [
-          { _id: "40401", name: "Women's Perfume" },
-          { _id: "40402", name: "Men's Cologne" },
-          { _id: "40403", name: "Body Sprays" },
+          { id: "40401", name: "Women's Perfume" },
+          { id: "40402", name: "Men's Cologne" },
+          { id: "40403", name: "Body Sprays" },
         ]
       },
       {
-        _id: "405",
+        id: "405",
         name: "Personal Care",
         children: [
-          { _id: "40501", name: "Oral Care" },
-          { _id: "40502", name: "Shaving & Hair Removal" },
-          { _id: "40503", name: "Deodorant" },
-          { _id: "40504", name: "Bath & Body" },
+          { id: "40501", name: "Oral Care" },
+          { id: "40502", name: "Shaving & Hair Removal" },
+          { id: "40503", name: "Deodorant" },
+          { id: "40504", name: "Bath & Body" },
         ]
       }
     ]
   },
   {
-    _id: "5",
+    id: "5",
     name: "Sports & Outdoors",
     children: [
       {
-        _id: "501",
+        id: "501",
         name: "Exercise & Fitness",
         children: [
-          { _id: "50101", name: "Cardio Equipment" },
-          { _id: "50102", name: "Strength Training" },
-          { _id: "50103", name: "Yoga & Pilates" },
-          { _id: "50104", name: "Fitness Accessories" },
+          { id: "50101", name: "Cardio Equipment" },
+          { id: "50102", name: "Strength Training" },
+          { id: "50103", name: "Yoga & Pilates" },
+          { id: "50104", name: "Fitness Accessories" },
         ]
       },
       {
-        _id: "502",
+        id: "502",
         name: "Outdoor Recreation",
         children: [
-          { _id: "50201", name: "Camping & Hiking" },
-          { _id: "50202", name: "Cycling" },
-          { _id: "50203", name: "Water Sports" },
-          { _id: "50204", name: "Winter Sports" },
+          { id: "50201", name: "Camping & Hiking" },
+          { id: "50202", name: "Cycling" },
+          { id: "50203", name: "Water Sports" },
+          { id: "50204", name: "Winter Sports" },
         ]
       },
       {
-        _id: "503",
+        id: "503",
         name: "Sports",
         children: [
-          { _id: "50301", name: "Team Sports" },
-          { _id: "50302", name: "Racquet Sports" },
-          { _id: "50303", name: "Golf" },
-          { _id: "50304", name: "Fishing" },
+          { id: "50301", name: "Team Sports" },
+          { id: "50302", name: "Racquet Sports" },
+          { id: "50303", name: "Golf" },
+          { id: "50304", name: "Fishing" },
         ]
       },
       {
-        _id: "504",
+        id: "504",
         name: "Athletic Clothing & Shoes",
         children: [
-          { _id: "50401", name: "Men's Athletic Wear" },
-          { _id: "50402", name: "Women's Athletic Wear" },
-          { _id: "50403", name: "Athletic Shoes" },
-          { _id: "50404", name: "Sports Accessories" },
+          { id: "50401", name: "Men's Athletic Wear" },
+          { id: "50402", name: "Women's Athletic Wear" },
+          { id: "50403", name: "Athletic Shoes" },
+          { id: "50404", name: "Sports Accessories" },
         ]
       }
     ]
   },
   {
-    _id: "6",
+    id: "6",
     name: "Toys & Games",
     children: [
       {
-        _id: "601",
+        id: "601",
         name: "Toys",
         children: [
-          { _id: "60101", name: "Action Figures" },
-          { _id: "60102", name: "Dolls & Accessories" },
-          { _id: "60103", name: "Building Sets" },
-          { _id: "60104", name: "Educational Toys" },
-          { _id: "60105", name: "Outdoor Toys" },
+          { id: "60101", name: "Action Figures" },
+          { id: "60102", name: "Dolls & Accessories" },
+          { id: "60103", name: "Building Sets" },
+          { id: "60104", name: "Educational Toys" },
+          { id: "60105", name: "Outdoor Toys" },
         ]
       },
       {
-        _id: "602",
+        id: "602",
         name: "Games",
         children: [
-          { _id: "60201", name: "Board Games" },
-          { _id: "60202", name: "Card Games" },
-          { _id: "60203", name: "Puzzles" },
-          { _id: "60204", name: "Video Games" },
+          { id: "60201", name: "Board Games" },
+          { id: "60202", name: "Card Games" },
+          { id: "60203", name: "Puzzles" },
+          { id: "60204", name: "Video Games" },
         ]
       },
       {
-        _id: "603",
+        id: "603",
         name: "Baby & Toddler",
         children: [
-          { _id: "60301", name: "Baby Toys" },
-          { _id: "60302", name: "Stuffed Animals" },
-          { _id: "60303", name: "Play Vehicles" },
+          { id: "60301", name: "Baby Toys" },
+          { id: "60302", name: "Stuffed Animals" },
+          { id: "60303", name: "Play Vehicles" },
         ]
       }
     ]
   },
   {
-    _id: "7",
+    id: "7",
     name: "Automotive",
     children: [
       {
-        _id: "701",
+        id: "701",
         name: "Car Parts & Accessories",
         children: [
-          { _id: "70101", name: "Interior Accessories" },
-          { _id: "70102", name: "Exterior Accessories" },
-          { _id: "70103", name: "Performance Parts" },
-          { _id: "70104", name: "Replacement Parts" },
+          { id: "70101", name: "Interior Accessories" },
+          { id: "70102", name: "Exterior Accessories" },
+          { id: "70103", name: "Performance Parts" },
+          { id: "70104", name: "Replacement Parts" },
         ]
       },
       {
-        _id: "702",
+        id: "702",
         name: "Car Electronics",
         children: [
-          { _id: "70201", name: "Car Audio" },
-          { _id: "70202", name: "GPS & Navigation" },
-          { _id: "70203", name: "Car Security" },
-          { _id: "70204", name: "Dash Cams" },
+          { id: "70201", name: "Car Audio" },
+          { id: "70202", name: "GPS & Navigation" },
+          { id: "70203", name: "Car Security" },
+          { id: "70204", name: "Dash Cams" },
         ]
       },
       {
-        _id: "703",
+        id: "703",
         name: "Motorcycle & Powersports",
         children: [
-          { _id: "70301", name: "Motorcycle Parts" },
-          { _id: "70302", name: "Motorcycle Gear" },
-          { _id: "70303", name: "ATV & UTV" },
+          { id: "70301", name: "Motorcycle Parts" },
+          { id: "70302", name: "Motorcycle Gear" },
+          { id: "70303", name: "ATV & UTV" },
         ]
       },
       {
-        _id: "704",
+        id: "704",
         name: "Tools & Equipment",
         children: [
-          { _id: "70401", name: "Repair Tools" },
-          { _id: "70402", name: "Diagnostic Tools" },
-          { _id: "70403", name: "Car Care" },
+          { id: "70401", name: "Repair Tools" },
+          { id: "70402", name: "Diagnostic Tools" },
+          { id: "70403", name: "Car Care" },
         ]
       }
     ]
   },
   {
-    _id: "8",
+    id: "8",
     name: "Books & Media",
     children: [
       {
-        _id: "801",
+        id: "801",
         name: "Books",
         children: [
-          { _id: "80101", name: "Fiction" },
-          { _id: "80102", name: "Non-Fiction" },
-          { _id: "80103", name: "Children's Books" },
-          { _id: "80104", name: "Textbooks" },
+          { id: "80101", name: "Fiction" },
+          { id: "80102", name: "Non-Fiction" },
+          { id: "80103", name: "Children's Books" },
+          { id: "80104", name: "Textbooks" },
         ]
       },
       {
-        _id: "802",
+        id: "802",
         name: "Movies & TV",
         children: [
-          { _id: "80201", name: "DVDs & Blu-rays" },
-          { _id: "80202", name: "Digital Movies" },
+          { id: "80201", name: "DVDs & Blu-rays" },
+          { id: "80202", name: "Digital Movies" },
         ]
       },
       {
-        _id: "803",
+        id: "803",
         name: "Music",
         children: [
-          { _id: "80301", name: "CDs" },
-          { _id: "80302", name: "Vinyl Records" },
-          { _id: "80303", name: "Digital Music" },
+          { id: "80301", name: "CDs" },
+          { id: "80302", name: "Vinyl Records" },
+          { id: "80303", name: "Digital Music" },
         ]
       },
       {
-        _id: "804",
+        id: "804",
         name: "Magazines & Newspapers",
         children: [
-          { _id: "80401", name: "Print Magazines" },
-          { _id: "80402", name: "Digital Magazines" },
+          { id: "80401", name: "Print Magazines" },
+          { id: "80402", name: "Digital Magazines" },
         ]
       }
     ]
@@ -969,33 +969,33 @@ export const productCategories: SelectData[] = [
 ];
 
 export const bomItems: SelectData[] = [
-  { _id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", filterKey: "part" },
-  { _id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", filterKey: "part" },
-  { _id: "part-box", name: "Package Box", sku: "BOX-002", filterKey: "part" },
-  { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", filterKey: "part" },
-  { _id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", filterKey: "part" },
-  { _id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", filterKey: "part" },
-  { _id: "part-box", name: "Package Box", sku: "BOX-002", filterKey: "part" },
-  { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", filterKey: "part" },
-  { _id: "p2", name: "Robotics Kit - Beginner", sku: "PROD-ROBO-BEG", filterKey: "product" },
-  { _id: "p1", name: "ESP32 IoT Starter Kit", sku: "PROD-ESP32KIT", filterKey: "product" }
+  { id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", filterKey: "part" },
+  { id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", filterKey: "part" },
+  { id: "part-box", name: "Package Box", sku: "BOX-002", filterKey: "part" },
+  { id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", filterKey: "part" },
+  { id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", filterKey: "part" },
+  { id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", filterKey: "part" },
+  { id: "part-box", name: "Package Box", sku: "BOX-002", filterKey: "part" },
+  { id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", filterKey: "part" },
+  { id: "p2", name: "Robotics Kit - Beginner", sku: "PROD-ROBO-BEG", filterKey: "product" },
+  { id: "p1", name: "ESP32 IoT Starter Kit", sku: "PROD-ESP32KIT", filterKey: "product" }
 ]
 
 export const partsStock: StockOverview[] = [
-  { _id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", available: 2000, reserved: 20, type: "part" },
-  { _id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", available: 1500, reserved: 15, intransit: 1000, type: "part" },
-  { _id: "part-box1", name: "Package Box 1", sku: "BOX-001", available: 3000, reserved: 20, type: "part" },
-  { _id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", available: 5000, reserved: 55, type: "part" },
-  { _id: "part-box2", name: "Package Box 2", sku: "BOX-002", available: 2000, type: "part" },
-  { _id: "p2", name: "Robotics Kit - Beginner", sku: "PROD-ROBO-BEG", available: 50, reserved: 5, inproduction: 10, type: "product" },
-  { _id: "p1", name: "ESP32 IoT Starter Kit", sku: "PROD-ESP32KIT", available: 20, inproduction: 5, type: "product" },
-  { _id: "p3", name: "Poloriud Sunglasses", sku: "PROD-POLSUN", available: 0, intransit: 100, type: "product" }
+  { id: "part-motor", name: "Stepper Motor NEMA 17", sku: "MTR-001", available: 2000, reserved: 20, type: "part" },
+  { id: "part-driver", name: "Motor Driver L298N", sku: "DRV-003", available: 1500, reserved: 15, intransit: 1000, type: "part" },
+  { id: "part-box1", name: "Package Box 1", sku: "BOX-001", available: 3000, reserved: 20, type: "part" },
+  { id: "part-S649", name: "Shipping Box", sku: "CAB-USB-A-B", available: 5000, reserved: 55, type: "part" },
+  { id: "part-box2", name: "Package Box 2", sku: "BOX-002", available: 2000, type: "part" },
+  { id: "p2", name: "Robotics Kit - Beginner", sku: "PROD-ROBO-BEG", available: 50, reserved: 5, inproduction: 10, type: "product" },
+  { id: "p1", name: "ESP32 IoT Starter Kit", sku: "PROD-ESP32KIT", available: 20, inproduction: 5, type: "product" },
+  { id: "p3", name: "Poloriud Sunglasses", sku: "PROD-POLSUN", available: 0, intransit: 100, type: "product" }
 ]
 export const lotsData: Lot[] = [
   {
-    _id: "lot-001",
+    id: "lot-001",
     description: "Initial stock of stepper motors",
-    part: { _id: "part-motor", name: "Stepper Motor NEMA 17" },
+    part: { id: "part-motor", name: "Stepper Motor NEMA 17" },
     lotNumber: "LOT-2024-001",
     quantity: 500,
     receivedDate: new Date("2024-06-01"),
@@ -1003,8 +1003,8 @@ export const lotsData: Lot[] = [
     status: "Available"
   },
   {
-    _id: "lot-002",
-    part: { _id: "part-driver", name: "Motor Driver L298N" },
+    id: "lot-002",
+    part: { id: "part-driver", name: "Motor Driver L298N" },
     lotNumber: "LOT-2024-002",
     quantity: 300,
     receivedDate: new Date("2024-05-15"),
@@ -1012,8 +1012,8 @@ export const lotsData: Lot[] = [
     status: "Available"
   },
   {
-    _id: "lot-003",
-    part: { _id: "part-box1", name: "Package Box 1" },
+    id: "lot-003",
+    part: { id: "part-box1", name: "Package Box 1" },
     lotNumber: "LOT-2024-003",
     quantity: 1000,
     receivedDate: new Date("2024-04-20"),
@@ -1021,8 +1021,8 @@ export const lotsData: Lot[] = [
     status: "Available"
   },
   {
-    _id: "lot-004",
-    part: { _id: "part-S649", name: "Shipping Box" },
+    id: "lot-004",
+    part: { id: "part-S649", name: "Shipping Box" },
     lotNumber: "LOT-2024-004",
     quantity: 2000,
     receivedDate: new Date("2024-03-10"),
@@ -1030,8 +1030,8 @@ export const lotsData: Lot[] = [
     status: "Available"
   },
   {
-    _id: "lot-005",
-    part: { _id: "part-box2", name: "Package Box 2" },
+    id: "lot-005",
+    part: { id: "part-box2", name: "Package Box 2" },
     lotNumber: "LOT-2024-005",
     quantity: 500,
     receivedDate: new Date("2024-02-05"),
@@ -1039,8 +1039,8 @@ export const lotsData: Lot[] = [
     status: "Available"
   },
   {
-    _id: "lot-006",
-    product: { _id: "p2", name: "Robotics Kit - Beginner" },
+    id: "lot-006",
+    product: { id: "p2", name: "Robotics Kit - Beginner" },
     lotNumber: "LOT-2024-006",
     quantity: 20,
     receivedDate: new Date("2024-06-05"),
@@ -1048,8 +1048,8 @@ export const lotsData: Lot[] = [
     status: "Available"
   },
   {
-    _id: "lot-007",
-    product: { _id: "p1", name: "ESP32 IoT Starter Kit" },
+    id: "lot-007",
+    product: { id: "p1", name: "ESP32 IoT Starter Kit" },
     lotNumber: "LOT-2024-007",
     quantity: 10,
     receivedDate: new Date("2024-06-10"),
@@ -1057,8 +1057,8 @@ export const lotsData: Lot[] = [
     status: "Available"
   },
   {
-    _id: "lot-008",
-    product: { _id: "p3", name: "Poloriud Sunglasses" },
+    id: "lot-008",
+    product: { id: "p3", name: "Poloriud Sunglasses" },
     lotNumber: "LOT-2024-008",
     quantity: 100,
     receivedDate: new Date("2024-05-01"),
@@ -1068,7 +1068,7 @@ export const lotsData: Lot[] = [
 ]
 export const lotHistories: LotHistory[] = [
   {
-    _id: "history-001",
+    id: "history-001",
     lot_id: "lot-001",
     action: "Received",
     date: new Date("2024-06-01"),
@@ -1076,7 +1076,7 @@ export const lotHistories: LotHistory[] = [
     user: "John Doe"
   },
   {
-    _id: "history-002",
+    id: "history-002",
     lot_id: "lot-001",
     action: "Inspected",
     date: new Date("2024-06-02"),
@@ -1084,14 +1084,14 @@ export const lotHistories: LotHistory[] = [
     user: "Jane Smith"
   },
   {
-    _id: "history-003",
+    id: "history-003",
     lot_id: "lot-001",
     action: "Moved to Storage",
     date: new Date("2024-06-03"),
     qtyChange: 500, user: "Emily Johnson"
   },
   {
-    _id: "history-004",
+    id: "history-004",
     lot_id: "lot-002",
     action: "Received",
     date: new Date("2024-05-15"),
@@ -1099,7 +1099,7 @@ export const lotHistories: LotHistory[] = [
     user: "John Doe"
   },
   {
-    _id: "history-005",
+    id: "history-005",
     lot_id: "lot-002",
     action: "Inspected",
     date: new Date("2024-05-16"),
@@ -1107,7 +1107,7 @@ export const lotHistories: LotHistory[] = [
     user: "Jane Smith"
   },
   {
-    _id: "history-006",
+    id: "history-006",
     lot_id: "lot-002",
     action: "Moved to Storage",
     date: new Date("2024-05-17"),
@@ -1115,7 +1115,7 @@ export const lotHistories: LotHistory[] = [
     user: "Emily Johnson"
   },
   {
-    _id: "history-007",
+    id: "history-007",
     lot_id: "lot-003",
     action: "Received",
     date: new Date("2024-04-20"),
@@ -1123,7 +1123,7 @@ export const lotHistories: LotHistory[] = [
     user: "John Doe"
   },
   {
-    _id: "history-008",
+    id: "history-008",
     lot_id: "lot-003",
     action: "Inspected",
     date: new Date("2024-04-21"),
@@ -1131,7 +1131,7 @@ export const lotHistories: LotHistory[] = [
     user: "Jane Smith"
   },
   {
-    _id: "history-009",
+    id: "history-009",
     lot_id: "lot-003",
     action: "Moved to Storage",
     date: new Date("2024-04-22"),
@@ -1142,24 +1142,24 @@ export const lotHistories: LotHistory[] = [
 ];
 export const orders: Order[] = [
   {
-    _id: "ORD-1001",
+    id: "ORD-1001",
     customer: "John Doe",
     date: "2025-09-20",
     items: 3,
     status: "picking",
-    location: {_id: "loc3", name: "US-HTX-Solon"},
+    location: {id: "loc3", name: "US-HTX-Solon"},
     itemsList: [
       { _id: "p1", sku: "PROD-ESP32KIT", name: "ESP32 IoT Starter Kit" , qty: 1 },
       { _id: "p2", sku: "PROD-ROBO-BEG", name: "Robotics Kit - Beginner", qty: 2 }
     ]
   },
   {
-    _id: "ORD-1002",
+    id: "ORD-1002",
     customer: "Acme Corp",
     date: "2025-09-21",
     items: 5,
     status: "shipped",
-    location: {_id: "loc3", name: "US-HTX-Solon"},
+    location: {id: "loc3", name: "US-HTX-Solon"},
     tracking: "1Z984...",
         itemsList: [
       { _id: "p1", sku: "PROD-ESP32KIT", name: "ESP32 IoT Starter Kit" , qty: 2 },
@@ -1167,12 +1167,12 @@ export const orders: Order[] = [
     ]
   },
   {
-    _id: "ORD-1003",
+    id: "ORD-1003",
     customer: "Jane Smith",
     date: "2025-09-22",
     items: 2,
     status: "pending",
-    location: {_id: "loc3", name: "US-HTX-Solon"},
+    location: {id: "loc3", name: "US-HTX-Solon"},
     itemsList: [
       { _id: "p1", sku: "PROD-ESP32KIT", name: "ESP32 IoT Starter Kit" , qty: 1 },
       { _id: "p2", sku: "PROD-ROBO-BEG", name: "Robotics Kit - Beginner", qty: 1 }

@@ -72,9 +72,9 @@ const StockPage = () => {
                 </TableHeader>
                 <TableBody>
                   {partsStock.filter(i => i.type == "part").map((partStock) => (
-                    <TableRow key={partStock._id}
-                      className={`cursor-pointer ${selectedPart === partStock._id ? "bg-muted" : ""}`}
-                      onClick={() => setSelectedPart(partStock._id)}>
+                    <TableRow key={partStock.id}
+                      className={`cursor-pointer ${selectedPart === partStock.id ? "bg-muted" : ""}`}
+                      onClick={() => setSelectedPart(partStock.id)}>
                       <TableCell>
                         <div className="w-10 h-10 relative rounded overflow-hidden bg-muted">
                           <SafeImage src={partStock.image} alt={partStock.image} fill className="object-contain" />
@@ -108,8 +108,8 @@ const StockPage = () => {
                 </TableHeader>
                 <TableBody>
                   {partsStock.filter(i => i.type == "product").map((productStock) => (
-                    <TableRow key={productStock._id} className={`cursor-pointer ${selectedPart === productStock._id ? "bg-muted" : ""}`}
-                      onClick={() => setSelectedPart(productStock._id)}>
+                    <TableRow key={productStock.id} className={`cursor-pointer ${selectedPart === productStock.id ? "bg-muted" : ""}`}
+                      onClick={() => setSelectedPart(productStock.id)}>
                       <TableCell>
                         <div className="w-10 h-10 relative rounded overflow-hidden bg-muted">
                           <SafeImage src={productStock.image} alt={productStock.image} fill className="object-contain" />
@@ -158,10 +158,10 @@ const StockPage = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {lotsData.filter(i => i.part?._id == selectedPart || i.product?._id == selectedPart).map((lot) => (
-                <TableRow key={lot._id}>
+              {lotsData.filter(i => i.part?.id == selectedPart || i.product?.id == selectedPart).map((lot) => (
+                <TableRow key={lot.id}>
                   <TableCell>
-                    {lot._id}
+                    {lot.id}
                   </TableCell>
                   <TableCell>{lot.supplierBatchNumber}</TableCell>
                   <TableCell>{lot.location?.image}</TableCell>
@@ -170,7 +170,7 @@ const StockPage = () => {
                   <TableCell>{lot.expiryDate?.toDateString()}</TableCell>
                   <TableCell>
                     <Button variant="outline" asChild size="sm">
-                      <Link href={`/inventory/lots/${lot._id}`} className="flex items-center gap-2">
+                      <Link href={`/inventory/lots/${lot.id}`} className="flex items-center gap-2">
                         <PencilRuler />Edit
                       </Link>
                     </Button>

@@ -5,7 +5,7 @@ import { Carrier } from "../types"
 
 function getDefaultCarrier(): Carrier {
   return {
-      _id: useId(),
+      id: useId(),
       name: "Carrier Alpha",
       description: "This is description",
       isAlsoManufacturer: false,
@@ -17,7 +17,7 @@ function getDefaultCarrier(): Carrier {
 }
 async function getCarrier(carrierid: string): Promise<Carrier | null> {
   // replace with real fetch
-  return customersData.find((c) => c._id === carrierid) ?? null
+  return customersData.find((c) => c.id === carrierid) ?? null
 }
 
 export { getCarrier, getDefaultCarrier }

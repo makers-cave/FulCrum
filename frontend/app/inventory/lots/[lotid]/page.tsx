@@ -228,7 +228,7 @@ const EidtLotPage = () => {
                             </TableHeader>
                             <TableBody>
                                 {lotHistory.sort((a, b) => b.date.getTime() - a.date.getTime()).map((lh) => (
-                                    <TableRow key={lh._id} className="cursor-pointer hover:bg-accent">
+                                    <TableRow key={lh.id} className="cursor-pointer hover:bg-accent">
                                         <TableCell>
                                             {lh.date.toDateString()}
                                         </TableCell>

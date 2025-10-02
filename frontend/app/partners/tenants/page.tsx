@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "
 import { Input } from "@/components/ui/input"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { usePageHeader } from "@/contexts/PageHeaderContext";
-import { tenantData, sampleTenantOrders } from "@/lib/data";
+import { sampleTenantOrders, tenantData } from "@/lib/data";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -50,9 +50,9 @@ const TanentsPage = () => {
               <TableBody>
                 {tenants.map((t) => (
                   <TableRow
-                    key={t._id}
-                    className={`cursor-pointer ${selectedTenant === t._id ? "bg-muted" : ""}`}
-                    onClick={() => setSelectedTenant(t._id)}
+                    key={t.id}
+                    className={`cursor-pointer ${selectedTenant === t.id ? "bg-muted" : ""}`}
+                    onClick={() => setSelectedTenant(t.id)}
                   >
                     <TableCell className="flex items-center gap-2">
                       <Avatar>
@@ -65,7 +65,7 @@ const TanentsPage = () => {
                     <TableCell>{t.phone}</TableCell>
                     <TableCell>
                       <Button asChild variant="outline" size="sm">
-                        <Link href={`/partners/tenants/${t._id}`}>
+                        <Link href={`/partners/tenants/${t.id}`}>
                           Edit
                         </Link>
                       </Button>
@@ -82,7 +82,7 @@ const TanentsPage = () => {
           <CardHeader>
             <CardTitle>
               {selectedTenant
-                ? `Orders for ${tenants.find((t) => t._id === selectedTenant)?.name}`
+                ? `Orders for ${tenants.find((t) => t.id === selectedTenant)?.name}`
                 : "Select a tenant to view orders"}
             </CardTitle>
           </CardHeader>
@@ -99,8 +99,8 @@ const TanentsPage = () => {
                 </TableHeader>
                 <TableBody>
                   {orders.map((o) => (
-                    <TableRow key={o._id}>
-                      <TableCell>{o._id}</TableCell>
+                    <TableRow key={o.id}>
+                      <TableCell>{o.id}</TableCell>
                       <TableCell>{o.item}</TableCell>
                       <TableCell>{o.qty}</TableCell>
                       <TableCell>{o.status}</TableCell>
