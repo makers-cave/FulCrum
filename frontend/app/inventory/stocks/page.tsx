@@ -11,7 +11,6 @@ import { lotsData, partsStock } from "@/lib/data";
 import { SafeImage } from "@/components/SafeImage";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import AddLotDialog from "./addLotsDialogue";
 import { Lot } from "@/lib/types";
 
 const StockPage = () => {

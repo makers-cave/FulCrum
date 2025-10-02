@@ -264,6 +264,12 @@ export type LotHistory = {
   user: string;
 }
 
+export type OrderLots = {
+  _id: string;
+  lot: SelectData;
+  availableQty?: number;
+  allocatedQty: number;
+}
 export type Order = {
   _id: string;
   invoiceId?: string;
@@ -274,7 +280,7 @@ export type Order = {
   location: SelectData;
   tracking?: string;
   shipTo?: Address;
-  itemsList?: { _id:string; name: string; sku: string; qty: number, lots?: SelectData[] }[]; // List of items in the order
+  itemsList?: { _id:string; name: string; sku: string; qty: number, lots?: OrderLots[] }[]; // List of items in the order
   pickFrom?: Lot;
   shipBy?: Date;
   carrier?: SelectData;

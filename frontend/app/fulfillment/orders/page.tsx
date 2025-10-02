@@ -15,7 +15,8 @@ import { Order } from "@/lib/types";
 import { getOrders } from "@/lib/services/ordersService";
 import { Spinner } from "@/components/spinner";
 import { NotFound } from "@/components/notFound";
-import AddLotDialog from "@/app/inventory/stocks/addLotsDialogue";
+import AllocateLotDialog from "@/app/fulfillment/orders/allocateLot";
+import { Separator } from "@/components/ui/separator";
 
 // Status Badge helper
 function StatusBadge({ status }: { status: Order["status"] }) {
@@ -185,14 +186,9 @@ export default function OrdersPage() {
                             <NotepadText className="h-5 w-5" />
                             Order details
                             {selectedOrder && <div className="flex items-center gap-2">
-                            <StatusBadge status={selectedOrder.status} />
-                        </div>}
+                                <StatusBadge status={selectedOrder.status} />
+                            </div>}
                         </CardTitle>
-                        {selectedOrder && selectedOrder.status != "shipped" && 
-                        <AddLotDialog order={selectedOrder} onUpdate={setSelectedOrder}></AddLotDialog>}
-                        {/* <div className="flex items-center gap-2">
-                            <Button variant="outline" size="sm" onClick={() => autoAllocateOrder()}><AlignHorizontalDistributeCenter className="h-4 w-4 mr-1" />Allocate Lots</Button>
-                        </div>} */}
                     </CardHeader>
                     <CardContent className="p-4 grid gap-4">
 
@@ -217,7 +213,7 @@ export default function OrdersPage() {
                                         <p className="font-medium">{selectedOrder.location.name}</p>
                                     </div>
                                 </div>
-
+                                <Separator />
                                 {/* Items Table */}
                                 <div className="mt-6">
                                     <p className="font-semibold mb-2">Order Items</p>
@@ -228,6 +224,7 @@ export default function OrdersPage() {
                                                 <TableHead>Product</TableHead>
                                                 <TableHead>Qty</TableHead>
                                                 <TableHead>Lots</TableHead>
+                                                <TableHead className="text-right">Allocate</TableHead>
                                             </TableRow>
                                         </TableHeader>
                                         <TableBody>
@@ -237,7 +234,18 @@ export default function OrdersPage() {
                                                     <TableCell>{item.name}</TableCell>
                                                     <TableCell>{item.qty}</TableCell>
                                                     <TableCell>
-                                                        {item.lots?.map(lot => (<Badge key={lot._id} className="mr-1">{lot.name}</Badge>))}   
+                                                        {item.lots?.map(lot => (<Badge key={lot._id} className="mr-1">{lot.lot.name}</Badge>))}
+                                                    </TableCell>
+                                                    <TableCell className="text-right">
+                                                        <AllocateLotDialog sku={item.sku} onUpdate={(lots) => {
+                                                            const updatedItems = selectedOrder.itemsList?.map(i => {
+                                                                if (i.sku === item.sku) {
+                                                                    return { ...i, lots };
+                                                                }
+                                                                return i;
+                                                            });
+                                                            setSelectedOrder({ ...selectedOrder, itemsList: updatedItems });
+                                                        }}></AllocateLotDialog>
                                                     </TableCell>
                                                 </TableRow>
                                             ))}
