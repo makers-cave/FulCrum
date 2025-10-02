@@ -36,7 +36,7 @@ export default function ProductsPage() {
   const [products] = useState<Product[]>(productsData);
   const [query, setQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<string>("All");
-  const [selectedProductId, setSelectedProductId] = useState<string | null>(products[0]?._id ?? null);
+  const [selectedProductId, setSelectedProductId] = useState<string | null>(products[0]?.id ?? null);
 
   const categories = useMemo(() => {
     const s = new Set<string>();
@@ -52,7 +52,7 @@ export default function ProductsPage() {
     return matchesQuery && matchesCategory;
   });
 
-  const selectedProduct = products.find((p) => p._id === selectedProductId) ?? null;
+  const selectedProduct = products.find((p) => p.id === selectedProductId) ?? null;
 
   return (
     <div className="p-6 space-y-6">
@@ -133,9 +133,9 @@ export default function ProductsPage() {
             <TableBody>
               {visible.map((p) => (
                 <TableRow
-                  key={p._id}
-                  className={`cursor-pointer ${selectedProductId === p._id ? "bg-muted" : ""}`}
-                  onClick={() => setSelectedProductId(p._id)}
+                  key={p.id}
+                  className={`cursor-pointer ${selectedProductId === p.id ? "bg-muted" : ""}`}
+                  onClick={() => setSelectedProductId(p.id)}
                 >
                   <TableCell>
                     <div className="w-10 h-10 relative rounded overflow-hidden bg-muted">
@@ -175,7 +175,7 @@ export default function ProductsPage() {
           <div className="flex items-center gap-2">
             {selectedProduct != null && <div className="flex items-center gap-2">
             <Button variant="outline" asChild size="sm">
-              <Link href={`/inventory/products/${selectedProduct?._id}`}>
+              <Link href={`/inventory/products/${selectedProduct?.id}`}>
               <PencilRuler />Edit
               </Link>
             </Button>
@@ -273,7 +273,7 @@ export default function ProductsPage() {
               </TableHeader>
               <TableBody>
                 {selectedProduct?.BOM?.map((part) => (
-                  <TableRow>
+                  <TableRow key={part.id}>
                     <TableCell>
                       <div className="w-10 h-10 relative rounded overflow-hidden bg-muted">
                         <SafeImage src={part.image} alt={part.image} fill className="object-contain" />

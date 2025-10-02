@@ -157,7 +157,7 @@ export default function PartsPage() {
             </TableHeader>
             <TableBody>
               {filteredParts.map((part) => (
-                <TableRow key={part._id} onClick={() => setSelectedPart(part)} className="cursor-pointer hover:bg-accent">
+                <TableRow key={part.id} onClick={() => setSelectedPart(part)} className="cursor-pointer hover:bg-accent">
                   <TableCell>
                     <SafeImage
                       src={part.image}
@@ -203,7 +203,7 @@ export default function PartsPage() {
           )}
           {selectedPart != null && <div className="flex items-center gap-2">
             <Button variant="outline" asChild size="sm">
-              <Link href={`/inventory/parts/${selectedPart?._id}`}>
+              <Link href={`/inventory/parts/${selectedPart?.id}`}>
               <PencilRuler />Edit
               </Link>
             </Button>
@@ -314,7 +314,7 @@ export default function PartsPage() {
               </thead>
               <tbody>
                 {partsLocation.map((loc) => (
-                  <LocationRow key={loc._id} location={loc} level={0} />
+                  <LocationRow key={loc.id} location={loc} level={0} />
                 ))}
               </tbody>
             </table>
@@ -353,7 +353,7 @@ export default function PartsPage() {
         {open &&
           hasChildren &&
           location.subLocations!.map((sub) => (
-            <LocationRow key={sub._id} location={sub} level={level + 1} />
+            <LocationRow key={sub.id} location={sub} level={level + 1} />
           ))}
       </>
     )

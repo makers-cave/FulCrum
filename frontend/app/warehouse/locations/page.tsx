@@ -134,7 +134,7 @@ const LocationsPage = () => {
                         </TableHeader>
                         <TableBody>
                             {filteredLocations.map((location) => (
-                                <TableRow key={location._id} onClick={() => setSelectedLocation(location)} className="cursor-pointer hover:bg-accent">
+                                <TableRow key={location.id} onClick={() => setSelectedLocation(location)} className="cursor-pointer hover:bg-accent">
                                     <TableCell>
                                         <SafeImage
                                             src={location.image}
@@ -168,7 +168,7 @@ const LocationsPage = () => {
                     )}
                     {selectedLocation != null && <div className="flex items-center gap-2">
                         <Button variant="outline" asChild size="sm">
-                            <Link href={`/inventory/parts/${selectedLocation?._id}`}>
+                            <Link href={`/inventory/parts/${selectedLocation?.id}`}>
                                 <PencilRuler />Edit
                             </Link>
                         </Button>

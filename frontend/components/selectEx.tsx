@@ -19,7 +19,7 @@ interface SelectExProps {
 }
 
 function findSelectDataById(data: SelectData[], id: string): SelectData | null {
-  const found = data.find((m) => m._id === id);
+  const found = data.find((m) => m.id === id);
   if (found) return found;
 
   for (const item of data) {
@@ -51,7 +51,7 @@ export function SelectEx({
 
   return (
     <Select
-      value={value?._id || "null"}
+      value={value?.id || "null"}
       onValueChange={handleValueChange}
     >
       <SelectTrigger className={className}>
@@ -69,8 +69,8 @@ export function SelectEx({
 function SelectChildRow({ data, level }: { data: SelectData[] | undefined; level: number }) {
   if (!data) return null;
   return data.map((child) => (
-    <React.Fragment key={child._id}>
-      <SelectItem value={child._id} style={{ paddingLeft: `${level * 16}px` }}>
+    <React.Fragment key={child.id}>
+      <SelectItem value={child.id} style={{ paddingLeft: `${level * 16}px` }}>
         {child.name}
       </SelectItem>
       <SelectChildRow data={child.children} level={level + 1} />

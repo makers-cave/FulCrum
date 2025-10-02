@@ -3,7 +3,7 @@ import { Order } from "../types";
 
 async function getOrder(orderid: string): Promise<Order | null> {
   // replace with real fetch
-  return orders.find((p) => p._id === orderid) ?? null
+  return orders.find((p) => p.id === orderid) ?? null
 }
 
 function getOrders(): Order[] {

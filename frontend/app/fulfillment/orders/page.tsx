@@ -148,8 +148,8 @@ export default function OrdersPage() {
                             </TableHeader>
                             <TableBody>
                                 {orders.map((order) => (
-                                    <TableRow key={order._id} onClick={() => setSelectedOrder(order)} className="cursor-pointer hover:bg-accent">
-                                        <TableCell>{order._id}</TableCell>
+                                    <TableRow key={order.id} onClick={() => setSelectedOrder(order)} className="cursor-pointer hover:bg-accent">
+                                        <TableCell>{order.id}</TableCell>
                                         <TableCell>{order.customer}</TableCell>
                                         <TableCell>{order.date}</TableCell>
                                         <TableCell>{order.items}</TableCell>
@@ -202,7 +202,7 @@ export default function OrdersPage() {
                                 <div className="grid grid-cols-2 gap-6">
                                     <div>
                                         <p className="text-sm text-muted-foreground">Order ID</p>
-                                        <p className="font-medium">{selectedOrder._id}</p>
+                                        <p className="font-medium">{selectedOrder.id}</p>
                                     </div>
                                     <div>
                                         <p className="text-sm text-muted-foreground">Customer</p>
@@ -237,7 +237,7 @@ export default function OrdersPage() {
                                                     <TableCell>{item.name}</TableCell>
                                                     <TableCell>{item.qty}</TableCell>
                                                     <TableCell>
-                                                        {item.lots?.map(lot => (<Badge key={lot._id} className="mr-1">{lot.name}</Badge>))}   
+                                                        {item.lots?.map(lot => (<Badge key={lot.id} className="mr-1">{lot.name}</Badge>))}   
                                                     </TableCell>
                                                 </TableRow>
                                             ))}

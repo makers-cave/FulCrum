@@ -4,7 +4,7 @@ import { Part } from "../types";
 
 async function getPart(partId: string): Promise<Part | null> {
   // replace with real fetch
-  return partsData.find((p) => p._id === partId) ?? null
+  return partsData.find((p) => p.id === partId) ?? null
 }
 
 function getPartCategories(): { _id: string; name: string }[] {

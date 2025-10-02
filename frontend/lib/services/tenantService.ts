@@ -5,7 +5,7 @@ import { Tenant } from "../types"
 
 function getDefaultTenant(): Tenant {
   return {
-      _id: useId(),
+      id: useId(),
       name: "Tenant Alpha",
       description: "This is description",
       isAlsoManufacturer: false,
@@ -17,7 +17,7 @@ function getDefaultTenant(): Tenant {
 }
 async function getTenant(tenantidId: string): Promise<Tenant | null> {
   // replace with real fetch
-  return tenantData.find((t) => t._id === tenantidId) ?? null
+  return tenantData.find((t) => t.id === tenantidId) ?? null
 }
 
 export { getTenant, getDefaultTenant }

@@ -62,7 +62,7 @@ const ProductPage = () => {
         ? {
           ...prev,                  // keep all the old fields of product
           BOM: prev.BOM?.map((row) =>
-            row._id === updatedRow._id ? updatedRow : row
+            row.id === updatedRow.id ? updatedRow : row
           ),
         }
         : prev // handle the null case

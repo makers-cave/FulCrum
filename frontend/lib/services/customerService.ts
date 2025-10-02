@@ -5,7 +5,7 @@ import { Customer } from "../types"
 
 function getDefaultCustomer(): Customer {
   return {
-      _id: useId(),
+      id: useId(),
       name: "Customer Alpha",
       description: "This is description",
       isAlsoManufacturer: false,
@@ -17,7 +17,7 @@ function getDefaultCustomer(): Customer {
 }
 async function getCustomer(custId: string): Promise<Customer | null> {
   // replace with real fetch
-  return customersData.find((c) => c._id === custId) ?? null
+  return customersData.find((c) => c.id === custId) ?? null
 }
 
 export { getCustomer, getDefaultCustomer }

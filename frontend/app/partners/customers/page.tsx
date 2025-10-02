@@ -48,9 +48,9 @@ const CustomersPage = () => {
               <TableBody>
                 {data.map((t) => (
                   <TableRow
-                    key={t._id}
-                    className={`cursor-pointer ${selectedEntity === t._id ? "bg-muted" : ""}`}
-                    onClick={() => setSelectedEntity(t._id)}
+                    key={t.id}
+                    className={`cursor-pointer ${selectedEntity === t.id ? "bg-muted" : ""}`}
+                    onClick={() => setSelectedEntity(t.id)}
                   >
                     <TableCell className="flex items-center gap-2">
                       <Avatar>
@@ -63,7 +63,7 @@ const CustomersPage = () => {
                     <TableCell>{t.phone}</TableCell>
                     <TableCell>
                       <Button asChild variant="outline" size="sm">
-                        <Link href={`/partners/customers/${t._id}`}>
+                        <Link href={`/partners/customers/${t.id}`}>
                           Edit
                         </Link>
                       </Button>
@@ -80,7 +80,7 @@ const CustomersPage = () => {
           <CardHeader>
             <CardTitle>
               {selectedEntity
-                ? `Orders for ${data.find((t) => t._id === selectedEntity)?.name}`
+                ? `Orders for ${data.find((t) => t.id === selectedEntity)?.name}`
                 : "Select a tenant to view orders"}
             </CardTitle>
           </CardHeader>
