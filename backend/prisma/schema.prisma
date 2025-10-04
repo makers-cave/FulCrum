@@ -1,5 +1,5 @@
 // This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// learn more about it in the docs https//pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
@@ -19,4 +19,162 @@ model User {
   tenant_id    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Location {
+  id    String @id @default(cuid())
+  name  String
+  description String?
+  image String?
+  processOrders Boolean? // Can this location process orders (e.g., packing/shipping)
+  addressId String?
+  address Address? @relation(fields: [addressId], references: [id])
+  contactPerson String
+  phone String?
+  email String?
+  category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId String?
+  sku String
+  status Int? // e.g., 0 = inactive, 1 = active
+  capacity Int?
+  currentOccupancy Int?
+  parentLocation Location? @relation("LocationHierarchy", fields: [parentLocationId], references: [id])
+  parentLocationId String?
+  childLocations Location[] @relation("LocationHierarchy")
+
+  @@map("Locations")
+}
+
+model Category {
+  id    String  @id @default(cuid())
+  name  String  @unique
+  locations Location[]
+}
+
+model Address {
+  id            String  @id @default(cuid())
+  street        String
+  addressLine2  String?
+  city          String
+  state         String?
+  zipCode       String
+  country       String
+  Location Location[]
+  Customer Customer[]
+  Supplier Supplier[]
+  Manufacturer Manufacturer[]
+  Carrier Carrier[]
+}
+
+  model Customer {
+    id                      String   @id @default(cuid())
+    name                    String
+    description             String?
+    isAlsoManufacturer      Boolean? 
+    isAlsoSupplier          Boolean?
+    isAlsoCustomer          Boolean?
+    currency                String?
+    avatar                  String?
+    email                   String?
+    phone                   String?
+    addressId               String?
+    address                 Address? @relation(fields: [addressId], references: [id])
+    contactPerson           String?
+    preferred               Boolean?
+    paymentTerms            String?  // Payment terms (e.g., Net 30, Net 60)
+    orderHistory            Json?    // List of past orders
+    rating                  Float?   // Customer rating
+    leadTimeDays            Int?     // Average lead time for orders
+    preferredShippingMethod String?  // e.g., "Air", "Ground", "Sea"
+  }
+
+
+model Supplier {
+  id                String   @id @default(cuid())
+  name              String
+  description       String?
+  isAlsoManufacturer Boolean?
+  isAlsoSupplier    Boolean?
+  isAlsoCustomer    Boolean?
+  currency          String?
+  avatar            String?
+  email             String?
+  phone             String?
+  addressId         String?
+  address           Address? @relation(fields: [addressId], references: [id])
+  contactPerson     String?
+  paymentTerms      String?
+  leadTimeDays      Int?
+  rating            Float?
+  preferred         Boolean?
+}
+
+model Manufacturer {
+  id                  String   @id @default(cuid())
+  name                String
+  description         String?
+  isAlsoManufacturer  Boolean?
+  isAlsoSupplier      Boolean?
+  isAlsoCustomer      Boolean?
+  currency            String?
+  avatar              String?
+  email               String?
+  phone               String?
+  addressId           String?
+  address             Address? @relation(fields: [addressId], references: [id])
+  contactPerson       String?
+  rating              Float?
+  preferred           Boolean?
+  leadTimeDays        Int?
+  paymentTerms        String?
+  certifications      Certifications[]
+  productionCapacity  String?
+}
+model Carrier {
+  id                String   @id @default(cuid())
+  name              String
+  description       String?
+  email             String?
+  phone             String?
+  addressId         String?
+  address           Address? @relation(fields: [addressId], references: [id])
+  contactPerson     String?
+  rating            Float?
+  preferred         Boolean?
+  trackingUrl       String?
+  capacity          String?
+  leadTimeDays      Int?
+  insuranceProvided Boolean?
+  certifications    Certifications[]
+  carrierServices   CarrierService[] // Opposite relation field
+  carrierRegions    CarrierRegions[] // Opposite relation field for CarrierRegions
+}
+
+model CarrierService {
+  id          String   @id @default(cuid())
+  carrierId   String
+  carrier     Carrier  @relation(fields: [carrierId], references: [id])
+  serviceName String
+  description String?
+  cost        Float?
+  estimatedDeliveryDays Int?
+} 
+
+model CarrierRegions {
+  id        String   @id @default(cuid())
+  carrierId String
+  carrier   Carrier  @relation(fields: [carrierId], references: [id])
+  region    String
+}
+model Certifications {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  issuedBy    String?
+  issueDate   DateTime?
+  expiryDate  DateTime?
+  manufacturerId String
+  manufacturer Manufacturer @relation(fields: [manufacturerId], references: [id]) 
+  carrierId   String?
+  carrier     Carrier? @relation(fields: [carrierId], references: [id])
 }
