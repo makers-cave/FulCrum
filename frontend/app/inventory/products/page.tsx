@@ -149,7 +149,7 @@ export default function ProductsPage() {
                     </div>
                   </TableCell>
                   <TableCell>{p.sku}</TableCell>
-                  <TableCell>{p.category}</TableCell>
+                  <TableCell>{p.category?.name}</TableCell>
                   <TableCell>{p.availableQty}</TableCell>
                   <TableCell>
                     {p.currency} {p.price.toFixed(2)}
