@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { usePageHeader } from "@/contexts/PageHeaderContext"
 import { sampleLocations } from "@/lib/data";
+import { getLocations } from "@/lib/services/locationService";
 import { Location } from "@/lib/types";
 import { Calendar, DollarSign, Filter, Grid, Info, Loader2, MapPin, Package, PencilRuler, PlusCircle, ReceiptText, Trash2, User } from "lucide-react";
 import Link from "next/link";
@@ -20,7 +21,7 @@ const LocationsPage = () => {
         useEffect(() => {
         setHeader("Locations", "View and manage warehouse locations")
     }, [setHeader])
-    const [locations, setLocations] = useState<Location[]>(sampleLocations)
+    const [locations, setLocations] = useState<Location[] | null>(null)
     const [search, setSearch] = useState("")
     const [filterCategory, setFilterCategory] = useState<string>("All")
     const [filterStatus, setFilterStatus] = useState<string>("All")
@@ -34,9 +35,29 @@ const LocationsPage = () => {
             filterStatus === "All" || loc.status === filterStatus
         return matchesSearch && matchesCategory && matchesStatus
     })
-      const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
+        useEffect(() => {
+            async function loadParts() {
+                try {
+                    const t:Location[] = await getLocations()
+                    if (t) {
+                        setLocations(t)
+                    } else {
+                        setError(true);
+                    }
+                } catch (e) {
+                    setError(true);
+                } finally {
+                    setLoading(false);
+                }
+            }
+            loadParts()
+        });
+        if (loading) {
+            return <Spinner text="Loading Orders..." />
+        }
     return (
         <div className="p-6 space-y-6">
             {/* Search + Filter + Add */}

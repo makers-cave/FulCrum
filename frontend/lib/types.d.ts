@@ -1,3 +1,4 @@
+import { Category } from "../../backend/generated/prisma";
 
 export type Tenant = {
   id: string;
@@ -186,27 +187,29 @@ type Product = {
 export type Location = {
   id: string;
   name: string;
-  description?: string;
-  image?: string;
-  processOrders?: boolean; // Can this location process orders (e.g., packing/shipping)
-  address?: Address;
-  contactPerson?: string;
-  phone?: string;
-  email?: string;
-  category: string;
+  description: string | null;
+  image: string | null;
+  processOrders: boolean | null;
+  addressId: string | null;
+  address: Address | null;
+  contactPerson: string;
+  phone: string | null;
+  email: string | null;
+  categoryId: string | null;
   sku: string;
-  status: "Active" | "Inactive";
-  capacity?: number;
-  currentOccupancy?: number;
-  parentLocation?: string;
+  status: number | null; // 0 = inactive, 1 = active
+  capacity: number | null;
+  currentOccupancy: number | null;
+  parentLocationId: string | null;
+  parentLocation: Location | null;
 };
 
 export type Address = {
   id: string;
   street: string;
-  addressLine2?: string;
+  addressLine2: string | null;
   city: string;
-  state?: string;
+  state: string
   zipCode: string;
   country: string;
 };

@@ -1,17 +1,21 @@
 import { manufacturersData, sampleLocations } from "../data"
 import { Manufacturer, SelectData } from "../types"
 import { PrismaClient} from "../../../backend/generated/prisma"
+import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient()
-async function getLocation(locID: string): Promise<Location | null> {
+async function getLocations() {
   // replace with real fetch
-
-  return prisma.location.findMany()
+  const locations = await prisma.location.findMany();
+  return new NextResponse(JSON.stringify(locations), {status: 200});
+}
+async function getLocation(locID: string) {
+  return prisma.location.findUnique({where: {id:locID}});
 }
 
 function getLocationsshort(): SelectData[] {
   // replace with real fetch
-  return sampleLocations
+  return null as unknown as SelectData[];
 }
 
-export { getLocation, getLocationsshort }
+export { getLocations, getLocationsshort }

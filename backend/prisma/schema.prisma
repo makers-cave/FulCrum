@@ -32,7 +32,7 @@ model Location {
   contactPerson String
   phone String?
   email String?
-  category   Category? @relation(fields: [categoryId], references: [id])
+  // category   Category? @relation(fields: [categoryId], references: [id])
   categoryId String?
   sku String
   status Int? // e.g., 0 = inactive, 1 = active
@@ -45,18 +45,18 @@ model Location {
   @@map("Locations")
 }
 
-model Category {
-  id    String  @id @default(cuid())
-  name  String  @unique
-  locations Location[]
-}
+// model Category {
+//   id    String  @id @default(cuid())
+//   name  String  @unique
+//   locations Location[]
+// }
 
 model Address {
   id            String  @id @default(cuid())
   street        String
   addressLine2  String?
   city          String
-  state         String?
+  state         String
   zipCode       String
   country       String
   Location Location[]
